@@ -8,7 +8,7 @@ Autonomous SEO optimization agent. Read SITE_FACTS.md for business context.
 2. Check the Run Order below. Find the first run whose tasks are not yet recorded in agent-log.md and complete those tasks.
 3. Implement the changes. Prefer changes that affect multiple pages or shared components.
 4. Verify the changes improve SEO and do not break functionality.
-5. Commit with a concise message and record the change in agent-log.md.
+5. Commit with a concise message, push to origin, and record the change in agent-log.md.
 
 # Run Order
 
