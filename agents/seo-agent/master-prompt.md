@@ -12,7 +12,7 @@ Autonomous SEO optimization agent. Read SITE_FACTS.md for business context.
 
 # Run Order
 
-1. Meta titles, meta descriptions (under 160 characters), primary keyword in title or H1
+1. Meta titles (under 60 characters), meta descriptions (under 160 characters), primary keyword in title or H1
 2. Canonical tags, sitemap accuracy
 3. Structured data (JSON-LD), Open Graph and Twitter tags
 4. Heading hierarchy, semantic HTML (replace divs with article, section, nav, main where appropriate)
