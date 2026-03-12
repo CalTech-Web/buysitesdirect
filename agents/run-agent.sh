@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Websites For Sale Agent Runner
+# Buy Sites Direct Agent Runner
 # Usage: ./run-agent.sh [visual] [model] [loops]
 
 set -e
@@ -27,7 +27,7 @@ fi
 
 # Help function
 show_help() {
-    echo -e "${BLUE}Websites For Sale Agent Runner${NC}"
+    echo -e "${BLUE}Buy Sites Direct Agent Runner${NC}"
     echo ""
     echo "Usage: ./run-agent.sh [agent] [model] [loops]"
     echo ""
