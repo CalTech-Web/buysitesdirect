@@ -38,7 +38,22 @@ export async function generateMetadata({
       ? `Browse ${count} website${count !== 1 ? "s" : ""} for sale by ${seller.username} on Buy Sites Direct. Total portfolio value: ${formatCurrency(totalValue)}. No broker fees.`
       : `View ${seller.username}'s seller profile on Buy Sites Direct. Buy and sell websites directly with no broker fees.`
 
-  return { title, description }
+  return {
+    title,
+    description,
+    alternates: { canonical: `/seller/${seller.username}` },
+    openGraph: {
+      title,
+      description,
+      url: `https://buysitesdirect.com/seller/${seller.username}`,
+      type: "profile",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  }
 }
 
 export default async function SellerProfilePage({
@@ -72,7 +87,37 @@ export default async function SellerProfilePage({
   const totalValue = sellerListings.reduce((sum, l) => sum + l.askingPrice, 0)
   const avgPrice = sellerListings.length > 0 ? Math.round(totalValue / sellerListings.length) : 0
 
+  const profileSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": `${seller.username} — Seller Profile`,
+    "url": `https://buysitesdirect.com/seller/${seller.username}`,
+    "mainEntity": {
+      "@type": "Person",
+      "name": seller.username,
+      "url": `https://buysitesdirect.com/seller/${seller.username}`,
+    },
+    ...(sellerListings.length > 0 && {
+      "hasPart": sellerListings.map((l) => ({
+        "@type": "Product",
+        "name": l.title,
+        "url": `https://buysitesdirect.com/listings/${l.slug}`,
+        "offers": {
+          "@type": "Offer",
+          "price": (l.askingPrice / 100).toFixed(2),
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+        },
+      })),
+    }),
+  }
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
+    />
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Profile header */}
       <header className="mb-10 rounded-2xl overflow-hidden border border-border/60 shadow-sm">
@@ -224,5 +269,6 @@ export default async function SellerProfilePage({
       )}
       </section>
     </div>
+    </>
   )
 }
