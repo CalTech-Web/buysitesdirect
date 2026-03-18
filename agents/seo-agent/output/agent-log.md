@@ -72,3 +72,21 @@ Deployed and live. (commit `5ded92d`)
   - Footer buyer links: updated /?category=saas/content-site/ecommerce to /buy/ canonical URLs
   - New src/app/dashboard/layout.tsx: robots noindex/nofollow applied to all dashboard pages
   - Brand fix (Navbar, Footer, homepage comparison card, login, register, recover, reset pages): replaced all "WebsitesForSale" with "Buy Sites Direct" and "W" badge letters with "B"
+Deployed. Here's what was done in this run (commit `ce050f3`):
+
+**Internal linking fix (highest SEO impact)**
+- Homepage "Browse by Category" grid now links to `/buy/[category]` instead of `/?category=key` — PageRank now flows to the canonical category landing pages that have dedicated meta titles, H1s, BreadcrumbList, and ItemList JSON-LD
+- Footer buyer links (SaaS, Content Sites, eCommerce) updated to `/buy/` canonical URLs for the same reason
+
+**Dashboard noindex**
+- New `src/app/dashboard/layout.tsx` with `robots: { index: false, follow: false }` — prevents Googlebot from crawling and indexing all private dashboard pages
+
+**Brand text cleanup**
+- All remaining "WebsitesForSale" text replaced with "Buy Sites Direct" across Navbar, Footer, homepage comparison card, and all auth pages (login, register, recover, reset)
+- Badge letter changed from "W" to "B" everywhere to match the brand identity in memory
+[2026-03-18 16:22:07] Run #4 finished
+[2026-03-18 16:22:12] Run #5 starting (model: sonnet)
+
+[2026-03-18] Run 8 completed (commit e702836):
+  - Seller profile page: generateMetadata now returns canonical URL, openGraph (type: "profile"), and Twitter card tags — previously these were missing entirely
+  - Seller profile page: added ProfilePage JSON-LD schema with mainEntity (Person) and hasPart (Product with Offer) for each active listing, giving Google a machine-readable profile with linked inventory
