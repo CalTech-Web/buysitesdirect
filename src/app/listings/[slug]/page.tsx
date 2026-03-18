@@ -275,6 +275,15 @@ export default async function ListingPage({
   const jsonLdSchemas: object[] = [
     {
       "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Websites for Sale", "item": "https://buysitesdirect.com" },
+        { "@type": "ListItem", "position": 2, "name": `${categoryLabel}s for Sale`, "item": `https://buysitesdirect.com/buy/${listing.category}` },
+        { "@type": "ListItem", "position": 3, "name": listing.title, "item": `https://buysitesdirect.com/listings/${listing.slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "Product",
       "name": listing.title,
       "description": listing.description.slice(0, 500),

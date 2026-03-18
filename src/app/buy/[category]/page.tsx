@@ -129,7 +129,36 @@ export default async function CategoryPage({
     : []
   const imageMap = Object.fromEntries(images.map((img) => [img.listingId, img.url]))
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Websites for Sale", "item": "https://buysitesdirect.com" },
+      { "@type": "ListItem", "position": 2, "name": seo.h1, "item": `https://buysitesdirect.com/buy/${category}` },
+    ],
+  }
+
+  const itemListSchema = rows.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": seo.h1,
+    "description": seo.description,
+    "url": `https://buysitesdirect.com/buy/${category}`,
+    "numberOfItems": rows.length,
+    "itemListElement": rows.map((row, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": row.listing.title,
+      "url": `https://buysitesdirect.com/listings/${row.listing.slug}`,
+    })),
+  } : null
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema ? [breadcrumbSchema, itemListSchema] : [breadcrumbSchema]) }}
+    />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="mb-8">
         <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
@@ -189,5 +218,6 @@ export default async function CategoryPage({
         </div>
       </nav>
     </div>
+    </>
   )
 }
