@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { db } from "@/db"
 import { listings, listingImages, users } from "@/db/schema"
-import { eq, ne, and, count } from "drizzle-orm"
+import { eq, ne, and, count, inArray } from "drizzle-orm"
 
 import { formatCurrency, formatNumber } from "@/lib/slug"
 import { ContactForm } from "@/components/listings/ContactForm"
@@ -57,11 +57,19 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `/listings/${listing.slug}`,
+    },
     openGraph: {
       title,
       description,
       url: `https://buysitesdirect.com/listings/${listing.slug}`,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
   }
 }
@@ -230,7 +238,10 @@ export default async function ListingPage({
     .limit(3)
 
   const relatedImages = relatedRows.length
-    ? await db.select().from(listingImages).where(eq(listingImages.displayOrder, 0))
+    ? await db.select().from(listingImages).where(and(
+        eq(listingImages.displayOrder, 0),
+        inArray(listingImages.listingId, relatedRows.map(r => r.listing.id))
+      ))
     : []
   const relatedImageMap = Object.fromEntries(relatedImages.map((img) => [img.listingId, img.url]))
 
@@ -305,10 +316,10 @@ export default async function ListingPage({
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchemas) }}
     />
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
+    <article className="max-w-4xl mx-auto px-4 py-10 space-y-8">
       <ScrollProgress />
       {/* Header Banner */}
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-10">
+      <header className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-10">
         {/* Category accent top bar */}
         <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${accentBar}`} />
         {/* Category-tinted radial gradients */}
@@ -367,7 +378,7 @@ export default async function ListingPage({
             {" "}· Member since {memberSince}
           </p>
         </div>
-      </div>
+      </header>
 
       {/* Images */}
       {images.length > 0 && (
@@ -444,7 +455,7 @@ export default async function ListingPage({
       </div>
 
       {/* Description */}
-      <div className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-indigo-200 dark:hover:border-indigo-800/60 hover:shadow-sm transition-all duration-200">
+      <section className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-indigo-200 dark:hover:border-indigo-800/60 hover:shadow-sm transition-all duration-200">
         <div className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-indigo-400 to-indigo-500 opacity-70" />
         <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-indigo-400/[0.05] to-transparent animate-shimmer pointer-events-none" style={{ animationDelay: "0.8s" }} />
         <div className="flex items-center gap-2 mb-3">
@@ -454,10 +465,10 @@ export default async function ListingPage({
           <h2 className="font-semibold">About This Site</h2>
         </div>
         <p className="text-muted-foreground whitespace-pre-wrap text-sm leading-relaxed">{listing.description}</p>
-      </div>
+      </section>
 
       {/* Reason for selling */}
-      <div className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-amber-200 dark:hover:border-amber-800/60 hover:shadow-sm transition-all duration-200">
+      <section className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-amber-200 dark:hover:border-amber-800/60 hover:shadow-sm transition-all duration-200">
         <div className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-amber-400 to-amber-500 opacity-70" />
         <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-amber-400/[0.05] to-transparent animate-shimmer pointer-events-none" style={{ animationDelay: "1.6s" }} />
         <div className="flex items-center gap-2 mb-3">
@@ -467,11 +478,11 @@ export default async function ListingPage({
           <h2 className="font-semibold">Reason for Selling</h2>
         </div>
         <p className="text-muted-foreground whitespace-pre-wrap text-sm leading-relaxed">{listing.reasonForSelling}</p>
-      </div>
+      </section>
 
       {/* Included assets */}
       {listing.includedAssets && (
-        <div className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-emerald-200 dark:hover:border-emerald-800/60 hover:shadow-sm transition-all duration-200">
+        <section className="animate-on-scroll relative overflow-hidden rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-emerald-200 dark:hover:border-emerald-800/60 hover:shadow-sm transition-all duration-200">
           <div className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-emerald-400 to-emerald-500 opacity-70" />
           <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-emerald-400/[0.05] to-transparent animate-shimmer pointer-events-none" style={{ animationDelay: "2.4s" }} />
           <div className="flex items-center gap-2 mb-3">
@@ -481,12 +492,12 @@ export default async function ListingPage({
             <h2 className="font-semibold">What&apos;s Included</h2>
           </div>
           <p className="text-muted-foreground whitespace-pre-wrap text-sm leading-relaxed">{listing.includedAssets}</p>
-        </div>
+        </section>
       )}
 
       {/* Tags */}
       {(listing.techStack?.length || listing.monetization?.length) ? (
-        <div className="animate-on-scroll rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-indigo-200 dark:hover:border-indigo-800/60 hover:shadow-sm transition-all duration-200">
+        <section className="animate-on-scroll rounded-xl border border-border/60 bg-muted/20 px-5 py-5 hover:border-indigo-200 dark:hover:border-indigo-800/60 hover:shadow-sm transition-all duration-200">
           <div className="space-y-5">
             {listing.techStack?.length ? (
               <div>
@@ -529,7 +540,7 @@ export default async function ListingPage({
               </div>
             ) : null}
           </div>
-        </div>
+        </section>
       ) : null}
 
       {/* FAQs */}
@@ -545,7 +556,7 @@ export default async function ListingPage({
             </div>
             <div className="h-px flex-1 rounded-full opacity-[0.35]" style={{ background: `linear-gradient(to right, transparent, ${sparkleColors[0]}, transparent)` }} />
           </div>
-          <div className="relative">
+          <section className="relative">
             {/* Sparkle particles near FAQ heading */}
             <div className="animate-sparkle absolute w-1 h-1 rounded-full bg-indigo-300/65 blur-[0.5px] pointer-events-none" style={{ top: '6px', left: '2%', animationDuration: '3.3s', animationDelay: '0s' }} />
             <div className="animate-sparkle absolute w-px h-px rounded-full bg-violet-200/75 pointer-events-none" style={{ top: '4px', right: '4%', animationDuration: '2.7s', animationDelay: '1.4s' }} />
@@ -574,7 +585,7 @@ export default async function ListingPage({
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         </>
       )}
 
@@ -592,7 +603,7 @@ export default async function ListingPage({
       {/* Related listings */}
       {relatedRows.length > 0 && (
         <>
-          <div>
+          <section>
             <div className="relative flex items-center justify-between mb-5">
               {/* Category-tinted sparkle particles around the heading */}
               <div className="animate-sparkle absolute w-1 h-1 rounded-full blur-[0.5px] pointer-events-none" style={{ top: '2px', left: '1%', animationDuration: '3.2s', animationDelay: '0s', backgroundColor: sparkleColors[0] }} />
@@ -624,12 +635,12 @@ export default async function ListingPage({
                 />
               ))}
             </div>
-          </div>
+          </section>
         </>
       )}
 
       {/* Seller card */}
-      <div className="animate-on-scroll group rounded-xl border border-border/60 bg-card overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-900/25 hover:border-indigo-200 dark:hover:border-indigo-800/60 animate-seller-card-glow">
+      <aside className="animate-on-scroll group rounded-xl border border-border/60 bg-card overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/10 dark:hover:shadow-indigo-900/25 hover:border-indigo-200 dark:hover:border-indigo-800/60 animate-seller-card-glow">
         <div className="relative h-14 bg-gradient-to-r from-indigo-600 via-indigo-500 to-emerald-500 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,255,255,0.15)_0%,_transparent_60%)]" />
           {/* Ambient orb */}
@@ -673,12 +684,12 @@ export default async function ListingPage({
             </Link>
           </div>
         </div>
-      </div>
+      </aside>
 
       {/* Contact form */}
       {listing.status === "active" && <FloatingContactButton />}
       {listing.status === "active" ? (
-        <div id="contact" className="relative">
+        <section id="contact" className="relative">
           {/* Sparkle particles near Contact heading */}
           <div className="animate-sparkle absolute w-1 h-1 rounded-full bg-indigo-300/65 blur-[0.5px] pointer-events-none" style={{ top: '6px', left: '2%', animationDuration: '3.3s', animationDelay: '0s' }} />
           <div className="animate-sparkle absolute w-px h-px rounded-full bg-emerald-200/75 pointer-events-none" style={{ top: '4px', right: '4%', animationDuration: '2.7s', animationDelay: '1.4s' }} />
@@ -752,7 +763,7 @@ export default async function ListingPage({
               </div>
             </div>
           )}
-        </div>
+        </section>
       ) : (
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-12 text-center">
           {/* Category accent top bar */}
@@ -808,7 +819,7 @@ export default async function ListingPage({
           </div>
         </div>
       )}
-    </div>
+    </article>
     </>
   )
 }

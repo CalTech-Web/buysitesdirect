@@ -75,7 +75,7 @@ export default async function SellerProfilePage({
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Profile header */}
-      <div className="mb-10 rounded-2xl overflow-hidden border border-border/60 shadow-sm">
+      <header className="mb-10 rounded-2xl overflow-hidden border border-border/60 shadow-sm">
         {/* Dark hero banner */}
         <div className="relative h-36 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
           {/* Accent top bar */}
@@ -173,8 +173,9 @@ export default async function SellerProfilePage({
             )}
           </div>
         </div>
-      </div>
+      </header>
 
+      <section aria-label="Listings">
       {sellerListings.length === 0 ? (
         <div className="relative flex flex-col items-center justify-center py-20 text-center rounded-2xl border border-border/40 bg-gradient-to-br from-slate-50 to-indigo-50/30 dark:from-slate-950/50 dark:to-indigo-950/20 overflow-hidden">
           {/* Ambient orb blobs */}
@@ -221,6 +222,7 @@ export default async function SellerProfilePage({
           </div>
         </>
       )}
+      </section>
     </div>
   )
 }

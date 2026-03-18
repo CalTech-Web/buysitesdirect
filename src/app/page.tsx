@@ -137,7 +137,7 @@ export default async function HomePage({
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <div className="mb-10 text-center">
+      <section className="mb-10 text-center">
         <div className="relative mb-8 py-14 px-6 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(99,102,241,0.25)_0%,_transparent_60%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(16,185,129,0.15)_0%,_transparent_60%)]" />
@@ -231,13 +231,13 @@ export default async function HomePage({
             )}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* How it works */}
-      <div className="mb-10 animate-on-scroll">
+      <section className="mb-10 animate-on-scroll">
         <div className="flex items-center gap-4 mb-6">
           <div className="h-px flex-1 animate-section-divider" />
-          <span className="text-[11px] font-bold uppercase tracking-widest animate-section-label">How it works</span>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest animate-section-label">How it works</h2>
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "3.5s" }} />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] gap-3 sm:gap-2">
@@ -290,10 +290,10 @@ export default async function HomePage({
             <p className="text-xs text-muted-foreground leading-relaxed">Negotiate and complete the transaction entirely on your own terms.</p>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Sell Your Site section */}
-      <div className="mb-10 animate-on-scroll animate-sell-cta-glow relative rounded-2xl border border-indigo-200 dark:border-indigo-900/40 bg-gradient-to-br from-indigo-50 via-white to-emerald-50 dark:from-indigo-950/30 dark:via-slate-900 dark:to-emerald-950/20 overflow-hidden">
+      <section className="mb-10 animate-on-scroll animate-sell-cta-glow relative rounded-2xl border border-indigo-200 dark:border-indigo-900/40 bg-gradient-to-br from-indigo-50 via-white to-emerald-50 dark:from-indigo-950/30 dark:via-slate-900 dark:to-emerald-950/20 overflow-hidden">
         {/* Sparkle particles */}
         <div className="animate-sparkle absolute w-1 h-1 rounded-full blur-[0.5px] pointer-events-none" style={{ top: '14%', left: '4%', animationDuration: '3.3s', animationDelay: '0s', backgroundColor: 'rgba(99,102,241,0.50)' }} />
         <div className="animate-sparkle absolute w-px h-px rounded-full pointer-events-none" style={{ top: '66%', left: '3%', animationDuration: '2.7s', animationDelay: '1.2s', backgroundColor: 'rgba(165,180,252,0.65)' }} />
@@ -376,13 +376,13 @@ export default async function HomePage({
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Broker vs Direct comparison */}
-      <div className="mb-10 animate-on-scroll">
+      <section className="mb-10 animate-on-scroll">
         <div className="flex items-center gap-4 mb-6">
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "1.2s" }} />
-          <span className="text-[11px] font-bold uppercase tracking-widest animate-section-label">vs. traditional brokers</span>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest animate-section-label">vs. traditional brokers</h2>
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "4.7s" }} />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -477,13 +477,13 @@ export default async function HomePage({
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Browse by Category */}
-      <div className="mb-10 animate-on-scroll">
+      <section className="mb-10 animate-on-scroll">
         <div className="flex items-center gap-4 mb-5">
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "2.4s" }} />
-          <span className="text-[11px] font-bold uppercase tracking-widest animate-section-label">Browse by category</span>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest animate-section-label">Browse by category</h2>
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "5.9s" }} />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -524,7 +524,7 @@ export default async function HomePage({
             )
           })}
         </div>
-      </div>
+      </section>
 
       <FilterBar categories={CATEGORIES} />
 
@@ -579,7 +579,7 @@ export default async function HomePage({
         </div>
       </div>
 
-      <div id="listings" />
+      <section id="listings">
       {filtered.length === 0 ? (
         <div className="relative flex flex-col items-center justify-center py-20 text-center rounded-2xl border border-border/40 bg-gradient-to-br from-slate-50 to-indigo-50/30 dark:from-slate-950/50 dark:to-indigo-950/20 overflow-hidden mt-6">
           {/* Ambient orb blobs */}
@@ -711,6 +711,7 @@ export default async function HomePage({
           })()}
         </>
       )}
+      </section>
     </div>
   )
 }
