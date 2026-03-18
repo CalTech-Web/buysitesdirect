@@ -260,7 +260,51 @@ export default async function ListingPage({
   const accentBar = CATEGORY_ACCENT_BAR[listing.category] ?? CATEGORY_ACCENT_BAR["other"]
   const sparkleColors = CATEGORY_SPARKLE_COLORS[listing.category] ?? CATEGORY_SPARKLE_COLORS["other"]
 
+  const categoryLabel = CATEGORY_LABELS[listing.category] ?? "Website"
+  const jsonLdSchemas: object[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": listing.title,
+      "description": listing.description.slice(0, 500),
+      "url": `https://buysitesdirect.com/listings/${listing.slug}`,
+      "category": categoryLabel,
+      "offers": {
+        "@type": "Offer",
+        "price": (listing.askingPrice / 100).toFixed(2),
+        "priceCurrency": "USD",
+        "availability": listing.status === "active"
+          ? "https://schema.org/InStock"
+          : "https://schema.org/SoldOut",
+        "seller": {
+          "@type": "Person",
+          "name": seller.username,
+        },
+      },
+    },
+  ]
+
+  if (listing.faqs.length > 0) {
+    jsonLdSchemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": listing.faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a,
+        },
+      })),
+    })
+  }
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchemas) }}
+    />
     <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
       <ScrollProgress />
       {/* Header Banner */}
@@ -765,6 +809,7 @@ export default async function ListingPage({
         </div>
       )}
     </div>
+    </>
   )
 }
 
