@@ -487,16 +487,15 @@ export default async function HomePage({
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "5.9s" }} />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {CATEGORY_DISPLAY.map(({ key, label, Icon, bg, iconCls, hoverBorder, hoverShadow }, i) => {
+          {CATEGORY_DISPLAY.map(({ key, label, Icon, bg, iconCls, hoverBorder, hoverShadow, glowClass }, i) => {
             const listingCount = categoryCountMap[key] ?? 0
             const sc = CATEGORY_SPARKLES[key] ?? CATEGORY_SPARKLES["other"]
             const spDelay = (i * 0.37) % 2
             return (
+              <div key={key} className="animate-fade-in-up" style={{ animationDelay: `${i * 0.06}s` }}>
               <Link
-                key={key}
                 href={`/buy/${key}`}
-                className={`animate-fade-in-up group relative flex flex-col items-center gap-2.5 p-4 rounded-xl border transition-all duration-200 bg-gradient-to-br overflow-hidden ${bg} border-slate-100 dark:border-slate-800 ${hoverBorder} hover:shadow-md ${hoverShadow} hover:-translate-y-0.5`}
-                style={{ animationDelay: `${i * 0.06}s` }}
+                className={`animate-category-glow ${glowClass} group relative flex flex-col items-center gap-2.5 p-4 rounded-xl border transition-all duration-200 bg-gradient-to-br overflow-hidden ${bg} border-slate-100 dark:border-slate-800 ${hoverBorder} hover:shadow-md ${hoverShadow} hover:-translate-y-0.5`}
               >
                 {/* Category-tinted sparkle particles */}
                 <div className="animate-sparkle absolute w-1 h-1 rounded-full blur-[0.5px] pointer-events-none" style={{ top: '13%', left: '9%', animationDuration: '3.2s', animationDelay: `${spDelay}s`, backgroundColor: sc[0] }} />
@@ -512,6 +511,7 @@ export default async function HomePage({
                 </div>
                 <span className="text-xs font-semibold text-center leading-tight">{label}</span>
               </Link>
+              </div>
             )
           })}
         </div>
