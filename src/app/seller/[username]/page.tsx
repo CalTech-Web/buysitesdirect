@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 import { db } from "@/db"
 import { users, listings } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
@@ -7,6 +8,38 @@ import { formatCurrency } from "@/lib/slug"
 import { LayoutGrid, ShieldCheck, Package, Layers, DollarSign, BarChart3 } from "lucide-react"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}): Promise<Metadata> {
+  const { username } = await params
+
+  const [seller] = await db
+    .select({ id: users.id, username: users.username })
+    .from(users)
+    .where(eq(users.username, username.toLowerCase()))
+    .limit(1)
+
+  if (!seller) return {}
+
+  const sellerListings = await db
+    .select({ askingPrice: listings.askingPrice })
+    .from(listings)
+    .where(and(eq(listings.sellerId, seller.id), eq(listings.status, "active")))
+
+  const count = sellerListings.length
+  const totalValue = sellerListings.reduce((sum, l) => sum + l.askingPrice, 0)
+
+  const title = `${seller.username}'s Listings | Buy Sites Direct`
+  const description =
+    count > 0
+      ? `Browse ${count} website${count !== 1 ? "s" : ""} for sale by ${seller.username} on Buy Sites Direct. Total portfolio value: ${formatCurrency(totalValue)}. No broker fees.`
+      : `View ${seller.username}'s seller profile on Buy Sites Direct. Buy and sell websites directly with no broker fees.`
+
+  return { title, description }
+}
 
 export default async function SellerProfilePage({
   params,
