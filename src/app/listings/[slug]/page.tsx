@@ -10,7 +10,7 @@ import { ImageGallery } from "@/components/listings/ImageGallery"
 import { ListingCard } from "@/components/listings/ListingCard"
 import { getSession } from "@/lib/auth"
 import Link from "next/link"
-import { Globe, Info, MessageSquare, Package, DollarSign, TrendingUp, Wallet, Eye, Clock, Layers, ArrowRight, HelpCircle, Mail, Lock, Search } from "lucide-react"
+import { Globe, Info, MessageSquare, Package, ArrowRight, HelpCircle, Mail, Lock, Search } from "lucide-react"
 import { FloatingContactButton } from "@/components/listings/FloatingContactButton"
 import { ScrollProgress } from "@/components/listings/ScrollProgress"
 import { DealMeter } from "@/components/listings/DealMeter"
@@ -387,23 +387,23 @@ export default async function ListingPage({
 
       {/* Key metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <MetricBox label="Asking Price" value={formatCurrency(listing.askingPrice)} rawValue={listing.askingPrice} prefix="$" color="indigo" icon={DollarSign} index={0} />
+        <MetricBox label="Asking Price" value={formatCurrency(listing.askingPrice)} rawValue={listing.askingPrice} prefix="$" color="indigo" icon="DollarSign" index={0} />
         {listing.monthlyRevenue != null && (
-          <MetricBox label="Monthly Revenue" value={formatCurrency(listing.monthlyRevenue)} rawValue={listing.monthlyRevenue} prefix="$" color="emerald" icon={TrendingUp} index={1} />
+          <MetricBox label="Monthly Revenue" value={formatCurrency(listing.monthlyRevenue)} rawValue={listing.monthlyRevenue} prefix="$" color="emerald" icon="TrendingUp" index={1} />
         )}
         {listing.monthlyProfit != null && (
-          <MetricBox label="Monthly Profit" value={formatCurrency(listing.monthlyProfit)} rawValue={listing.monthlyProfit} prefix="$" color="teal" icon={Wallet} index={2} />
+          <MetricBox label="Monthly Profit" value={formatCurrency(listing.monthlyProfit)} rawValue={listing.monthlyProfit} prefix="$" color="teal" icon="Wallet" index={2} />
         )}
         {listing.monthlyTraffic != null && (
-          <MetricBox label="Monthly Traffic" value={formatNumber(listing.monthlyTraffic) + " views"} rawValue={listing.monthlyTraffic} suffix=" views" color="sky" icon={Eye} index={3} />
+          <MetricBox label="Monthly Traffic" value={formatNumber(listing.monthlyTraffic) + " views"} rawValue={listing.monthlyTraffic} suffix=" views" color="sky" icon="Eye" index={3} />
         )}
-        <MetricBox label="Age" value={age} color="amber" icon={Clock} index={4} />
+        <MetricBox label="Age" value={age} color="amber" icon="Clock" index={4} />
         {listing.monthlyRevenue && listing.askingPrice ? (
           <MetricBox
             label="Multiple"
             value={`${(listing.askingPrice / listing.monthlyRevenue).toFixed(1)}x monthly`}
             color="violet"
-            icon={Layers}
+            icon="Layers"
             index={5}
           />
         ) : null}

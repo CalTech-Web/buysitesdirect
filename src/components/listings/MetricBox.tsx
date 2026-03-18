@@ -1,7 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import type { LucideIcon } from "lucide-react"
+import { DollarSign, TrendingUp, Wallet, Eye, Clock, Layers, type LucideIcon } from "lucide-react"
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  DollarSign, TrendingUp, Wallet, Eye, Clock, Layers,
+}
 
 function easeOutExpo(t: number): number {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
@@ -106,7 +110,7 @@ export function MetricBox({
   prefix,
   suffix,
   color = "indigo",
-  icon: Icon,
+  icon: iconName,
   index = 0,
 }: {
   label: string
@@ -115,7 +119,7 @@ export function MetricBox({
   prefix?: string
   suffix?: string
   color?: MetricColor
-  icon?: LucideIcon
+  icon?: string
   index?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -137,6 +141,7 @@ export function MetricBox({
     return () => observer.disconnect()
   }, [])
 
+  const Icon = iconName ? ICON_MAP[iconName] : undefined
   const styles = METRIC_COLOR_STYLES[color]
   const spDelay = (index * 0.43) % 2.5
 
