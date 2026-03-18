@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { TrendingUp, DollarSign, Calendar, Zap } from "lucide-react"
 
 const SCENARIOS = [
@@ -40,6 +40,13 @@ export function ReturnsCalculator({
   monthlyProfit?: number | null
 }) {
   const [scenarioIdx, setScenarioIdx] = useState(1)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 120)
+    return () => clearTimeout(t)
+  }, [])
+
   const scenario = SCENARIOS[scenarioIdx]
   const styles = SCENARIO_STYLES[scenarioIdx]
   const sparkleColor = SCENARIO_SPARKLE_COLORS[scenarioIdx]
@@ -136,11 +143,20 @@ export function ReturnsCalculator({
               const heightPct = maxProfit > 0 ? (y.profit / maxProfit) * 100 : 0
               return (
                 <div key={y.yr} className="flex-1 flex flex-col items-center gap-1.5">
-                  <span className={`text-[10px] font-bold ${styles.gradient}`}>{fmt(y.profit)}</span>
+                  <span
+                    className={`text-[10px] font-bold transition-opacity duration-300 ${styles.gradient}`}
+                    style={{ opacity: mounted ? 1 : 0, transitionDelay: mounted ? `${i * 120 + 80}ms` : "0ms" }}
+                  >
+                    {fmt(y.profit)}
+                  </span>
                   <div className="w-full flex items-end" style={{ height: "56px" }}>
                     <div
-                      className={`relative overflow-hidden w-full rounded-t-md ${styles.bar} opacity-80 transition-all duration-500`}
-                      style={{ height: `${Math.max(heightPct, 4)}%` }}
+                      className={`relative overflow-hidden w-full rounded-t-md ${styles.bar} opacity-80 transition-all duration-700`}
+                      style={{
+                        height: mounted ? `${Math.max(heightPct, 4)}%` : "0%",
+                        transitionDelay: mounted ? `${i * 120}ms` : "0ms",
+                        transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                      }}
                     >
                       <div
                         className="animate-shimmer absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none"
