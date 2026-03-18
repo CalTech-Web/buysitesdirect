@@ -139,6 +139,17 @@ const CATEGORY_SPARKLE_COLORS: Record<string, [string, string, string]> = {
   "other":            ["rgba(129,140,248,0.85)",  "rgba(255,255,255,0.70)", "rgba(52,211,153,0.75)"],
 }
 
+const CATEGORY_LINK_COLORS: Record<string, { border: string; icon: string; hover: string }> = {
+  "content-site":     { border: "border-sky-200 dark:border-sky-800/60",       icon: "text-sky-600 dark:text-sky-400",       hover: "hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50/60 dark:hover:bg-sky-900/20 hover:shadow-sky-100/70 dark:hover:shadow-sky-950/40" },
+  "saas":             { border: "border-violet-200 dark:border-violet-800/60", icon: "text-violet-600 dark:text-violet-400", hover: "hover:border-violet-400 dark:hover:border-violet-600 hover:bg-violet-50/60 dark:hover:bg-violet-900/20 hover:shadow-violet-100/70 dark:hover:shadow-violet-950/40" },
+  "ecommerce":        { border: "border-orange-200 dark:border-orange-800/60", icon: "text-orange-600 dark:text-orange-400", hover: "hover:border-orange-400 dark:hover:border-orange-600 hover:bg-orange-50/60 dark:hover:bg-orange-900/20 hover:shadow-orange-100/70 dark:hover:shadow-orange-950/40" },
+  "tool-or-app":      { border: "border-teal-200 dark:border-teal-800/60",     icon: "text-teal-600 dark:text-teal-400",     hover: "hover:border-teal-400 dark:hover:border-teal-600 hover:bg-teal-50/60 dark:hover:bg-teal-900/20 hover:shadow-teal-100/70 dark:hover:shadow-teal-950/40" },
+  "newsletter":       { border: "border-rose-200 dark:border-rose-800/60",     icon: "text-rose-600 dark:text-rose-400",     hover: "hover:border-rose-400 dark:hover:border-rose-600 hover:bg-rose-50/60 dark:hover:bg-rose-900/20 hover:shadow-rose-100/70 dark:hover:shadow-rose-950/40" },
+  "community":        { border: "border-emerald-200 dark:border-emerald-800/60", icon: "text-emerald-600 dark:text-emerald-400", hover: "hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-emerald-50/60 dark:hover:bg-emerald-900/20 hover:shadow-emerald-100/70 dark:hover:shadow-emerald-950/40" },
+  "service-business": { border: "border-amber-200 dark:border-amber-800/60",   icon: "text-amber-600 dark:text-amber-400",   hover: "hover:border-amber-400 dark:hover:border-amber-600 hover:bg-amber-50/60 dark:hover:bg-amber-900/20 hover:shadow-amber-100/70 dark:hover:shadow-amber-950/40" },
+  "other":            { border: "border-slate-200 dark:border-slate-700",       icon: "text-slate-500 dark:text-slate-400",   hover: "hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50/60 dark:hover:bg-slate-800/20 hover:shadow-slate-100/70 dark:hover:shadow-slate-800/40" },
+}
+
 const RELATED_CATEGORIES: Record<string, string[]> = {
   "content-site":     ["newsletter", "community", "saas"],
   "saas":             ["tool-or-app", "ecommerce", "service-business"],
@@ -276,28 +287,32 @@ export default async function CategoryPage({
 
       {/* Related categories */}
       <nav aria-label="Related categories" className="mt-16 pt-8 border-t border-border/50">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">Browse other categories</h2>
+        <h2 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Browse other categories</h2>
         <div className="flex flex-wrap gap-3">
           {(RELATED_CATEGORIES[category] ?? []).map((rel) => {
             const relSeo = CATEGORY_SEO[rel]
             if (!relSeo) return null
+            const RelIcon = CATEGORY_ICONS[rel] ?? LayoutGrid
+            const colors = CATEGORY_LINK_COLORS[rel] ?? CATEGORY_LINK_COLORS["other"]
             return (
               <Link
                 key={rel}
                 href={`/buy/${rel}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border/60 text-sm font-medium hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                className={`group inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${colors.border} ${colors.hover}`}
               >
+                <RelIcon className={`h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:scale-110 ${colors.icon}`} />
                 {relSeo.label}
-                <ArrowRight className="h-3.5 w-3.5 opacity-50" />
+                <ArrowRight className="h-3.5 w-3.5 opacity-40 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             )
           })}
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border/60 text-sm font-medium hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border/60 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 hover:bg-indigo-50/60 dark:hover:bg-indigo-900/20"
           >
+            <LayoutGrid className="h-3.5 w-3.5 shrink-0 text-indigo-500 dark:text-indigo-400 transition-transform duration-200 group-hover:scale-110" />
             All listings
-            <ArrowRight className="h-3.5 w-3.5 opacity-50" />
+            <ArrowRight className="h-3.5 w-3.5 opacity-40 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </div>
       </nav>
