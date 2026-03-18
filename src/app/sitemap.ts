@@ -5,6 +5,11 @@ import { eq } from "drizzle-orm"
 
 const BASE_URL = "https://buysitesdirect.com"
 
+const CATEGORIES = [
+  "content-site", "saas", "ecommerce", "tool-or-app",
+  "newsletter", "community", "service-business",
+]
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [activeListings, sellers] = await Promise.all([
     db
@@ -23,6 +28,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 1,
     },
+    ...CATEGORIES.map((cat) => ({
+      url: `${BASE_URL}/buy/${cat}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
     ...activeListings.map((listing) => ({
       url: `${BASE_URL}/listings/${listing.slug}`,
       lastModified: listing.updatedAt,
