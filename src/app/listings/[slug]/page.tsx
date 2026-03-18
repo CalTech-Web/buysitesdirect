@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 import { db } from "@/db"
 import { listings, listingImages, users } from "@/db/schema"
 import { eq, ne, and, count } from "drizzle-orm"
@@ -17,6 +18,53 @@ import { ReturnsCalculator } from "@/components/listings/ReturnsCalculator"
 import { MetricBox } from "@/components/listings/MetricBox"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const [row] = await db
+    .select({ listing: listings })
+    .from(listings)
+    .where(eq(listings.slug, slug))
+    .limit(1)
+
+  if (!row) return {}
+
+  const { listing } = row
+  const categoryLabel = {
+    "content-site": "Content Site",
+    "saas": "SaaS",
+    "ecommerce": "eCommerce",
+    "tool-or-app": "Tool / App",
+    "newsletter": "Newsletter",
+    "community": "Community",
+    "service-business": "Service Business",
+    "other": "Other",
+  }[listing.category] ?? "Website"
+
+  const price = formatCurrency(listing.askingPrice)
+  const revenueSnippet = listing.monthlyRevenue && listing.monthlyRevenue > 0
+    ? ` Generating ${formatCurrency(listing.monthlyRevenue)}/mo in revenue.`
+    : ""
+  const descSnippet = listing.description.slice(0, 120).replace(/\s+\S*$/, "")
+
+  const title = `${listing.title} – ${categoryLabel} for Sale`
+  const description = `${categoryLabel} asking ${price}.${revenueSnippet} ${descSnippet}…`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://buysitesdirect.com/listings/${listing.slug}`,
+      type: "website",
+    },
+  }
+}
 
 const CATEGORY_LABELS: Record<string, string> = {
   "content-site": "Content Site",
@@ -510,7 +558,7 @@ export default async function ListingPage({
               <div className="animate-sparkle absolute w-1.5 h-1.5 rounded-full blur-sm pointer-events-none" style={{ top: '8px', left: '70%', animationDuration: '4.1s', animationDelay: '0.9s', backgroundColor: sparkleColors[2], opacity: 0.45 }} />
               <div>
                 <h2 className="text-xl font-semibold animate-section-label">More {CATEGORY_LABELS[listing.category] ?? "Listings"} for Sale</h2>
-                <p className="text-sm text-muted-foreground mt-0.5">Similar listings you might be interested in</p>
+                <p className="text-sm text-muted-foreground mt-0.5">Other sites in the same category</p>
               </div>
               <Link
                 href={`/?category=${listing.category}`}
@@ -619,7 +667,7 @@ export default async function ListingPage({
                 <div className="animate-sparkle absolute w-px h-px rounded-full bg-white/65 pointer-events-none" style={{ top: '65%', right: '7%', animationDuration: '2.8s', animationDelay: '1.9s' }} />
                 <div className="animate-sparkle absolute w-1.5 h-1.5 rounded-full bg-white/25 blur-sm pointer-events-none" style={{ top: '44%', left: '50%', animationDuration: '4.2s', animationDelay: '0.8s' }} />
                 <div className="relative">
-                  <p className="font-semibold text-white text-base">Contact this seller — it&apos;s free</p>
+                  <p className="font-semibold text-white text-base">Contact this seller. Free, always.</p>
                   <p className="text-indigo-100 text-sm mt-0.5">No broker fees. No commissions. Direct contact.</p>
                 </div>
               </div>
@@ -629,14 +677,14 @@ export default async function ListingPage({
                   <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-emerald-200/50 dark:shadow-emerald-900/50">✓</div>
                   <div>
                     <p className="text-sm font-medium">Reply goes straight to your inbox</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">The seller emails you directly — no middleman reads your messages.</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">The seller emails you directly. No middleman reads your messages.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-indigo-200/50 dark:shadow-indigo-900/50">✓</div>
                   <div>
                     <p className="text-sm font-medium">Your email stays private</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">We never share your address publicly or sell it to third parties.</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Only the seller sees your email. Nobody else.</p>
                   </div>
                 </div>
                 <div className="flex gap-3 pt-1">
@@ -694,10 +742,10 @@ export default async function ListingPage({
             {/* Status description */}
             <p className="animate-fade-in-up text-slate-400 text-sm mb-6 max-w-sm mx-auto leading-relaxed" style={{ animationDelay: '0.2s' }}>
               {listing.status === "sold"
-                ? "This website has found a new owner. Browse other listings to find your next acquisition."
+                ? "This one sold. Browse the other listings in this category."
                 : listing.status === "under_offer"
-                ? "This website is currently under negotiation. Browse other listings in the meantime."
-                : "This listing is no longer accepting inquiries. Explore other available websites below."}
+                ? "A buyer is in talks with this seller right now. Browse other options."
+                : "This listing is closed. Search the rest of the marketplace."}
             </p>
             {/* CTA button */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
