@@ -47,10 +47,10 @@ export default function RecoverPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center justify-center gap-2">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
-              W
+              B
             </div>
             <span className="font-bold text-lg bg-gradient-to-r from-indigo-600 to-emerald-600 bg-clip-text text-transparent">
-              WebsitesForSale
+              Buy Sites Direct
             </span>
           </Link>
         </div>

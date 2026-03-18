@@ -65,7 +65,7 @@ function RegisterForm() {
 
         <div className="relative">
           <Link href="/" className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
-            WebsitesForSale
+            Buy Sites Direct
           </Link>
         </div>
 
@@ -106,7 +106,7 @@ function RegisterForm() {
 
         <div className="relative">
           <p className="text-slate-500 text-xs">
-            &copy; {new Date().getFullYear()} WebsitesForSale. All rights reserved.
+            &copy; {new Date().getFullYear()} Buy Sites Direct. All rights reserved.
           </p>
         </div>
       </div>
@@ -116,7 +116,7 @@ function RegisterForm() {
         <div className="w-full max-w-sm space-y-8">
           <div>
             <Link href="/" className="text-lg font-bold bg-gradient-to-r from-indigo-600 to-emerald-600 bg-clip-text text-transparent lg:hidden">
-              WebsitesForSale
+              Buy Sites Direct
             </Link>
             <h1 className="text-2xl font-bold mt-6 lg:mt-0">Create your account</h1>
             <p className="text-muted-foreground text-sm mt-1">Free to join — list sites or contact sellers</p>

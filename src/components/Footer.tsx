@@ -54,10 +54,10 @@ export function Footer() {
           <div className="space-y-3">
             <Link href="/" className="group flex items-center gap-2 font-bold text-lg tracking-tight">
               <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-gradient-to-br from-indigo-500 to-emerald-500 text-white text-xs font-bold shrink-0 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-3">
-                W
+                B
               </span>
               <span className="bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
-                WebsitesForSale
+                Buy Sites Direct
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
@@ -76,19 +76,19 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/?category=saas" className="group relative inline-block hover:text-white transition-colors duration-200">
+                <Link href="/buy/saas" className="group relative inline-block hover:text-white transition-colors duration-200">
                   SaaS &amp; Apps
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
               <li>
-                <Link href="/?category=content-site" className="group relative inline-block hover:text-white transition-colors duration-200">
+                <Link href="/buy/content-site" className="group relative inline-block hover:text-white transition-colors duration-200">
                   Content Sites
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
               <li>
-                <Link href="/?category=ecommerce" className="group relative inline-block hover:text-white transition-colors duration-200">
+                <Link href="/buy/ecommerce" className="group relative inline-block hover:text-white transition-colors duration-200">
                   eCommerce
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
                 </Link>
@@ -127,7 +127,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} WebsitesForSale. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Buy Sites Direct. All rights reserved.</p>
           <p>No commissions. No middlemen. Just deals.</p>
         </div>
       </div>

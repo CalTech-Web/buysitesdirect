@@ -400,8 +400,8 @@ export default async function HomePage({
             <div className="animate-sparkle absolute w-px h-px rounded-full bg-emerald-200/65 pointer-events-none" style={{ top: '85%', left: '62%', animationDuration: '3.1s', animationDelay: '2.4s' }} />
             <div className="relative">
               <div className="flex items-center gap-2.5 mb-5">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-emerald-500 text-white text-sm font-bold shrink-0">W</span>
-                <span className="font-bold text-white text-base">WebsitesForSale</span>
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-emerald-500 text-white text-sm font-bold shrink-0">B</span>
+                <span className="font-bold text-white text-base">Buy Sites Direct</span>
                 <span className="ml-auto text-[10px] font-bold bg-emerald-400/15 text-emerald-400 border border-emerald-400/25 px-2.5 py-1 rounded-full tracking-wide">FREE</span>
               </div>
               <div className="space-y-3.5">
@@ -487,20 +487,15 @@ export default async function HomePage({
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "5.9s" }} />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {CATEGORY_DISPLAY.map(({ key, label, Icon, bg, iconCls, activeBorder, hoverBorder, hoverShadow, glowClass }, i) => {
-            const isActive = category === key
+          {CATEGORY_DISPLAY.map(({ key, label, Icon, bg, iconCls, hoverBorder, hoverShadow }, i) => {
             const listingCount = categoryCountMap[key] ?? 0
             const sc = CATEGORY_SPARKLES[key] ?? CATEGORY_SPARKLES["other"]
             const spDelay = (i * 0.37) % 2
             return (
               <Link
                 key={key}
-                href={isActive ? "/" : `/?category=${key}`}
-                className={`animate-fade-in-up group relative flex flex-col items-center gap-2.5 p-4 rounded-xl border transition-all duration-200 bg-gradient-to-br overflow-hidden ${bg} ${
-                  isActive
-                    ? `${activeBorder} shadow-sm ring-1 ring-current ring-opacity-20 animate-category-glow ${glowClass}`
-                    : `border-slate-100 dark:border-slate-800 ${hoverBorder} hover:shadow-md ${hoverShadow} hover:-translate-y-0.5`
-                }`}
+                href={`/buy/${key}`}
+                className={`animate-fade-in-up group relative flex flex-col items-center gap-2.5 p-4 rounded-xl border transition-all duration-200 bg-gradient-to-br overflow-hidden ${bg} border-slate-100 dark:border-slate-800 ${hoverBorder} hover:shadow-md ${hoverShadow} hover:-translate-y-0.5`}
                 style={{ animationDelay: `${i * 0.06}s` }}
               >
                 {/* Category-tinted sparkle particles */}
@@ -508,11 +503,7 @@ export default async function HomePage({
                 <div className="animate-sparkle absolute w-px h-px rounded-full pointer-events-none" style={{ top: '75%', right: '9%', animationDuration: '2.5s', animationDelay: `${(spDelay + 1.2) % 2.5}s`, backgroundColor: sc[1] }} />
                 <div className="animate-sparkle absolute w-px h-px rounded-full pointer-events-none" style={{ top: '18%', right: '10%', animationDuration: '3.7s', animationDelay: `${(spDelay + 0.7) % 3}s`, backgroundColor: sc[0] }} />
                 {listingCount > 0 && (
-                  <span className={`absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
-                    isActive
-                      ? "bg-white/30 text-current"
-                      : "bg-white/70 dark:bg-white/10 text-slate-500 dark:text-slate-400"
-                  }`}>
+                  <span className="absolute top-2 right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-white/70 dark:bg-white/10 text-slate-500 dark:text-slate-400">
                     {listingCount}
                   </span>
                 )}
