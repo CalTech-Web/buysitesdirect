@@ -11,9 +11,10 @@ interface GalleryImage {
 
 interface ImageGalleryProps {
   images: GalleryImage[]
+  listingTitle?: string
 }
 
-export function ImageGallery({ images }: ImageGalleryProps) {
+export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -73,7 +74,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
             <img
               key={images[activeIndex].id}
               src={images[activeIndex].url}
-              alt={`Screenshot ${activeIndex + 1}`}
+              alt={listingTitle ? `${listingTitle} screenshot ${activeIndex + 1}` : `Screenshot ${activeIndex + 1}`}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] animate-fade-in"
             />
             {/* Shimmer sweep */}
@@ -106,7 +107,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
               >
                 <img
                   src={img.url}
-                  alt={`Thumbnail ${i + 1}`}
+                  alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`}
                   className="w-full h-full object-cover"
                 />
               </button>
@@ -150,7 +151,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
           <img
             key={lightboxIndex}
             src={images[lightboxIndex].url}
-            alt={`Screenshot ${lightboxIndex + 1}`}
+            alt={listingTitle ? `${listingTitle} screenshot ${lightboxIndex + 1}` : `Screenshot ${lightboxIndex + 1}`}
             className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl animate-lightbox-enter"
           />
 
@@ -178,7 +179,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
                       : 'border-white/25 opacity-45 hover:opacity-70'
                   }`}
                 >
-                  <img src={img.url} alt="" className="w-full h-full object-cover" />
+                  <img src={img.url} alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

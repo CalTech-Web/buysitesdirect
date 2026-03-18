@@ -316,6 +316,21 @@ export default async function ListingPage({
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchemas) }}
     />
+    <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto px-4 pt-6 pb-0">
+      <ol className="flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
+        <li>
+          <Link href="/" className="hover:text-foreground transition-colors">Websites for Sale</Link>
+        </li>
+        <li aria-hidden="true" className="select-none">/</li>
+        <li>
+          <Link href={`/buy/${listing.category}`} className="hover:text-foreground transition-colors capitalize">
+            {categoryLabel}s
+          </Link>
+        </li>
+        <li aria-hidden="true" className="select-none">/</li>
+        <li className="text-foreground font-medium truncate max-w-[200px]" aria-current="page">{listing.title}</li>
+      </ol>
+    </nav>
     <article className="max-w-4xl mx-auto px-4 py-10 space-y-8">
       <ScrollProgress />
       {/* Header Banner */}
@@ -340,9 +355,12 @@ export default async function ListingPage({
         <div className="relative space-y-4">
           {/* Badges row */}
           <div className="animate-fade-in-up flex items-center gap-2 flex-wrap" style={{ animationDelay: "0.05s" }}>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 backdrop-blur-sm">
+            <Link
+              href={`/buy/${listing.category}`}
+              className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            >
               {CATEGORY_LABELS[listing.category] ?? listing.category}
-            </span>
+            </Link>
             {listing.status !== "active" && (
               <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                 listing.status === "sold"
@@ -382,7 +400,7 @@ export default async function ListingPage({
 
       {/* Images */}
       {images.length > 0 && (
-        <ImageGallery images={images} />
+        <ImageGallery images={images} listingTitle={listing.title} />
       )}
 
       {/* Key metrics */}
@@ -616,7 +634,7 @@ export default async function ListingPage({
                 <p className="text-sm text-muted-foreground mt-0.5">Other sites in the same category</p>
               </div>
               <Link
-                href={`/?category=${listing.category}`}
+                href={`/buy/${listing.category}`}
                 className="group relative inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors shrink-0"
               >
                 View all
@@ -807,7 +825,7 @@ export default async function ListingPage({
               <div className="relative inline-block">
                 <span className="animate-cta-ring absolute -inset-1 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 pointer-events-none" aria-hidden="true" />
                 <Link
-                  href={`/?category=${listing.category}`}
+                  href={`/buy/${listing.category}`}
                   className="relative overflow-hidden inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 to-emerald-500 hover:from-indigo-600 hover:to-emerald-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-200 hover:-translate-y-0.5"
                 >
                   <span className="animate-shimmer absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" aria-hidden="true" />

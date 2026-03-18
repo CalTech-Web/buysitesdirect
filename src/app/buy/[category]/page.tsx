@@ -5,7 +5,7 @@ import { listings, listingImages, users } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
 import { ListingCard } from "@/components/listings/ListingCard"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 export const dynamic = "force-dynamic"
 
@@ -95,6 +95,17 @@ export async function generateMetadata({
   }
 }
 
+const RELATED_CATEGORIES: Record<string, string[]> = {
+  "content-site":     ["newsletter", "community", "saas"],
+  "saas":             ["tool-or-app", "ecommerce", "service-business"],
+  "ecommerce":        ["saas", "service-business", "tool-or-app"],
+  "tool-or-app":      ["saas", "content-site", "ecommerce"],
+  "newsletter":       ["content-site", "community", "service-business"],
+  "community":        ["newsletter", "content-site", "saas"],
+  "service-business": ["saas", "ecommerce", "community"],
+  "other":            ["content-site", "saas", "ecommerce"],
+}
+
 export default async function CategoryPage({
   params,
 }: {
@@ -149,6 +160,34 @@ export default async function CategoryPage({
           </Link>
         </div>
       )}
+
+      {/* Related categories */}
+      <nav aria-label="Related categories" className="mt-16 pt-8 border-t border-border/50">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">Browse other categories</h2>
+        <div className="flex flex-wrap gap-3">
+          {(RELATED_CATEGORIES[category] ?? []).map((rel) => {
+            const relSeo = CATEGORY_SEO[rel]
+            if (!relSeo) return null
+            return (
+              <Link
+                key={rel}
+                href={`/buy/${rel}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border/60 text-sm font-medium hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                {relSeo.label}
+                <ArrowRight className="h-3.5 w-3.5 opacity-50" />
+              </Link>
+            )
+          })}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-border/60 text-sm font-medium hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >
+            All listings
+            <ArrowRight className="h-3.5 w-3.5 opacity-50" />
+          </Link>
+        </div>
+      </nav>
     </div>
   )
 }
