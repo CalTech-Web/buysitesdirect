@@ -13,10 +13,20 @@ export const metadata: Metadata = {
   title: "Buy Sites Direct | Buy and Sell Websites Directly",
   description: "Browse content sites, SaaS, ecommerce stores, newsletters, and more for sale. No broker fees, no commissions. Contact sellers directly on buysitesdirect.com.",
   metadataBase: new URL(BASE_URL),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     siteName: "Buy Sites Direct",
     type: "website",
     url: BASE_URL,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct — Buy and Sell Websites Directly" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Buy Sites Direct | Buy and Sell Websites Directly",
+    description: "Browse content sites, SaaS, ecommerce stores, newsletters, and more for sale. No broker fees, no commissions.",
+    images: ["/og-image.png"],
   },
 };
 
