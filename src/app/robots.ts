@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard/", "/api/"],
+      disallow: ["/dashboard/", "/api/", "/login", "/register", "/recover", "/reset/"],
     },
     sitemap: "https://buysitesdirect.com/sitemap.xml",
   }

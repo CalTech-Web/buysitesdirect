@@ -376,15 +376,23 @@ export default async function HomePage({
             <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
               Enter your URL and asking price. The AI reads your site and writes the listing. Title, description, tech stack, revenue summary. Review it, adjust anything, then publish.
             </p>
-            <div className="relative inline-block w-fit">
-              <span className="animate-cta-ring absolute -inset-1 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 pointer-events-none" aria-hidden="true" />
+            <div className="flex flex-wrap gap-3 items-center">
+              <div className="relative inline-block">
+                <span className="animate-cta-ring absolute -inset-1 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 pointer-events-none" aria-hidden="true" />
+                <Link
+                  href="/dashboard/listings/new"
+                  className="relative overflow-hidden inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all"
+                >
+                  <span className="animate-shimmer absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" aria-hidden="true" />
+                  <span className="relative z-10">List Your Site</span>
+                  <ArrowRight className="h-4 w-4 relative z-10" />
+                </Link>
+              </div>
               <Link
-                href="/dashboard/listings/new"
-                className="relative overflow-hidden inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all"
+                href="/sell"
+                className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
               >
-                <span className="animate-shimmer absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" aria-hidden="true" />
-                <span className="relative z-10">List Your Site</span>
-                <ArrowRight className="h-4 w-4 relative z-10" />
+                How selling works
               </Link>
             </div>
           </div>

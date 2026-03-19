@@ -81,6 +81,7 @@ const faqs: { section: string; id: string; items: FaqItem[] }[] = [
       {
         q: "How do I list my website for sale?",
         a: "Create a free account, go to your dashboard, and start a new listing. Fill in the details — or let the AI listing tool draft a description for you based on your site's metrics. Review, adjust if needed, and publish.",
+        content: <>Create a free account, go to your dashboard, and start a new listing. Fill in the details — or let the AI listing tool draft a description for you based on your site&apos;s metrics. Review, adjust if needed, and publish. <Link href="/sell" className="text-indigo-600 dark:text-indigo-400 hover:underline">Learn more about selling on Buy Sites Direct.</Link></>,
       },
       {
         q: "How much does it cost to list?",
@@ -180,10 +181,10 @@ export default function FAQPage() {
               Browse listings
             </Link>
             <Link
-              href="/dashboard/listings/new"
+              href="/sell"
               className="inline-flex items-center justify-center rounded-lg border border-border px-5 py-2.5 text-sm font-semibold hover:bg-muted/50 transition-colors"
             >
-              List your site free
+              Sell your site
             </Link>
           </div>
         </div>

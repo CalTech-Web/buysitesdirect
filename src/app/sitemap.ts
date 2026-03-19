@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next"
 import { db } from "@/db"
 import { listings, users } from "@/db/schema"
-import { eq } from "drizzle-orm"
+import { eq, inArray } from "drizzle-orm"
 
 const BASE_URL = "https://buysitesdirect.com"
 
@@ -11,15 +11,19 @@ const CATEGORIES = [
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [activeListings, sellers] = await Promise.all([
-    db
-      .select({ slug: listings.slug, updatedAt: listings.updatedAt })
-      .from(listings)
-      .where(eq(listings.status, "active")),
-    db
-      .select({ username: users.username, updatedAt: users.updatedAt })
-      .from(users),
-  ])
+  const activeListings = await db
+    .select({ slug: listings.slug, updatedAt: listings.updatedAt, sellerId: listings.sellerId })
+    .from(listings)
+    .where(eq(listings.status, "active"))
+
+  // Only include sellers who have at least one active listing
+  const sellerIdsWithListings = [...new Set(activeListings.map((l) => l.sellerId))]
+  const sellers = sellerIdsWithListings.length > 0
+    ? await db
+        .select({ username: users.username, updatedAt: users.updatedAt })
+        .from(users)
+        .where(inArray(users.id, sellerIdsWithListings))
+    : []
 
   return [
     {
@@ -33,6 +37,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/sell`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
     ...CATEGORIES.map((cat) => ({
       url: `${BASE_URL}/buy/${cat}`,
