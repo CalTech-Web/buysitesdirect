@@ -117,12 +117,21 @@ const faqSchema = {
   ),
 }
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://buysitesdirect.com/faq" },
+  ],
+}
+
 export default function FAQPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([faqSchema, breadcrumbSchema]) }}
       />
       <div className="max-w-3xl mx-auto px-4 py-16">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-10">

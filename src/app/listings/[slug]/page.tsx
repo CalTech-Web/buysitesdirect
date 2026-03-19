@@ -294,6 +294,7 @@ export default async function ListingPage({
     {
       "@context": "https://schema.org",
       "@type": "Product",
+      "@id": `https://buysitesdirect.com/listings/${listing.slug}#product`,
       "name": listing.title,
       "description": listing.description.slice(0, 500),
       "url": `https://buysitesdirect.com/listings/${listing.slug}`,

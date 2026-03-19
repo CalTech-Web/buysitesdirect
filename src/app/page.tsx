@@ -165,11 +165,28 @@ export default async function HomePage({
     ],
   }
 
+  // Build ItemList schema from all active listings (unfiltered base state)
+  const allActiveRows = rows.filter(() => true) // rows = all active listings for current filter; when no filters applied, this is the full set
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Websites for Sale",
+    "description": "Browse active website and online business listings for sale. No broker fees, direct seller contact.",
+    "url": "https://buysitesdirect.com",
+    "numberOfItems": allActiveRows.length,
+    "itemListElement": allActiveRows.slice(0, 50).map((row, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://buysitesdirect.com/listings/${row.listing.slug}`,
+      "name": row.listing.title,
+    })),
+  }
+
   return (
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([howToJsonLd, itemListJsonLd]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <section className="mb-10 text-center">

@@ -33,15 +33,13 @@ export const metadata: Metadata = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${BASE_URL}/#website`,
   "name": "Buy Sites Direct",
   "url": BASE_URL,
   "description": "Marketplace to buy and sell websites directly. No broker fees, no commissions.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${BASE_URL}/?q={search_term_string}`,
-    },
+    "target": `${BASE_URL}/?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 }
@@ -49,6 +47,7 @@ const websiteSchema = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${BASE_URL}/#organization`,
   "name": "Buy Sites Direct",
   "url": BASE_URL,
   "description": "Buy and sell websites directly with no broker fees or commissions.",
