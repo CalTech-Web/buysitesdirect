@@ -66,6 +66,14 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     h1: "Service Businesses for Sale",
     intro: "Explore service businesses, agencies, and consulting firms with real clients and revenue. Contact sellers directly.",
   },
+  "other": {
+    slug: "other",
+    label: "Other",
+    title: "Other Websites & Online Businesses for Sale | Buy Sites Direct",
+    description: "Browse unique websites and online businesses for sale that don't fit a single category. Verified metrics, direct seller contact, no broker fees on buysitesdirect.com.",
+    h1: "Other Websites for Sale",
+    intro: "Explore unique online businesses and websites with verified metrics. Contact sellers directly with zero broker fees.",
+  },
 }
 
 export async function generateMetadata({
@@ -86,11 +94,13 @@ export async function generateMetadata({
       description: seo.description,
       url: `https://buysitesdirect.com/buy/${category}`,
       type: "website",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: seo.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
+      images: ["/og-image.png"],
     },
   }
 }

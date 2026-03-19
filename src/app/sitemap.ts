@@ -7,7 +7,7 @@ const BASE_URL = "https://buysitesdirect.com"
 
 const CATEGORIES = [
   "content-site", "saas", "ecommerce", "tool-or-app",
-  "newsletter", "community", "service-business",
+  "newsletter", "community", "service-business", "other",
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

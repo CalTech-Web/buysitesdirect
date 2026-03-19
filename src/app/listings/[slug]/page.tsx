@@ -299,6 +299,8 @@ export default async function ListingPage({
       "url": `https://buysitesdirect.com/listings/${listing.slug}`,
       "category": categoryLabel,
       ...(images.length > 0 ? { "image": images[0].url } : {}),
+      "datePublished": new Date(listing.createdAt).toISOString(),
+      "dateModified": new Date(listing.updatedAt).toISOString(),
       "offers": {
         "@type": "Offer",
         "price": (listing.askingPrice / 100).toFixed(2),
@@ -306,9 +308,11 @@ export default async function ListingPage({
         "availability": listing.status === "active"
           ? "https://schema.org/InStock"
           : "https://schema.org/SoldOut",
+        "priceValidUntil": new Date(new Date(listing.createdAt).setFullYear(new Date(listing.createdAt).getFullYear() + 1)).toISOString().split("T")[0],
         "seller": {
           "@type": "Person",
           "name": seller.username,
+          "url": `https://buysitesdirect.com/seller/${seller.username}`,
         },
       },
     },
