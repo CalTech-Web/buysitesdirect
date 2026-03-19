@@ -54,6 +54,13 @@ export async function generateMetadata({
   const title = `${listing.title} – ${categoryLabel} for Sale`
   const description = `${categoryLabel} asking ${price}.${revenueSnippet} ${descSnippet}…`
 
+  const [firstImage] = await db
+    .select({ url: listingImages.url })
+    .from(listingImages)
+    .where(eq(listingImages.listingId, listing.id))
+    .orderBy(listingImages.displayOrder)
+    .limit(1)
+
   return {
     title,
     description,
@@ -65,11 +72,13 @@ export async function generateMetadata({
       description,
       url: `https://buysitesdirect.com/listings/${listing.slug}`,
       type: "website",
+      ...(firstImage ? { images: [{ url: firstImage.url, width: 1280, height: 720, alt: listing.title }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      ...(firstImage ? { images: [firstImage.url] } : {}),
     },
   }
 }
@@ -289,6 +298,7 @@ export default async function ListingPage({
       "description": listing.description.slice(0, 500),
       "url": `https://buysitesdirect.com/listings/${listing.slug}`,
       "category": categoryLabel,
+      ...(images.length > 0 ? { "image": images[0].url } : {}),
       "offers": {
         "@type": "Offer",
         "price": (listing.askingPrice / 100).toFixed(2),

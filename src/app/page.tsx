@@ -135,7 +135,42 @@ export default async function HomePage({
 
   const imageMap = Object.fromEntries(images.map((img) => [img.listingId, img.url]))
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Buy a Website on Buy Sites Direct",
+    "description": "Browse profitable websites and apps for sale. Contact sellers directly with no broker fees or commissions.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Browse listings",
+        "text": "Filter by category, price, revenue, and traffic to find your next acquisition.",
+        "url": "https://buysitesdirect.com/#listings",
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Contact the seller",
+        "text": "Send a message directly to the seller. No broker in the middle.",
+        "url": "https://buysitesdirect.com/register",
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Close the deal",
+        "text": "Negotiate and complete the transaction entirely on your own terms.",
+        "url": "https://buysitesdirect.com/#listings",
+      },
+    ],
+  }
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+    />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <section className="mb-10 text-center">
         <div className="relative mb-8 py-14 px-6 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -704,5 +739,6 @@ export default async function HomePage({
       )}
       </section>
     </div>
+    </>
   )
 }

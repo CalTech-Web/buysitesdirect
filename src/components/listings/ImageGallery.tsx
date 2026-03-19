@@ -75,6 +75,8 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
               key={images[activeIndex].id}
               src={images[activeIndex].url}
               alt={listingTitle ? `${listingTitle} screenshot ${activeIndex + 1}` : `Screenshot ${activeIndex + 1}`}
+              width={1280}
+              height={720}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] animate-fade-in"
             />
             {/* Shimmer sweep */}
@@ -108,6 +110,8 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
                 <img
                   src={img.url}
                   alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`}
+                  width={80}
+                  height={56}
                   className="w-full h-full object-cover"
                 />
               </button>
@@ -152,6 +156,8 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
             key={lightboxIndex}
             src={images[lightboxIndex].url}
             alt={listingTitle ? `${listingTitle} screenshot ${lightboxIndex + 1}` : `Screenshot ${lightboxIndex + 1}`}
+            width={1280}
+            height={720}
             className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl animate-lightbox-enter"
           />
 
@@ -179,7 +185,7 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
                       : 'border-white/25 opacity-45 hover:opacity-70'
                   }`}
                 >
-                  <img src={img.url} alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`} className="w-full h-full object-cover" />
+                  <img src={img.url} alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`} width={56} height={40} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

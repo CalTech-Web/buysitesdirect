@@ -221,6 +221,8 @@ export function FeaturedListingCard({
               <img
                 src={imageUrl}
                 alt={listing.title}
+                width={1280}
+                height={720}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             ) : (
