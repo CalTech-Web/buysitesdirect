@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import React from "react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -20,7 +21,13 @@ export const metadata: Metadata = {
   },
 }
 
-const faqs = [
+type FaqItem = {
+  q: string
+  a: string
+  content?: React.ReactNode
+}
+
+const faqs: { section: string; items: FaqItem[] }[] = [
   {
     section: "General",
     items: [
@@ -31,6 +38,7 @@ const faqs = [
       {
         q: "What types of websites are listed for sale?",
         a: "You'll find content sites, blogs, SaaS products, eCommerce stores, newsletters, online communities, service businesses, and other web-based assets. Browse by category to narrow your search.",
+        content: <>You&apos;ll find <Link href="/buy/content-site" className="text-indigo-600 dark:text-indigo-400 hover:underline">content sites</Link>, blogs, <Link href="/buy/saas" className="text-indigo-600 dark:text-indigo-400 hover:underline">SaaS products</Link>, <Link href="/buy/ecommerce" className="text-indigo-600 dark:text-indigo-400 hover:underline">eCommerce stores</Link>, <Link href="/buy/newsletter" className="text-indigo-600 dark:text-indigo-400 hover:underline">newsletters</Link>, <Link href="/buy/community" className="text-indigo-600 dark:text-indigo-400 hover:underline">online communities</Link>, <Link href="/buy/service-business" className="text-indigo-600 dark:text-indigo-400 hover:underline">service businesses</Link>, and other web-based assets. Browse by category to narrow your search.</>,
       },
       {
         q: "Is Buy Sites Direct free to use?",
@@ -44,6 +52,7 @@ const faqs = [
       {
         q: "How do I find websites for sale?",
         a: "Browse all active listings on the homepage or filter by category — content sites, SaaS, eCommerce, newsletters, and more. Each listing shows the asking price, monthly revenue, and a full description.",
+        content: <>Browse all active listings on the homepage or filter by category: <Link href="/buy/content-site" className="text-indigo-600 dark:text-indigo-400 hover:underline">content sites</Link>, <Link href="/buy/saas" className="text-indigo-600 dark:text-indigo-400 hover:underline">SaaS</Link>, <Link href="/buy/ecommerce" className="text-indigo-600 dark:text-indigo-400 hover:underline">eCommerce</Link>, <Link href="/buy/newsletter" className="text-indigo-600 dark:text-indigo-400 hover:underline">newsletters</Link>, and more. Each listing shows the asking price, monthly revenue, and a full description.</>,
       },
       {
         q: "How do I contact a seller?",
@@ -138,7 +147,7 @@ export default function FAQPage() {
                 {section.items.map((item) => (
                   <div key={item.q}>
                     <dt className="font-semibold text-base mb-2">{item.q}</dt>
-                    <dd className="text-muted-foreground leading-relaxed">{item.a}</dd>
+                    <dd className="text-muted-foreground leading-relaxed">{item.content ?? item.a}</dd>
                   </div>
                 ))}
               </dl>

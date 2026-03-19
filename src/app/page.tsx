@@ -325,6 +325,12 @@ export default async function HomePage({
             <p className="text-xs text-muted-foreground leading-relaxed">Negotiate and complete the transaction entirely on your own terms.</p>
           </div>
         </div>
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Have questions?{" "}
+          <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+            Read our FAQ
+          </Link>
+        </p>
       </section>
 
       {/* Sell Your Site section */}

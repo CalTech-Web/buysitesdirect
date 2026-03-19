@@ -112,6 +112,7 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
                   alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`}
                   width={80}
                   height={56}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </button>

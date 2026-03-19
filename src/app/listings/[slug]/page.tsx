@@ -860,6 +860,12 @@ export default async function ListingPage({
           </div>
         </div>
       )}
+      <p className="text-center text-xs text-muted-foreground pt-2">
+        New to buying websites?{" "}
+        <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+          Read our FAQ
+        </Link>
+      </p>
     </article>
     </>
   )

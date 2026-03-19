@@ -192,6 +192,7 @@ export function ListingCard({
               alt={listing.title}
               width={1280}
               height={720}
+              loading="lazy"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
             {showNewBadge && (
