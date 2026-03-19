@@ -103,3 +103,12 @@ Deployment succeeded.
 [2026-03-19] Run 9 completed (commit 119f3f7):
   - Seller profile page: added BreadcrumbList JSON-LD (Home > username) matching the existing visual breadcrumb — was the only public page with a visual breadcrumb but no corresponding schema
   - Seller profile page: added og:image and twitter:image (/og-image.png fallback) to generateMetadata — twitter:card was already set to summary_large_image but without an image URL it rendered as a bare link on social shares
+The background task was just the node search I used to find the right binary — already resolved and the run is complete. No action needed.
+[2026-03-19 09:34:59] Run #2 finished
+[2026-03-19 09:35:04] Run #3 starting (model: sonnet)
+
+[2026-03-19] Run 10 completed (commit e21122e):
+  - next.config.ts: added remotePatterns for *.public.blob.vercel-storage.com so Next.js Image can optimize Vercel Blob-hosted listing screenshots
+  - ListingCard: replaced plain <img loading="lazy"> with next/image <Image fill sizes="..."> — automatic WebP/AVIF serving, proper srcset generation, priority fetch on index=0 card (above-fold LCP)
+  - FeaturedListingCard: replaced plain <img loading="lazy"> with next/image <Image fill priority> — spotlight card is the homepage LCP element; eager + high-priority fetch reduces LCP time
+  - Impact: Core Web Vitals improvement (LCP is a Google ranking signal); format optimization reduces image payload on all listing grid pages
