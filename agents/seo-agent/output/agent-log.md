@@ -112,3 +112,18 @@ The background task was just the node search I used to find the right binary —
   - ListingCard: replaced plain <img loading="lazy"> with next/image <Image fill sizes="..."> — automatic WebP/AVIF serving, proper srcset generation, priority fetch on index=0 card (above-fold LCP)
   - FeaturedListingCard: replaced plain <img loading="lazy"> with next/image <Image fill priority> — spotlight card is the homepage LCP element; eager + high-priority fetch reduces LCP time
   - Impact: Core Web Vitals improvement (LCP is a Google ranking signal); format optimization reduces image payload on all listing grid pages
+**Run 10 complete** (commit `e21122e`). Deployed and live.
+
+**What was done:**
+
+- **`next.config.ts`**: Added `remotePatterns` for `*.public.blob.vercel-storage.com` so Next.js can optimize Vercel Blob-hosted listing images
+- **`ListingCard`**: Replaced `<img loading="lazy">` with Next.js `<Image fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">` — automatic WebP/AVIF serving, correct srcset for 1/2/3-column grid layouts; `priority` set when `index === 0` so the first above-fold card loads eagerly
+- **`FeaturedListingCard`**: Replaced `<img loading="lazy">` with `<Image fill priority>` — the spotlight card is the largest above-fold element on the homepage and the most likely LCP candidate; switching from lazy to priority fetch directly reduces LCP time
+
+**Why it matters for SEO**: LCP (Largest Contentful Paint) is one of Google's Core Web Vitals metrics and a direct ranking factor. Every listing grid page (homepage, all 8 category pages, listing detail related section) now serves WebP/AVIF images with properly prioritized loading.
+[2026-03-19 09:42:01] Run #3 finished
+[2026-03-19 09:42:06] Run #4 starting (model: sonnet)
+
+[2026-03-19] Run 11 completed (commit c0249fd):
+  - Homepage: added explicit title "Websites for Sale | No Broker Fees | Buy Sites Direct" (53 chars) targeting the primary search keyword "websites for sale"; previous title fell back to the generic root layout title — added matching openGraph and Twitter card tags
+  - Listing detail page: added rel="nofollow ugc" to the Live Site external link (was rel="noopener noreferrer") — prevents passing PageRank to user-submitted third-party URLs, standard practice for marketplace/directory sites
