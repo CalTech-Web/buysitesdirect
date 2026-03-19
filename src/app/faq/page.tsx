@@ -1,0 +1,172 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "FAQ | Buy Sites Direct",
+  description: "Answers to common questions about buying and selling websites on Buy Sites Direct. No broker fees, no commissions — just direct deals.",
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "FAQ | Buy Sites Direct",
+    description: "Answers to common questions about buying and selling websites on Buy Sites Direct. No broker fees, no commissions.",
+    url: "https://buysitesdirect.com/faq",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct FAQ" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FAQ | Buy Sites Direct",
+    description: "Answers to common questions about buying and selling websites on Buy Sites Direct.",
+    images: ["/og-image.png"],
+  },
+}
+
+const faqs = [
+  {
+    section: "General",
+    items: [
+      {
+        q: "What is Buy Sites Direct?",
+        a: "Buy Sites Direct is a marketplace where website owners list their sites for sale and buyers contact them directly. There are no brokers, no middlemen, and no commissions taken when a deal closes.",
+      },
+      {
+        q: "What types of websites are listed for sale?",
+        a: "You'll find content sites, blogs, SaaS products, eCommerce stores, newsletters, online communities, service businesses, and other web-based assets. Browse by category to narrow your search.",
+      },
+      {
+        q: "Is Buy Sites Direct free to use?",
+        a: "Yes. Listing a site is free. Contacting a seller is free. Buy Sites Direct charges no listing fee and takes no cut when the deal closes — the full sale price stays between buyer and seller.",
+      },
+    ],
+  },
+  {
+    section: "Buying a Website",
+    items: [
+      {
+        q: "How do I find websites for sale?",
+        a: "Browse all active listings on the homepage or filter by category — content sites, SaaS, eCommerce, newsletters, and more. Each listing shows the asking price, monthly revenue, and a full description.",
+      },
+      {
+        q: "How do I contact a seller?",
+        a: "Create a free account, open any listing, and send a message through the contact form at the bottom of the listing page. Your message goes directly to the seller — no middlemen involved.",
+      },
+      {
+        q: "Is the asking price negotiable?",
+        a: "That is entirely between you and the seller. Buy Sites Direct facilitates the introduction; the price, terms, and deal structure are agreed upon directly by buyer and seller.",
+      },
+      {
+        q: "How do I verify a listing is legitimate?",
+        a: "Request traffic and revenue screenshots, access to Google Analytics, and any other documentation directly from the seller before committing to anything. Treat it like any private business transaction and do your own due diligence.",
+      },
+      {
+        q: "Does Buy Sites Direct use escrow or handle payments?",
+        a: "No. Payments are handled directly between buyer and seller. Many transactions use a third-party escrow service — we recommend discussing this with the seller before finalising terms.",
+      },
+    ],
+  },
+  {
+    section: "Selling a Website",
+    items: [
+      {
+        q: "How do I list my website for sale?",
+        a: "Create a free account, go to your dashboard, and start a new listing. Fill in the details — or let the AI listing tool draft a description for you based on your site's metrics. Review, adjust if needed, and publish.",
+      },
+      {
+        q: "How much does it cost to list?",
+        a: "Nothing. Listing is completely free. There is no listing fee, no monthly charge, and no commission deducted from the sale price when your site sells.",
+      },
+      {
+        q: "What information should I include in my listing?",
+        a: "Include the asking price, monthly revenue, traffic figures, age of the site, what is included in the sale (domain, content, social accounts, etc.), and your reason for selling. Detailed listings attract more serious buyers.",
+      },
+      {
+        q: "How long will my listing stay active?",
+        a: "Listings remain active until you mark them sold, place them under offer, or remove them from your dashboard. You are in full control.",
+      },
+      {
+        q: "Can I list multiple websites?",
+        a: "Yes. There is no limit on the number of listings per seller account. Each listing gets its own dedicated page and is discoverable in search.",
+      },
+    ],
+  },
+]
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap((section) =>
+    section.items.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    }))
+  ),
+}
+
+export default function FAQPage() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="max-w-3xl mx-auto px-4 py-16">
+        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-10">
+          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-foreground">FAQ</span>
+        </nav>
+
+        <h1 className="text-3xl font-bold mb-3">Frequently asked questions</h1>
+        <p className="text-muted-foreground mb-12">
+          Everything you need to know about buying and selling websites on{" "}
+          <Link href="/" className="text-indigo-600 dark:text-indigo-400 hover:underline">Buy Sites Direct</Link>.
+          Still have a question?{" "}
+          <Link href="/#listings" className="text-indigo-600 dark:text-indigo-400 hover:underline">Browse listings</Link>{" "}
+          or start a conversation with any seller directly.
+        </p>
+
+        <div className="space-y-14">
+          {faqs.map((section) => (
+            <section key={section.section}>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6 pb-2 border-b border-border">
+                {section.section}
+              </h2>
+              <dl className="space-y-8">
+                {section.items.map((item) => (
+                  <div key={item.q}>
+                    <dt className="font-semibold text-base mb-2">{item.q}</dt>
+                    <dd className="text-muted-foreground leading-relaxed">{item.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ))}
+        </div>
+
+        <div className="mt-16 rounded-2xl border border-border/60 bg-gradient-to-br from-indigo-50/60 to-emerald-50/40 dark:from-indigo-950/30 dark:to-emerald-950/20 p-8 text-center">
+          <h2 className="font-bold text-lg mb-2">Ready to find your next site?</h2>
+          <p className="text-muted-foreground text-sm mb-5">
+            Browse active listings across content sites, SaaS, eCommerce, newsletters, and more.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/#listings"
+              className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
+            >
+              Browse listings
+            </Link>
+            <Link
+              href="/dashboard/listings/new"
+              className="inline-flex items-center justify-center rounded-lg border border-border px-5 py-2.5 text-sm font-semibold hover:bg-muted/50 transition-colors"
+            >
+              List your site free
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

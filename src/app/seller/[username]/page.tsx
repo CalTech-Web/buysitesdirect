@@ -49,7 +49,7 @@ export async function generateMetadata({
       type: "profile",
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
     },
@@ -249,10 +249,10 @@ export default async function SellerProfilePage({
         <>
           <div className="flex items-center gap-4 mb-6">
             <div className="h-px flex-1 animate-section-divider" />
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest animate-section-label">
+            <h2 className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest animate-section-label">
               <Layers className="h-3 w-3 opacity-70" />
               {sellerListings.length} Active Listing{sellerListings.length !== 1 ? "s" : ""}
-            </span>
+            </h2>
             <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "3.5s" }} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

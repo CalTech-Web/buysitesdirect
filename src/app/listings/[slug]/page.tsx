@@ -49,7 +49,7 @@ export async function generateMetadata({
   const revenueSnippet = listing.monthlyRevenue && listing.monthlyRevenue > 0
     ? ` Generating ${formatCurrency(listing.monthlyRevenue)}/mo in revenue.`
     : ""
-  const descSnippet = listing.description.slice(0, 120).replace(/\s+\S*$/, "")
+  const descSnippet = listing.description.slice(0, 155).replace(/\s+\S*$/, "")
 
   const title = `${listing.title} – ${categoryLabel} for Sale`
   const description = `${categoryLabel} asking ${price}.${revenueSnippet} ${descSnippet}…`

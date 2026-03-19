@@ -112,6 +112,12 @@ export function Footer() {
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
+              <li>
+                <Link href="/faq" className="group relative inline-block hover:text-white transition-colors duration-200">
+                  FAQ
+                  <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </li>
             </ul>
             <div className="pt-2 flex flex-col gap-1.5">
               <span className="inline-flex items-center gap-1.5 text-xs text-slate-400">
