@@ -51,7 +51,7 @@ export default async function InquiriesPage() {
         <div className="relative flex items-start justify-between gap-4 flex-wrap mb-5">
           <div>
             <h1 className="text-xl font-bold text-white">Inquiries</h1>
-            <p className="text-slate-400 text-sm mt-0.5">Messages from interested buyers — reply directly to their email</p>
+            <p className="text-slate-400 text-sm mt-0.5">Buyer messages land here. Reply hits their inbox directly.</p>
           </div>
           {rows.length > 0 && (
             <div className="flex items-center gap-2 flex-wrap">
@@ -97,9 +97,9 @@ export default async function InquiriesPage() {
             </p>
             <p className="animate-fade-in-up text-muted-foreground text-sm" style={{ animationDelay: '0.28s' }}>
               <Link href="/dashboard/listings" className="underline hover:text-foreground">
-                Make sure your listings are active
+                Make sure at least one listing is active
               </Link>{" "}
-              to start receiving inquiries.
+              to start receiving messages.
             </p>
           </div>
         </div>

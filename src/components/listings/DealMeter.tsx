@@ -100,7 +100,7 @@ export function DealMeter({ multiple }: DealMeterProps) {
           <span className={`text-sm font-bold ${label.color}`}>{label.text}</span>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
-          Asking price vs. monthly revenue — typical online businesses sell for{" "}
+          Asking price vs. monthly revenue. Typical online businesses sell for{" "}
           <span className="font-medium text-foreground">20–30x</span> monthly.
         </p>
 

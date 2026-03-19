@@ -72,13 +72,13 @@ function RegisterForm() {
         <div className="relative space-y-8">
           <div>
             <h2 className="text-3xl font-bold text-white leading-snug mb-3">
-              Join the marketplace.{" "}
+              Buyers go direct.{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
-                It&apos;s free.
+                Sellers keep everything.
               </span>
             </h2>
             <p className="text-slate-400 text-base">
-              List your site or browse hundreds of profitable websites for sale — no fees, no middleman.
+              No listing fee, no commission on close, no broker between you. Just a free account and the seller's contact details.
             </p>
           </div>
 
@@ -87,19 +87,19 @@ function RegisterForm() {
               <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/25 group-hover:scale-110 transition-all duration-200">
                 <Zap className="h-4 w-4 text-emerald-400" />
               </div>
-              <span className="text-slate-300 text-sm">List your site in minutes</span>
+              <span className="text-slate-300 text-sm">List your site in 30 seconds</span>
             </div>
             <div className="group flex items-center gap-3 rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 hover:bg-white/[0.07] hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-200">
               <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center shrink-0 group-hover:bg-indigo-500/25 group-hover:scale-110 transition-all duration-200">
                 <MessageCircle className="h-4 w-4 text-indigo-400" />
               </div>
-              <span className="text-slate-300 text-sm">Contact sellers directly — no fees</span>
+              <span className="text-slate-300 text-sm">Contact sellers directly. No fees.</span>
             </div>
             <div className="group flex items-center gap-3 rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 hover:bg-white/[0.07] hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-200">
               <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/25 group-hover:scale-110 transition-all duration-200">
                 <TrendingUp className="h-4 w-4 text-emerald-400" />
               </div>
-              <span className="text-slate-300 text-sm">Browse verified revenue metrics</span>
+              <span className="text-slate-300 text-sm">Revenue, traffic, and age on every listing</span>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ function RegisterForm() {
               Buy Sites Direct
             </Link>
             <h1 className="text-2xl font-bold mt-6 lg:mt-0">Create your account</h1>
-            <p className="text-muted-foreground text-sm mt-1">Free to join — list sites or contact sellers</p>
+            <p className="text-muted-foreground text-sm mt-1">Free to join. List sites or contact sellers.</p>
           </div>
 
           <form onSubmit={submit} className="space-y-5">

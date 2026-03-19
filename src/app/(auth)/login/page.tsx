@@ -77,7 +77,7 @@ function LoginForm() {
               </span>
             </h2>
             <p className="text-slate-400 text-base">
-              No broker fees. No commissions. Connect with sellers and buyers directly.
+              No broker fees. No commissions. Talk to the seller from day one.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ function LoginForm() {
               <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/25 group-hover:scale-110 transition-all duration-200">
                 <BarChart2 className="h-4 w-4 text-emerald-400" />
               </div>
-              <span className="text-slate-300 text-sm">Verified listings with real metrics</span>
+              <span className="text-slate-300 text-sm">Revenue, traffic, and age on every listing</span>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ function LoginForm() {
               Buy Sites Direct
             </Link>
             <h1 className="text-2xl font-bold mt-6 lg:mt-0">Welcome back</h1>
-            <p className="text-muted-foreground text-sm mt-1">Log in to your account to continue</p>
+            <p className="text-muted-foreground text-sm mt-1">Your listings and buyer messages live here.</p>
           </div>
 
           <form onSubmit={submit} className="space-y-5">

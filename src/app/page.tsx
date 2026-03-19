@@ -160,7 +160,7 @@ export default async function HomePage({
               </span>
             </h1>
             <p className="animate-fade-in-up text-slate-300 text-lg max-w-xl mx-auto mb-6" style={{ animationDelay: "0.15s" }}>
-              Browse profitable websites and apps. Contact sellers directly — no fees, no commissions.
+              Browse profitable websites and apps. Contact sellers directly. No fees, no commissions, no one taking a cut.
             </p>
             <div className="animate-fade-in-up flex flex-wrap justify-center gap-3" style={{ animationDelay: "0.28s" }}>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/10 px-4 py-1.5 text-sm text-slate-200 backdrop-blur-sm">
@@ -269,7 +269,7 @@ export default async function HomePage({
             </div>
             <p className="text-[10px] font-bold text-indigo-500 dark:text-indigo-400 uppercase tracking-widest mb-1">Step 2</p>
             <h3 className="font-semibold text-sm mb-1.5">Contact the seller</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">Reach out directly — no broker fees, no commissions, no middlemen.</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">Send a message. The seller gets it in their inbox. No broker in the middle.</p>
           </div>
           <div className="hidden sm:flex items-center justify-center">
             <div className="flex items-center gap-0.5 animate-step-arrow" style={{ animationDelay: "0.3s" }}>
@@ -310,13 +310,13 @@ export default async function HomePage({
               AI-powered
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
-              List your site in 30 seconds —{" "}
+              List your site in 30 seconds.{" "}
               <span className="bg-gradient-to-r from-indigo-600 to-emerald-500 bg-clip-text text-transparent">
-                AI writes the listing
+                AI writes the listing.
               </span>
             </h2>
             <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
-              Enter your URL and asking price. Our AI scrapes your site and generates a polished, buyer-ready listing — title, description, tech stack, and more. Edit anything before publishing.
+              Enter your URL and asking price. The AI reads your site and writes the listing. Title, description, tech stack, revenue summary. Review it, adjust anything, then publish.
             </p>
             <div className="relative inline-block w-fit">
               <span className="animate-cta-ring absolute -inset-1 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 pointer-events-none" aria-hidden="true" />
@@ -354,12 +354,12 @@ export default async function HomePage({
                       <Sparkles className="h-2.5 w-2.5" /> AI Generated
                       <span className="animate-cursor inline-block w-[1.5px] h-3 bg-indigo-400 ml-0.5 align-middle" />
                     </p>
-                    <h3 className="font-semibold text-sm leading-snug animate-ai-title-type">Profitable Recipe Blog for Sale</h3>
+                    <h3 className="font-semibold text-sm leading-snug animate-ai-title-type">Profitable Recipe Blog, $420/mo revenue</h3>
                   </div>
                   <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 shrink-0">$12,000</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 animate-ai-content-fade">
-                  A well-established food & recipe content site with 45k monthly readers. Monetized through display ads and Amazon affiliates with consistent passive income. Built on WordPress with a clean, fast theme. Ready for a new owner to grow.
+                  A food and recipe content site with 45k monthly readers. Display ads and Amazon affiliates bring in $420 a month. Built on WordPress, three years of steady organic traffic.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   <span className="inline-flex items-center rounded-full bg-sky-100 dark:bg-sky-900/40 px-2.5 py-0.5 text-[10px] font-medium text-sky-700 dark:text-sky-300 animate-ai-tag-pop" style={{ animationDelay: "0s" }}>Content Site</span>

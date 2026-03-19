@@ -61,7 +61,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
-              Buy and sell profitable websites directly. No broker fees. No commissions. Just deals.
+              List for free. Contact sellers for free. No one takes a cut when the deal closes.
             </p>
           </div>
 

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Buy Sites Direct",
     type: "website",
     url: BASE_URL,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct — Buy and Sell Websites Directly" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct | Buy and Sell Websites Directly" }],
   },
   twitter: {
     card: "summary_large_image",

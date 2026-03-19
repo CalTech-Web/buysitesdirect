@@ -18,7 +18,7 @@ export default function HomeLoading() {
               </span>
             </h1>
             <p className="text-slate-300 text-lg max-w-xl mx-auto mb-6">
-              Browse profitable websites and apps. Contact sellers directly — no fees, no commissions.
+              Browse profitable websites and apps. Contact sellers directly. No fees, no commissions, no one taking a cut.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/10 px-4 py-1.5 text-sm text-slate-200 backdrop-blur-sm">

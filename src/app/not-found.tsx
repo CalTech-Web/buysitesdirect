@@ -40,7 +40,7 @@ export default function NotFound() {
             Page Not Found
           </h1>
           <p className="animate-fade-in-up text-slate-400 text-sm mb-8 max-w-sm mx-auto leading-relaxed" style={{ animationDelay: '0.2s' }}>
-            This listing may have been sold or removed. Browse other profitable websites for sale below.
+            This page is gone. Could be a listing that sold, could be a bad link. Browse what's still here.
           </p>
 
           {/* CTAs */}

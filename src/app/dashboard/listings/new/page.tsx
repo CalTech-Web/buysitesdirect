@@ -28,13 +28,13 @@ export default async function NewListingPage() {
             AI-powered listing generator
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
-            List your website —{" "}
+            List your website.{" "}
             <span className="bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
-              free, no fees
+              Free, no fees.
             </span>
           </h1>
           <p className="text-slate-300 text-sm max-w-lg">
-            Enter your URL and asking price. Our AI scrapes your site and writes the listing for you — title, description, tech stack, and more.
+            Enter your URL and asking price. The AI reads your site and writes the listing. Title, description, tech stack, and more.
           </p>
         </div>
       </div>

@@ -196,7 +196,7 @@ export function NewListingForm() {
               <span className="font-semibold text-sm text-indigo-700 dark:text-indigo-300">AI Listing Generator</span>
             </div>
             <p className="relative text-sm text-muted-foreground">
-              Enter your site URL and asking price — AI will write your title, description, and details in seconds.
+              Drop in your URL and asking price. The AI reads your site and writes the whole listing.
             </p>
           </div>
 
@@ -289,7 +289,7 @@ export function NewListingForm() {
                 <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider leading-none mb-0.5">Step 2</p>
                 <p className="text-sm font-semibold leading-none">Traffic &amp; Revenue</p>
               </div>
-              <p className="relative ml-auto text-xs text-muted-foreground hidden sm:block">All optional — but help attract serious buyers</p>
+              <p className="relative ml-auto text-xs text-muted-foreground hidden sm:block">All optional, but these help attract serious buyers</p>
             </div>
             <div className="p-5 space-y-4">
               {/* If coming from manual path, still need basics */}
@@ -368,7 +368,7 @@ export function NewListingForm() {
             </div>
             <div className="p-5 space-y-4">
               <Field label="Listing title" required>
-                <Input value={form.title} onChange={(e) => set("title", e.target.value)} placeholder="e.g. Profitable niche recipe blog for Sale" />
+                <Input value={form.title} onChange={(e) => set("title", e.target.value)} placeholder="e.g. Profitable recipe blog, $420/mo revenue" />
               </Field>
               <Field label="Category" required>
                 <Select value={form.category} onValueChange={(v) => set("category", v)}>
@@ -380,7 +380,7 @@ export function NewListingForm() {
                   </SelectContent>
                 </Select>
               </Field>
-              <Field label="Description" required hint="Describe what the site does, its history, and why it's a good buy.">
+              <Field label="Description" required hint="Describe what the site does, how it makes money, and why you're selling.">
                 <Textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={6} placeholder="This is a content site about..." />
               </Field>
               <Field label="Reason for selling" required>
