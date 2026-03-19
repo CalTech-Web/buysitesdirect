@@ -49,10 +49,20 @@ export async function generateMetadata({
   const revenueSnippet = listing.monthlyRevenue && listing.monthlyRevenue > 0
     ? ` Generating ${formatCurrency(listing.monthlyRevenue)}/mo in revenue.`
     : ""
-  const descSnippet = listing.description.slice(0, 155).replace(/\s+\S*$/, "")
 
-  const title = `${listing.title} – ${categoryLabel} for Sale`
-  const description = `${categoryLabel} asking ${price}.${revenueSnippet} ${descSnippet}…`
+  // Keep title ≤60 chars: truncate the listing title portion if needed
+  const titleSuffix = ` – ${categoryLabel} for Sale`
+  const maxListingTitleLen = 60 - titleSuffix.length
+  const titleBase = listing.title.length > maxListingTitleLen
+    ? listing.title.slice(0, maxListingTitleLen - 1) + "…"
+    : listing.title
+  const title = `${titleBase}${titleSuffix}`
+
+  // Keep description ≤160 chars: calculate remaining space after the prefix
+  const descPrefix = `${categoryLabel} asking ${price}.${revenueSnippet} `
+  const maxSnippetLen = Math.max(20, 158 - descPrefix.length)
+  const descSnippet = listing.description.slice(0, maxSnippetLen).replace(/\s+\S*$/, "")
+  const description = `${descPrefix}${descSnippet}…`
 
   const [firstImage] = await db
     .select({ url: listingImages.url })
