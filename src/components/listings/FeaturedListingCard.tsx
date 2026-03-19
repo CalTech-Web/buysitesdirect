@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Listing } from "@/db/schema"
 import { formatCurrency, formatNumber } from "@/lib/slug"
@@ -218,13 +219,13 @@ export function FeaturedListingCard({
             style={{ minHeight: "240px" }}
           >
             {imageUrl ? (
-              <img
+              <Image
                 src={imageUrl}
                 alt={listing.title}
-                width={1280}
-                height={720}
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, 44vw"
+                priority
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
             ) : (
               <>

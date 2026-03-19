@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Listing } from "@/db/schema"
@@ -187,13 +188,13 @@ export function ListingCard({
         })()}
         {imageUrl ? (
           <div className="aspect-video overflow-hidden rounded-t-lg bg-muted relative">
-            <img
+            <Image
               src={imageUrl}
               alt={listing.title}
-              width={1280}
-              height={720}
-              loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={index === 0}
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
             {showNewBadge && (
               <span className="absolute top-2 left-2 text-xs font-bold px-2.5 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-emerald-500 text-white shadow-md">
