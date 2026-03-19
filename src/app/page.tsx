@@ -386,7 +386,7 @@ export default async function HomePage({
           <div className="h-px flex-1 animate-section-divider" style={{ animationDelay: "4.7s" }} />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
-          {/* WebsitesForSale card */}
+          {/* Buy Sites Direct card */}
           <div className="animate-comparison-card-glow relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-indigo-500 to-emerald-500" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(99,102,241,0.2)_0%,_transparent_60%)]" />

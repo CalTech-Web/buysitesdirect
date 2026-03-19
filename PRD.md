@@ -1,5 +1,5 @@
 # Product Requirements Document
-## WebsitesForSale — Self-Hosted Website Marketplace
+## Buy Sites Direct — Self-Hosted Website Marketplace
 
 **Version:** 1.1
 **Date:** 2026-02-19
