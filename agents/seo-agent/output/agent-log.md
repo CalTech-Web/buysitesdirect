@@ -127,3 +127,17 @@ The background task was just the node search I used to find the right binary —
 [2026-03-19] Run 11 completed (commit c0249fd):
   - Homepage: added explicit title "Websites for Sale | No Broker Fees | Buy Sites Direct" (53 chars) targeting the primary search keyword "websites for sale"; previous title fell back to the generic root layout title — added matching openGraph and Twitter card tags
   - Listing detail page: added rel="nofollow ugc" to the Live Site external link (was rel="noopener noreferrer") — prevents passing PageRank to user-submitted third-party URLs, standard practice for marketplace/directory sites
+Run 11 complete (commit `c0249fd`). Deployed and live.
+
+**What was done:**
+
+- **Homepage title**: Changed from the generic root layout fallback to an explicit `"Websites for Sale | No Broker Fees | Buy Sites Direct"` (53 chars). The primary search keyword `"websites for sale"` is now in the `<title>` tag and matching OG/Twitter titles — previously none of these were explicitly set on the homepage.
+
+- **`rel="nofollow ugc"` on listing Live Site links**: Every listing detail page has a "Live Site" link pointing to the seller's third-party URL. This now uses `rel="nofollow ugc noopener noreferrer"`. The `nofollow` prevents PageRank from leaking to user-submitted external sites; `ugc` (user-generated content) is the specific Google-recommended signal for marketplace/directory link types.
+[2026-03-19 09:49:06] Run #4 finished
+[2026-03-19 09:49:11] Run #5 starting (model: sonnet)
+
+[2026-03-19] Run 12 completed (commit 1df5737):
+  - Listing detail page generateMetadata: fixed meta title to enforce ≤60 chars by truncating the listing.title portion if needed, with "…" before the "– [Category] for Sale" suffix
+  - Listing detail page generateMetadata: fixed meta description to enforce ≤160 chars by computing available space after the "[Category] asking [Price].[Revenue] " prefix and capping the description snippet accordingly
+  - Previously descriptions were 170-220+ chars (descSnippet naively sliced to 155 then prefix added on top); titles could exceed 60 chars for long listing titles; both caused Google to ignore the crafted snippets and generate its own
