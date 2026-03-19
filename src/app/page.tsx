@@ -13,12 +13,18 @@ import type { Metadata } from "next"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
+  title: "Websites for Sale | No Broker Fees | Buy Sites Direct",
+  description: "Browse websites, SaaS businesses, eCommerce stores, newsletters, and content sites for sale. Contact sellers directly with no broker fees or commissions.",
   alternates: { canonical: "/" },
   openGraph: {
+    title: "Websites for Sale | No Broker Fees | Buy Sites Direct",
+    description: "Browse websites, SaaS businesses, eCommerce stores, newsletters, and content sites for sale. Contact sellers directly with no broker fees or commissions.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct — Buy and Sell Websites Directly" }],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Websites for Sale | No Broker Fees | Buy Sites Direct",
+    description: "Browse websites, SaaS, eCommerce, newsletters, and content sites for sale. No broker fees.",
     images: ["/og-image.png"],
   },
 }

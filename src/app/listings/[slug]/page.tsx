@@ -488,7 +488,7 @@ export default async function ListingPage({
           <a
             href={listing.url}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow ugc noopener noreferrer"
             className="text-sky-600 dark:text-sky-400 hover:underline break-all text-sm font-medium"
           >
             {listing.url}
