@@ -5,7 +5,7 @@ import { listings, listingImages, users } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
 import { ListingCard } from "@/components/listings/ListingCard"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, FileText, Code2, ShoppingCart, Wrench, Mail, Users, Briefcase, LayoutGrid, type LucideIcon } from "lucide-react"
+import { ArrowRight, FileText, Code2, ShoppingCart, Wrench, Mail, Users, Briefcase, LayoutGrid, type LucideIcon } from "lucide-react"
 
 export const dynamic = "force-dynamic"
 
@@ -232,10 +232,11 @@ export default async function CategoryPage({
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Category Hero Banner */}
       <div className="mb-8">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
-          <ArrowLeft className="h-3.5 w-3.5" />
-          All listings
-        </Link>
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-foreground">{seo.h1}</span>
+        </nav>
         <header className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-10">
           {/* Category accent top bar */}
           <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${accentBar}`} />
@@ -297,7 +298,12 @@ export default async function CategoryPage({
 
       {/* Related categories */}
       <nav aria-label="Related categories" className="mt-16 pt-8 border-t border-border/50">
-        <h2 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Browse other categories</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Browse other categories</h2>
+          <Link href="/faq#buying" className="text-xs text-muted-foreground hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            New to buying? Read our FAQ
+          </Link>
+        </div>
         <div className="flex flex-wrap gap-3">
           {(RELATED_CATEGORIES[category] ?? []).map((rel) => {
             const relSeo = CATEGORY_SEO[rel]

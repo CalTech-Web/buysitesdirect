@@ -5,6 +5,7 @@ import { users, listings } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
 import { ListingCard } from "@/components/listings/ListingCard"
 import { formatCurrency } from "@/lib/slug"
+import Link from "next/link"
 import { LayoutGrid, ShieldCheck, Package, Layers, DollarSign, BarChart3 } from "lucide-react"
 
 export const dynamic = "force-dynamic"
@@ -119,6 +120,11 @@ export default async function SellerProfilePage({
       dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+        <span>/</span>
+        <span className="text-foreground">{seller.username}</span>
+      </nav>
       {/* Profile header */}
       <header className="mb-10 rounded-2xl overflow-hidden border border-border/60 shadow-sm">
         {/* Dark hero banner */}
@@ -268,6 +274,13 @@ export default async function SellerProfilePage({
         </>
       )}
       </section>
+
+      <p className="mt-10 text-sm text-muted-foreground text-center">
+        New to buying websites?{" "}
+        <Link href="/faq#buying" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+          Read our FAQ
+        </Link>
+      </p>
     </div>
     </>
   )

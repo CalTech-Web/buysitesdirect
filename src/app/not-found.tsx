@@ -1,5 +1,12 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Search, Home } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Buy Sites Direct",
+  description: "This page could not be found. Browse our website listings or return to the homepage.",
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (

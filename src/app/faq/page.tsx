@@ -27,9 +27,10 @@ type FaqItem = {
   content?: React.ReactNode
 }
 
-const faqs: { section: string; items: FaqItem[] }[] = [
+const faqs: { section: string; id: string; items: FaqItem[] }[] = [
   {
     section: "General",
+    id: "general",
     items: [
       {
         q: "What is Buy Sites Direct?",
@@ -48,6 +49,7 @@ const faqs: { section: string; items: FaqItem[] }[] = [
   },
   {
     section: "Buying a Website",
+    id: "buying",
     items: [
       {
         q: "How do I find websites for sale?",
@@ -74,6 +76,7 @@ const faqs: { section: string; items: FaqItem[] }[] = [
   },
   {
     section: "Selling a Website",
+    id: "selling",
     items: [
       {
         q: "How do I list my website for sale?",
@@ -139,7 +142,7 @@ export default function FAQPage() {
 
         <div className="space-y-14">
           {faqs.map((section) => (
-            <section key={section.section}>
+            <section key={section.section} id={section.id}>
               <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6 pb-2 border-b border-border">
                 {section.section}
               </h2>
