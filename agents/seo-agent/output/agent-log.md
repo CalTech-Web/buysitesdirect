@@ -90,3 +90,16 @@ Deployed. Here's what was done in this run (commit `ce050f3`):
 [2026-03-18] Run 8 completed (commit e702836):
   - Seller profile page: generateMetadata now returns canonical URL, openGraph (type: "profile"), and Twitter card tags — previously these were missing entirely
   - Seller profile page: added ProfilePage JSON-LD schema with mainEntity (Person) and hasPart (Product with Offer) for each active listing, giving Google a machine-readable profile with linked inventory
+Deployment succeeded.
+
+**Change made:** Added `generateMetadata` to the homepage (`/src/app/page.tsx`) with three improvements:
+
+- **`alternates.canonical: "/"`** — The homepage was the only public page without an explicit canonical URL. Without it, Google may index multiple versions (`www` vs non-www, `/?category=saas`, `/?q=keyword`) as separate pages and split link equity. Now the canonical resolves to `https://buysitesdirect.com` via `metadataBase`.
+- **`openGraph.images`** — The homepage now shows a proper preview image when shared on social (LinkedIn, Facebook, etc.), matching what `/sell` and `/buy/[category]` already had.
+- **`twitter.card: "summary_large_image"`** — Twitter/X shares of the homepage now show a large image card instead of a bare text link.
+[2026-03-19 09:28:25] Run #1 finished
+[2026-03-19 09:28:30] Run #2 starting (model: sonnet)
+
+[2026-03-19] Run 9 completed (commit 119f3f7):
+  - Seller profile page: added BreadcrumbList JSON-LD (Home > username) matching the existing visual breadcrumb — was the only public page with a visual breadcrumb but no corresponding schema
+  - Seller profile page: added og:image and twitter:image (/og-image.png fallback) to generateMetadata — twitter:card was already set to summary_large_image but without an image URL it rendered as a bare link on social shares
