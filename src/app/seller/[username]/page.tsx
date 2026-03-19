@@ -48,11 +48,13 @@ export async function generateMetadata({
       description,
       url: `https://buysitesdirect.com/seller/${seller.username}`,
       type: "profile",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/og-image.png"],
     },
   }
 }
@@ -88,6 +90,15 @@ export default async function SellerProfilePage({
   const totalValue = sellerListings.reduce((sum, l) => sum + l.askingPrice, 0)
   const avgPrice = sellerListings.length > 0 ? Math.round(totalValue / sellerListings.length) : 0
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
+      { "@type": "ListItem", "position": 2, "name": seller.username, "item": `https://buysitesdirect.com/seller/${seller.username}` },
+    ],
+  }
+
   const profileSchema = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -117,7 +128,7 @@ export default async function SellerProfilePage({
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, profileSchema]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
