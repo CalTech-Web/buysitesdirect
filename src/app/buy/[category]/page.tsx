@@ -188,7 +188,7 @@ export default async function CategoryPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Websites for Sale", "item": "https://buysitesdirect.com" },
+      { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
       { "@type": "ListItem", "position": 2, "name": seo.h1, "item": `https://buysitesdirect.com/buy/${category}` },
     ],
   }

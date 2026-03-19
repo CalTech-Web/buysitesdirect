@@ -154,7 +154,7 @@ export default async function HomePage({
           <div className="animate-sparkle absolute w-px h-px rounded-full bg-white/60 pointer-events-none" style={{ top: '30%', left: '88%', animationDuration: '2.6s', animationDelay: '2.8s' }} />
           <div className="relative">
             <h1 className="animate-fade-in-up text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-white">
-              Websites for sale.{" "}
+              Buy sites direct.{" "}
               <span className="animate-hero-gradient">
                 No middleman.
               </span>

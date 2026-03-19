@@ -277,7 +277,7 @@ export default async function ListingPage({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Websites for Sale", "item": "https://buysitesdirect.com" },
+        { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
         { "@type": "ListItem", "position": 2, "name": `${categoryLabel}s for Sale`, "item": `https://buysitesdirect.com/buy/${listing.category}` },
         { "@type": "ListItem", "position": 3, "name": listing.title, "item": `https://buysitesdirect.com/listings/${listing.slug}` },
       ],
@@ -328,7 +328,7 @@ export default async function ListingPage({
     <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto px-4 pt-6 pb-0">
       <ol className="flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
         <li>
-          <Link href="/" className="hover:text-foreground transition-colors">Websites for Sale</Link>
+          <Link href="/" className="hover:text-foreground transition-colors">Buy Sites Direct</Link>
         </li>
         <li aria-hidden="true" className="select-none">/</li>
         <li>

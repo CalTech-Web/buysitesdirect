@@ -12,7 +12,7 @@ export default function HomeLoading() {
           <div className="animate-orb-2 absolute -bottom-10 -left-10 w-64 h-64 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
           <div className="relative">
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-white">
-              Websites for sale.{" "}
+              Buy sites direct.{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">
                 No middleman.
               </span>
