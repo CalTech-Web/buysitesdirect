@@ -8,8 +8,20 @@ import Link from "next/link"
 import { Search, ShieldCheck, MessageCircle, BadgePercent, Sparkles, ArrowRight, Handshake, FileText, Code2, ShoppingCart, Wrench, Mail, Users, Briefcase, LayoutGrid, Check, X, Wallet, type LucideIcon } from "lucide-react"
 import { formatCurrency } from "@/lib/slug"
 import { CountUp } from "@/components/CountUp"
+import type { Metadata } from "next"
 
 export const dynamic = "force-dynamic"
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct — Buy and Sell Websites Directly" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
+}
 
 const CATEGORIES = [
   "content-site", "saas", "ecommerce", "tool-or-app",
