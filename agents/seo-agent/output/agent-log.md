@@ -162,3 +162,20 @@ Run 12 complete (commit `1df5737`). Deployed and live.
 [2026-03-20] Run 13 completed (commit 4d5664e):
   - Listing detail page generateMetadata: openGraph.images and twitter.images now always present — when a listing has no uploaded screenshots, falls back to /og-image.png (1200×630); previously the images property was omitted entirely for imageless listings, causing bare text links on social shares
   - Footer: added compact "Browse by Category" row with all 8 category links (Content Sites, SaaS, eCommerce, Newsletters, Tools & Apps, Communities, Service Businesses, Other); previously only 3 categories appeared in the footer, leaving the other 5 with no global sitewide inbound link
+Run 13 complete (commit `4d5664e`). Deployed and live.
+
+**What was done:**
+
+- **Listing detail `og:image` fallback** — When a listing has no uploaded screenshots, `openGraph.images` and `twitter.images` were previously omitted entirely. Sharing an imageless listing on LinkedIn, Facebook, or Twitter/X showed a bare text link instead of a card. Now falls back to `/og-image.png` (1200×630), ensuring every listing page renders a social card regardless of whether images were uploaded.
+
+- **Footer: all 8 category links** — The "Browse by Category" compact row now appears in the global footer with links to every category page. Previously only Content Sites, SaaS, and eCommerce had footer links; Newsletters, Tools & Apps, Communities, Service Businesses, and Other had no sitewide inbound link from the footer, leaving those category pages with weaker internal PageRank flow.
+[2026-03-20 06:06:57] Run #1 finished
+[2026-03-20 06:07:02] Run #2 starting (model: sonnet)
+
+[2026-03-20] Run 14 completed (commit cce5460):
+  - All 8 category pages (/buy/[category]): added a two-column buying guide + FAQ section below the listings grid
+  - Each category has 3 paragraphs of tailored buying advice covering what to evaluate, valuation ranges, and key risks
+  - Each category has 3 targeted FAQ items (Q+A) covering due diligence, valuation, and transfer/operational questions
+  - FAQPage JSON-LD schema added to all 8 category pages — enables Google FAQ rich results in SERPs alongside the existing BreadcrumbList + ItemList schemas
+  - Each FAQ section closes with internal links to /faq and /sell
+  - Category pages were previously thin (H1 + listing grid only); this change adds substantial indexable content targeting long-tail queries per category
