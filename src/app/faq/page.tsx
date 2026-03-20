@@ -101,6 +101,24 @@ const faqs: { section: string; id: string; items: FaqItem[] }[] = [
       },
     ],
   },
+  {
+    section: "Valuation",
+    id: "valuation",
+    items: [
+      {
+        q: "How much is my website worth?",
+        a: "Most websites are valued at a multiple of monthly net profit (often called SDE — Seller's Discretionary Earnings). Content sites and SaaS products typically sell for 30–50x monthly profit. eCommerce stores range from 24–40x. Age, traffic stability, revenue diversification, and owner involvement all affect the multiple. A site earning $500/month might sell for $15,000–$25,000; one earning $5,000/month could command $150,000–$250,000.",
+      },
+      {
+        q: "What multiple should I expect when selling a website?",
+        a: "Multiples vary by business type, age, and risk profile. Content sites with stable organic traffic sell for 35–45x monthly profit. SaaS with recurring revenue and low churn can reach 40–60x. eCommerce is typically 24–36x due to inventory risk. Newer sites with less than 12 months of data or concentrated traffic sources command lower multiples. Set a realistic asking price based on your last 6–12 months of average monthly earnings.",
+      },
+      {
+        q: "How long does it take to sell a website?",
+        a: "Time-to-sale depends on asking price, listing quality, and market demand. Smaller sites under $20,000 often find buyers within a few weeks. Mid-market sites ($20,000–$100,000) typically take 1–3 months. Larger acquisitions can take longer as buyers conduct more thorough due diligence. Detailed listings with verified revenue, traffic screenshots, and clear seller notes sell significantly faster than sparse ones.",
+      },
+    ],
+  },
 ]
 
 const faqSchema = {
