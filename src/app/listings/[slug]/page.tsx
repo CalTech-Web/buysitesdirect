@@ -77,6 +77,7 @@ export async function generateMetadata({
     alternates: {
       canonical: `/listings/${listing.slug}`,
     },
+    ...(listing.status !== "active" ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title,
       description,

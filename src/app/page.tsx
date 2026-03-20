@@ -787,6 +787,45 @@ export default async function HomePage({
         </>
       )}
       </section>
+
+      {/* SEO: keyword-rich about section */}
+      <section className="mt-16 border-t border-border/40 pt-10 pb-2">
+        <h2 className="text-lg font-bold mb-3">About Buy Sites Direct</h2>
+        <div className="grid sm:grid-cols-2 gap-6 text-sm text-muted-foreground leading-relaxed">
+          <div>
+            <p>
+              Buy Sites Direct is a website marketplace where buyers and sellers transact directly,
+              without brokers or commissions. Listings span every major category of online business:
+              content sites and blogs, SaaS products, eCommerce stores, newsletters, online tools,
+              communities, and service businesses.
+            </p>
+            <p className="mt-3">
+              Every listing on the platform includes the asking price, monthly revenue, traffic
+              figures, site age, and a detailed description written or reviewed by the seller.
+              Buyers can filter by category, budget, and revenue to find acquisitions that match
+              their criteria, then contact sellers directly through the listing page.
+            </p>
+          </div>
+          <div>
+            <p>
+              Listing a website for sale is free and takes under a minute. Sellers enter a URL and
+              asking price; the AI drafts a title and description based on the site&apos;s content.
+              There are no listing fees, no success fees, and no percentage taken from the sale
+              price when a deal closes.
+            </p>
+            <p className="mt-3">
+              Whether you are looking to{" "}
+              <Link href="/buy/content-site" className="text-indigo-600 dark:text-indigo-400 hover:underline">buy a content site</Link>,{" "}
+              <Link href="/buy/saas" className="text-indigo-600 dark:text-indigo-400 hover:underline">acquire a SaaS business</Link>, or{" "}
+              <Link href="/sell" className="text-indigo-600 dark:text-indigo-400 hover:underline">sell your own website</Link>,
+              Buy Sites Direct connects you directly with the other side of the transaction.
+              Browse active listings or{" "}
+              <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">read the FAQ</Link>{" "}
+              to learn how it works.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
     </>
   )

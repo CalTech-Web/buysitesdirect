@@ -179,3 +179,22 @@ Run 13 complete (commit `4d5664e`). Deployed and live.
   - FAQPage JSON-LD schema added to all 8 category pages — enables Google FAQ rich results in SERPs alongside the existing BreadcrumbList + ItemList schemas
   - Each FAQ section closes with internal links to /faq and /sell
   - Category pages were previously thin (H1 + listing grid only); this change adds substantial indexable content targeting long-tail queries per category
+Run 14 complete (commit `cce5460`). Deployed and live.
+
+**What was done:**
+
+All 8 category pages (`/buy/content-site`, `/buy/saas`, `/buy/ecommerce`, `/buy/tool-or-app`, `/buy/newsletter`, `/buy/community`, `/buy/service-business`, `/buy/other`) now have:
+
+- **Buying guide section** — 3 paragraphs of category-specific advice covering what to evaluate, typical valuation ranges, and key risks. Gives search engines substantially more indexable content per page.
+- **FAQ section** — 3 targeted Q&As per category (e.g. "What metrics matter most when buying a SaaS?", "How are content sites valued?", "What documents should I request from a service business seller?") rendered with semantic `<dl>/<dt>/<dd>` and targeting long-tail search intent.
+- **`FAQPage` JSON-LD schema** — enables Google FAQ rich results (expandable Q&A cards in SERPs) alongside the existing `BreadcrumbList` + `ItemList` schemas.
+- **Internal links** to `/faq` and `/sell` from each category page's FAQ footer.
+
+Previously the category pages were thin — just an H1, one-sentence intro, and a listing grid. This was the largest remaining content gap.
+[2026-03-20 06:15:31] Run #2 finished
+[2026-03-20 06:15:36] Run #3 starting (model: sonnet)
+
+[2026-03-20] Run 15 completed (commit TBD):
+  - Listing detail page generateMetadata: added robots: { index: false, follow: true } for non-active listings (sold, under_offer, unpublished) — previously these pages were fully indexed despite being unavailable, causing Google to index thin/dead content
+  - Seller profile generateMetadata: added robots: { index: false, follow: false } when seller has zero active listings — previously empty seller profiles were indexed despite being excluded from the sitemap
+  - Homepage: added "About Buy Sites Direct" two-column text section at the bottom of the main content area with natural-language description of the marketplace targeting "buy websites for sale", "website marketplace", "buy a content site", "acquire a SaaS business", and "sell your website" queries — with contextual internal links to /buy/content-site, /buy/saas, /sell, and /faq

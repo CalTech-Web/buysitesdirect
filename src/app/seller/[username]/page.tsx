@@ -43,6 +43,7 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: `/seller/${seller.username}` },
+    ...(count === 0 ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title,
       description,
