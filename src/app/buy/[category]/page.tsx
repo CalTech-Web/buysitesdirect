@@ -9,7 +9,18 @@ import { ArrowRight, FileText, Code2, ShoppingCart, Wrench, Mail, Users, Briefca
 
 export const dynamic = "force-dynamic"
 
-const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string; description: string; h1: string; intro: string }> = {
+type CategorySeo = {
+  slug: string
+  label: string
+  title: string
+  description: string
+  h1: string
+  intro: string
+  guide: string[]
+  faqs: { q: string; a: string }[]
+}
+
+const CATEGORY_SEO: Record<string, CategorySeo> = {
   "content-site": {
     slug: "content-site",
     label: "Content Sites",
@@ -17,6 +28,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Browse content sites, blogs, and niche websites for sale. Buy directly from owners with no broker fees. Verified traffic and revenue metrics on every listing.",
     h1: "Content Sites for Sale",
     intro: "Browse blogs, niche sites, and content websites with verified traffic and revenue. Buy directly from the owner with zero broker fees.",
+    guide: [
+      "Content sites include blogs, niche websites, and informational portals that earn primarily through display advertising, affiliate commissions, or sponsored content. The traffic source breakdown is one of the most important factors to evaluate: a site with 80%+ organic search traffic is more resilient than one dependent on a single social platform or paid channel.",
+      "When reviewing a content site, check the backlink profile for any manual or algorithmic Google penalties, examine the revenue sources (some affiliate programs change commission rates with little notice), and assess how much of the content needs ongoing updates versus evergreen pieces that hold value indefinitely.",
+      "Valuations for content sites typically fall in the range of 20 to 40x monthly net profit. Sites with stable organic traffic, diversified monetisation, and aged domains command the higher end of that range.",
+    ],
+    faqs: [
+      {
+        q: "What should I check before buying a content site?",
+        a: "Review the organic traffic trend in Google Search Console or an analytics tool, verify the revenue with screenshots of ad network or affiliate dashboards, check the backlink profile for spammy links, and confirm the domain has no Google penalties. Also ask whether the content was AI-generated, as search engines are increasingly able to identify and devalue low-quality machine-written content.",
+      },
+      {
+        q: "How are content sites valued?",
+        a: "Content sites are typically valued at 20 to 40 times monthly net profit. A site earning $1,000/month net would be listed anywhere from $20,000 to $40,000 depending on traffic stability, revenue diversification, and domain age. Sites with a single revenue source or declining traffic are valued at the lower end.",
+      },
+      {
+        q: "How long does it take to transfer a content site?",
+        a: "Domain transfer usually takes 3 to 7 days. Full handover of hosting, content, and monetisation accounts (ad networks, affiliate programs) can take 1 to 2 weeks with an organised seller. Agree on a handover checklist before closing the deal.",
+      },
+    ],
   },
   "saas": {
     slug: "saas",
@@ -25,6 +55,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Find SaaS businesses and software companies for sale. Recurring revenue, verified metrics, and direct seller contact. No commissions on buysitesdirect.com.",
     h1: "SaaS Businesses for Sale",
     intro: "Find software companies with recurring revenue for sale. Every listing includes verified metrics so you can make an informed decision.",
+    guide: [
+      "SaaS businesses are valued for their predictable recurring revenue. The core metrics to evaluate are Monthly Recurring Revenue (MRR), monthly churn rate, customer acquisition cost (CAC), and average revenue per user (ARPU). A low churn rate is often more important than headline revenue: a SaaS losing 5% of customers per month will shrink to half its size within 14 months regardless of new sales.",
+      "Software infrastructure matters more for SaaS than for content-based businesses. Before closing, have an independent developer review the codebase for technical debt, security vulnerabilities, and third-party API dependencies that could be deprecated or repriced. Understand the hosting costs and whether they scale linearly with customer growth.",
+      "Most SaaS acquisitions are priced at 2 to 5x Annual Recurring Revenue (ARR). Bootstrapped micro-SaaS products with under 50 customers often trade at the lower end; software with strong retention, documented processes, and a clean codebase commands the higher end.",
+    ],
+    faqs: [
+      {
+        q: "What metrics matter most when buying a SaaS business?",
+        a: "MRR, monthly churn rate, LTV:CAC ratio, and the number of paying customers. A monthly churn rate under 2% is generally strong. Also check net revenue retention: if customers expand their plans over time, NRR above 100% means the business grows even without acquiring new customers.",
+      },
+      {
+        q: "How are SaaS businesses valued?",
+        a: "Most SaaS deals price at 2 to 5x Annual Recurring Revenue (ARR). Micro-SaaS products and early-stage tools often trade between 2 and 3x ARR. Established businesses with low churn, documented processes, and no key-person dependency command multiples toward the higher end.",
+      },
+      {
+        q: "Should I review the code before buying a SaaS?",
+        a: "Yes. Even if you are not technical, hire a developer to review the codebase before closing. They should check for critical security issues, assess the quality of the architecture, identify any hardcoded secrets or deprecated dependencies, and estimate the ongoing maintenance burden.",
+      },
+    ],
   },
   "ecommerce": {
     slug: "ecommerce",
@@ -33,6 +82,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Shop ecommerce stores and online businesses for sale. Verified revenue and traffic. Contact sellers directly with no broker fees on buysitesdirect.com.",
     h1: "eCommerce Stores for Sale",
     intro: "Explore online stores and ecommerce businesses with real revenue. Contact sellers directly and skip the broker fees.",
+    guide: [
+      "eCommerce stores generate revenue by selling physical or digital products, often through Shopify, WooCommerce, or custom platforms. Key factors to assess include supplier relationships and lead times, inventory turnover, return rates, and the degree of dependence on paid advertising. Stores with strong organic search rankings or a large email list are generally more resilient acquisitions than those running on Meta or Google Ads alone.",
+      "Review the last 12 months of sales data and look for seasonality. Some eCommerce categories have strong Q4 spikes; others are relatively flat year-round. If the business relies heavily on a single supplier, assess what happens if that supplier raises prices or goes out of stock.",
+      "eCommerce valuations typically use 2 to 4x annual net profit. Stores with strong brand recognition, a loyal customer base, and repeat purchase rates command higher multiples. Dropshipping businesses with no proprietary branding usually trade at the lower end.",
+    ],
+    faqs: [
+      {
+        q: "What is included in an eCommerce store acquisition?",
+        a: "Typically the domain, website, customer email list, supplier contacts, social media accounts, and any remaining inventory where applicable. Clarify with the seller exactly what is included before signing any agreement, particularly around inventory ownership and supplier transfer.",
+      },
+      {
+        q: "How are eCommerce stores valued?",
+        a: "Revenue-based multiples of 2 to 4x annual net profit are most common. Stores with strong brand recognition, repeat customers, and proprietary products command higher multiples. Dropshipping stores or those heavily dependent on a single supplier or paid traffic channel are typically valued at the lower end.",
+      },
+      {
+        q: "How do I verify eCommerce revenue?",
+        a: "Request Shopify or WooCommerce analytics exports, bank statements, and payment processor reports (Stripe, PayPal) covering at least 6 to 12 months. Cross-reference the order count in the platform dashboard against the payment processor deposits to confirm figures match.",
+      },
+    ],
   },
   "tool-or-app": {
     slug: "tool-or-app",
@@ -41,6 +109,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Discover web apps, online tools, and micro-SaaS products for sale. Verified metrics, direct seller contact, no commissions on buysitesdirect.com.",
     h1: "Online Tools & Apps for Sale",
     intro: "Discover web apps, browser extensions, and online tools with real user bases. Buy directly from builders and developers.",
+    guide: [
+      "Online tools, web apps, and browser extensions monetise through subscriptions, one-time purchases, or freemium upgrade funnels. The most important signal when evaluating a tool is whether it solves a narrow, well-defined problem with a defensible moat: integrations with popular platforms, a unique data asset, or a workflow that is painful to replicate from scratch.",
+      "Tools with strong organic discovery — through SEO, product directories like Product Hunt, or category-specific marketplaces — are more valuable than those relying solely on paid acquisition. Check the tool's listing in the Chrome Web Store, app directories, or integration marketplaces for user reviews and install counts.",
+      "Valuations are similar to SaaS: profitable tools typically trade at 2 to 4x ARR. Free tools with large active user bases may be valued on traffic or acquisition potential rather than revenue alone.",
+    ],
+    faqs: [
+      {
+        q: "What is a micro-SaaS tool?",
+        a: "A micro-SaaS is a small, often single-founder software product with a narrow use case, low overhead, and predictable recurring revenue. Many tools listed here fall into this category. They are attractive acquisitions because the scope is limited, the customer base is targeted, and the technical complexity is usually manageable.",
+      },
+      {
+        q: "How are online tools and apps valued?",
+        a: "Similar to SaaS: 2 to 4x ARR for profitable tools is the typical range. Free tools with large user bases may be valued on traffic or strategic acquisition potential. Browser extensions with significant install counts may command a premium if they have a strong monetisation path.",
+      },
+      {
+        q: "Do I need coding skills to run an online tool?",
+        a: "Not necessarily. Many tools are maintained by outsourcing ongoing development. Ask the seller about the current hosting setup, monthly maintenance costs, and any active bug reports or feature requests. If you are non-technical, budget for a part-time developer to handle maintenance.",
+      },
+    ],
   },
   "newsletter": {
     slug: "newsletter",
@@ -49,6 +136,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Browse email newsletters for sale with verified subscriber counts and open rates. Buy directly from owners, no broker fees on buysitesdirect.com.",
     h1: "Newsletters for Sale",
     intro: "Find email newsletters with engaged subscriber bases. Verified subscriber counts and open rates on every listing.",
+    guide: [
+      "Email newsletters earn revenue through paid subscriptions, sponsorships, and affiliate deals. The subscriber count headline can be misleading: what matters more is engagement. A list of 5,000 subscribers with a 45% open rate is more valuable than 50,000 subscribers with a 4% open rate, because sponsors and affiliate partners pay for actual attention, not raw list size.",
+      "Before buying, examine the subscriber growth trend over the past 12 months, the source of new subscribers (organic word-of-mouth, referral programs, paid acquisition), and the churn rate. Organically grown lists tend to be more engaged and more resilient to a change in ownership than lists built through paid promotion.",
+      "Paid newsletters typically trade at 2 to 4x Annual Recurring Revenue (ARR). Sponsorship-based newsletters are valued on a multiple of monthly net revenue, often 20 to 36x monthly net profit.",
+    ],
+    faqs: [
+      {
+        q: "What metrics matter most when buying a newsletter?",
+        a: "Total active subscribers, open rate, click-through rate (CTR), monthly revenue, and monthly subscriber churn. Open rates above 30% are generally strong for B2C newsletters; B2B newsletters often achieve 40 to 50%. Also check whether the list has been validated recently to remove inactive addresses.",
+      },
+      {
+        q: "Can I transfer a newsletter to a different email platform?",
+        a: "Yes. Most email platforms (Beehiiv, Substack, ConvertKit, Mailchimp) allow full subscriber list exports as a CSV. Negotiate the platform migration plan with the seller before closing. Be aware that some platforms (notably Substack) tie the publication identity to the original account, which may require notifying subscribers of the platform change.",
+      },
+      {
+        q: "How are newsletters valued?",
+        a: "Paid subscription newsletters typically trade at 2 to 4x ARR. Sponsorship-driven newsletters are usually priced at 20 to 36x monthly net profit, depending on niche, open rates, and revenue consistency. Newsletters with a single dominant sponsor are valued lower due to concentration risk.",
+      },
+    ],
   },
   "community": {
     slug: "community",
@@ -57,6 +163,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Find online communities, forums, and membership sites for sale. Verified member counts, direct seller contact, no fees on buysitesdirect.com.",
     h1: "Online Communities for Sale",
     intro: "Browse forums, membership sites, and online communities. Verified member counts and engagement metrics included.",
+    guide: [
+      "Online communities — forums, Slack groups, Discord servers, and membership sites — derive value from their engaged member base, niche authority, and recurring subscription revenue. Evaluate the level of owner involvement carefully: a community that only functions because the founder is its most active member represents significant key-person risk for a new owner.",
+      "Look at daily and weekly active users relative to the total member count. A forum with 10,000 registered users but only 50 weekly active posters has a very different value profile than one with 2,000 members and 800 weekly active contributors. Also check whether the community has moderators and documented rules.",
+      "Recurring subscription communities trade at 2 to 4x ARR. Free communities supported by sponsorships are valued on audience quality and sponsorship revenue, typically 20 to 36x monthly net profit.",
+    ],
+    faqs: [
+      {
+        q: "How do I verify a community's engagement?",
+        a: "Request screenshots of member activity dashboards, daily active user counts, and the moderation log. For forum-based communities, check post frequency over the past 30 and 90 days and the ratio of new versus returning members. Be cautious of communities where the majority of activity comes from a small number of power users.",
+      },
+      {
+        q: "Can a community be transferred to a new owner smoothly?",
+        a: "Yes, but success depends on how the transition is communicated. Discord servers, Slack workspaces, and forum platforms (Discourse, phpBB) all support ownership transfers technically. The bigger risk is member churn if the community was closely associated with the previous owner's personal brand. A warm handover period — where the seller introduces the new owner — is strongly recommended.",
+      },
+      {
+        q: "How are online communities valued?",
+        a: "Recurring subscription communities typically trade at 2 to 4x ARR. Free or sponsorship-based communities are valued on audience quality and monthly revenue, typically 20 to 36x monthly net. Niche communities with defensible expertise and strong engagement in a high-value vertical (finance, B2B SaaS, professional skills) command the highest multiples.",
+      },
+    ],
   },
   "service-business": {
     slug: "service-business",
@@ -65,6 +190,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Browse online service businesses, agencies, and consulting firms for sale. Real client lists and revenue. No broker fees on buysitesdirect.com.",
     h1: "Service Businesses for Sale",
     intro: "Explore service businesses, agencies, and consulting firms with real clients and revenue. Contact sellers directly.",
+    guide: [
+      "Online service businesses — agencies, consulting firms, and managed service operations — are valued on revenue, client contract length, and most importantly, the owner's replaceability. The central question for any service business acquisition is: will the revenue survive a change in ownership? If clients are paying for the founder's personal expertise or relationships, expect some churn during the transition.",
+      "The most resilient service businesses have documented processes, retainer-based clients on recurring contracts, and at least one team member capable of delivering the core service independently. Ask the seller for an operational playbook, a list of recurring versus project-based clients, and details about any staff or contractors.",
+      "Service business valuations typically run 1 to 3x annual net profit, lower than SaaS or content sites due to the labour-intensive nature of the business. Businesses with long-term contracts, a strong team, and documented operations command multiples toward the higher end.",
+    ],
+    faqs: [
+      {
+        q: "What is the biggest risk when buying a service business?",
+        a: "Owner dependency. If the business revenue depends on the founder's reputation, relationships, or personal delivery of the service, clients may leave after an ownership transition. Mitigate this by negotiating a handover period where the seller helps introduce you to key clients and documents all active workflows.",
+      },
+      {
+        q: "How are online service businesses valued?",
+        a: "Typically 1 to 3x annual net profit. Businesses with long-term client contracts, a documented operations playbook, and an existing team of employees or contractors command higher multiples. Pure freelance businesses that depend entirely on one person are usually valued at 1 to 1.5x annual profit.",
+      },
+      {
+        q: "What documents should I request from a service business seller?",
+        a: "Client contracts and their remaining term, profit and loss statements for the past 2 years, a full client list showing recurring versus one-off revenue, any staff or contractor agreements, and the operational playbook. If the business uses proprietary tools or IP, confirm ownership is included in the sale.",
+      },
+    ],
   },
   "other": {
     slug: "other",
@@ -73,6 +217,25 @@ const CATEGORY_SEO: Record<string, { slug: string; label: string; title: string;
     description: "Browse unique websites and online businesses for sale that don't fit a single category. Verified metrics, direct seller contact, no broker fees on buysitesdirect.com.",
     h1: "Other Websites for Sale",
     intro: "Explore unique online businesses and websites with verified metrics. Contact sellers directly with zero broker fees.",
+    guide: [
+      "This category includes online businesses that do not fit neatly into standard classifications: affiliate portals, domain portfolios, lead generation sites, directory sites, job boards, marketplace platforms, and hybrid content-service models. Each business in this category needs to be evaluated on the strength of its individual revenue model rather than category benchmarks.",
+      "For businesses with unusual or complex revenue models, focus on verifying the primary revenue driver independently, not just the total reported revenue. Understand what would cause that revenue to decline: algorithm changes, a key partnership, seasonal demand, or regulatory risk.",
+      "Valuations vary widely. Apply the same logic as the closest comparable category: content-like businesses trade at 20 to 40x monthly profit; recurring-revenue platforms trade closer to 2 to 4x ARR; lead generation or directory businesses are typically valued at 20 to 36x monthly net profit.",
+    ],
+    faqs: [
+      {
+        q: "What types of sites are listed in this category?",
+        a: "Businesses that do not fit a single standard category: affiliate portals, domain portfolios, lead generation sites, directory sites, job boards, marketplaces, and hybrid models. If a site has elements of multiple categories, it is often listed here.",
+      },
+      {
+        q: "How do I evaluate a non-standard online business?",
+        a: "Focus on the primary revenue driver, its defensibility, and the technical and operational complexity of the transfer. Verify revenue with bank statements and payment processor reports. If the business model is unfamiliar to you, research comparable businesses or consult someone with direct experience in that model before committing.",
+      },
+      {
+        q: "Is buying in the Other category riskier?",
+        a: "Not inherently, but due diligence is especially important for non-standard models because there are fewer public benchmarks to compare against. Request full documentation, speak with the seller in detail, and if the business model is complex, consider bringing in a domain expert to advise before closing.",
+      },
+    ],
   },
 }
 
@@ -218,6 +381,16 @@ export default async function CategoryPage({
     })),
   } : null
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": seo.faqs.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a },
+    })),
+  }
+
   const headerRadial = CATEGORY_HEADER_RADIAL[category] ?? CATEGORY_HEADER_RADIAL["other"]
   const accentBar = CATEGORY_ACCENT_BAR[category] ?? CATEGORY_ACCENT_BAR["other"]
   const sparkleColors = CATEGORY_SPARKLE_COLORS[category] ?? CATEGORY_SPARKLE_COLORS["other"]
@@ -227,7 +400,7 @@ export default async function CategoryPage({
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema ? [breadcrumbSchema, itemListSchema] : [breadcrumbSchema]) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema ? [breadcrumbSchema, itemListSchema, faqSchema] : [breadcrumbSchema, faqSchema]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Category Hero Banner */}
@@ -295,6 +468,33 @@ export default async function CategoryPage({
           </Link>
         </div>
       )}
+
+      {/* Buying guide + FAQ */}
+      <section className="mt-16 pt-8 border-t border-border/50 grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 className="text-base font-bold mb-4">Buying guide: {seo.label}</h2>
+          <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+            {seo.guide.map((para, i) => <p key={i}>{para}</p>)}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-base font-bold mb-4">Frequently asked questions</h2>
+          <dl className="space-y-5">
+            {seo.faqs.map((item) => (
+              <div key={item.q}>
+                <dt className="font-semibold text-sm mb-1">{item.q}</dt>
+                <dd className="text-sm text-muted-foreground leading-relaxed">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-xs text-muted-foreground">
+            More questions?{" "}
+            <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">Read the full FAQ</Link>
+            {" "}or{" "}
+            <Link href="/sell" className="text-indigo-600 dark:text-indigo-400 hover:underline">list your own site for sale</Link>.
+          </p>
+        </div>
+      </section>
 
       {/* Related categories */}
       <nav aria-label="Related categories" className="mt-16 pt-8 border-t border-border/50">
