@@ -198,3 +198,20 @@ Previously the category pages were thin — just an H1, one-sentence intro, and 
   - Listing detail page generateMetadata: added robots: { index: false, follow: true } for non-active listings (sold, under_offer, unpublished) — previously these pages were fully indexed despite being unavailable, causing Google to index thin/dead content
   - Seller profile generateMetadata: added robots: { index: false, follow: false } when seller has zero active listings — previously empty seller profiles were indexed despite being excluded from the sitemap
   - Homepage: added "About Buy Sites Direct" two-column text section at the bottom of the main content area with natural-language description of the marketplace targeting "buy websites for sale", "website marketplace", "buy a content site", "acquire a SaaS business", and "sell your website" queries — with contextual internal links to /buy/content-site, /buy/saas, /sell, and /faq
+Run 15 complete (commit `ebbfd15`). Deployed.
+
+**What was done:**
+
+**noindex for non-active listing pages** — Sold, under-offer, and unpublished listings still render at their `/listings/[slug]` URLs but had no `robots` noindex directive. Google could crawl and index these pages (via external links or cached references), then serve unavailable listings in SERPs. Now `generateMetadata` adds `robots: { index: false, follow: true }` whenever `listing.status !== "active"`. The `follow: true` preserves link equity flow from any internal links on the page.
+
+**noindex for empty seller profiles** — Seller profiles with zero active listings were excluded from the sitemap but not noindexed at the page level. Now `generateMetadata` on the seller profile page adds `robots: { index: false, follow: false }` when `count === 0`, preventing Google from indexing thin, content-free profile pages.
+
+**Homepage "About Buy Sites Direct" section** — The homepage had no static paragraph text that Google could clearly associate with the page's purpose. The new two-column section below the listings grid provides natural-language coverage of keywords like "website marketplace", "buy websites for sale", "acquire a SaaS business", and "sell your website", with contextual internal links to `/buy/content-site`, `/buy/saas`, `/sell`, and `/faq`.
+[2026-03-20 06:21:44] Run #3 finished
+[2026-03-20 06:21:49] Run #4 starting (model: sonnet)
+
+[2026-03-20] Run 16 completed (commit f882381):
+  - Listing detail page Product JSON-LD: fixed price bug — was dividing askingPrice by 100, making a $1,000 listing appear as $10.00 in Google rich results; prices are stored in dollars, so removed the /100 division
+  - Root layout: added og:locale "en_US" to openGraph metadata — affects all pages; Facebook, LinkedIn and other OG consumers use this for language/locale signals
+  - FAQ page title: changed from "FAQ | Buy Sites Direct" (22 chars, no keyword) to "Buying & Selling Websites FAQ | Buy Sites Direct" (48 chars) targeting the primary keyword pair
+  - /sell page: added HowTo JSON-LD schema for the "How selling works" 3-step section — makes the page eligible for Google HowTo rich results in SERPs; complements the existing Service schema
