@@ -141,3 +141,24 @@ Run 11 complete (commit `c0249fd`). Deployed and live.
   - Listing detail page generateMetadata: fixed meta title to enforce ≤60 chars by truncating the listing.title portion if needed, with "…" before the "– [Category] for Sale" suffix
   - Listing detail page generateMetadata: fixed meta description to enforce ≤160 chars by computing available space after the "[Category] asking [Price].[Revenue] " prefix and capping the description snippet accordingly
   - Previously descriptions were 170-220+ chars (descSnippet naively sliced to 155 then prefix added on top); titles could exceed 60 chars for long listing titles; both caused Google to ignore the crafted snippets and generate its own
+Run 12 complete (commit `1df5737`). Deployed and live.
+
+**What was done:**
+
+**Fixed meta title length enforcement on listing detail pages** — The title format `"[Listing Title] – [Category] for Sale"` had no cap on the listing title portion. Long titles (e.g., "Profitable B2B SaaS Platform with 500 Customers and $15K MRR") pushed the full meta title well past 60 characters, causing Google to ignore the crafted title and auto-generate its own SERP snippet. Now the listing title is truncated with "…" if needed to keep the full string ≤60 chars.
+
+**Fixed meta description length enforcement on listing detail pages** — This was a genuine bug: the description was built as `"[Category] asking [Price].[Revenue] [descSnippet]…"` where `descSnippet` was naively sliced to 155 chars. The prefix alone could add 40-70 chars, making the final description 170-220+ characters — well over Google's 160-char limit. The fix calculates available space dynamically: `maxSnippetLen = 158 - prefix.length`, ensuring the total stays under 160 chars regardless of category label, price, or revenue values.
+[2026-03-19 10:04:28] Run #5 finished
+[2026-03-19 10:04:28] Reached max loops (5). Stopping.
+[2026-03-20 06:02:03] ==========================================
+[2026-03-20 06:02:03] Agent: Seo Agent
+[2026-03-20 06:02:03] Model: sonnet
+[2026-03-20 06:02:03] Workspace: /Users/brandonhopkins/Projects/seo/buysitesdirect/agents/seo-agent
+[2026-03-20 06:02:03] Stop on complete: false
+[2026-03-20 06:02:03] Max loops: 5 (0=infinite)
+[2026-03-20 06:02:03] ==========================================
+[2026-03-20 06:02:03] Run #1 starting (model: sonnet)
+
+[2026-03-20] Run 13 completed (commit 4d5664e):
+  - Listing detail page generateMetadata: openGraph.images and twitter.images now always present — when a listing has no uploaded screenshots, falls back to /og-image.png (1200×630); previously the images property was omitted entirely for imageless listings, causing bare text links on social shares
+  - Footer: added compact "Browse by Category" row with all 8 category links (Content Sites, SaaS, eCommerce, Newsletters, Tools & Apps, Communities, Service Businesses, Other); previously only 3 categories appeared in the footer, leaving the other 5 with no global sitewide inbound link
