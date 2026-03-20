@@ -194,7 +194,7 @@ Previously the category pages were thin — just an H1, one-sentence intro, and 
 [2026-03-20 06:15:31] Run #2 finished
 [2026-03-20 06:15:36] Run #3 starting (model: sonnet)
 
-[2026-03-20] Run 15 completed (commit TBD):
+[2026-03-20] Run 15 completed (commit ebbfd15):
   - Listing detail page generateMetadata: added robots: { index: false, follow: true } for non-active listings (sold, under_offer, unpublished) — previously these pages were fully indexed despite being unavailable, causing Google to index thin/dead content
   - Seller profile generateMetadata: added robots: { index: false, follow: false } when seller has zero active listings — previously empty seller profiles were indexed despite being excluded from the sitemap
   - Homepage: added "About Buy Sites Direct" two-column text section at the bottom of the main content area with natural-language description of the marketplace targeting "buy websites for sale", "website marketplace", "buy a content site", "acquire a SaaS business", and "sell your website" queries — with contextual internal links to /buy/content-site, /buy/saas, /sell, and /faq
