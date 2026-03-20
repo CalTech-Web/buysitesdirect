@@ -215,3 +215,22 @@ Run 15 complete (commit `ebbfd15`). Deployed.
   - Root layout: added og:locale "en_US" to openGraph metadata — affects all pages; Facebook, LinkedIn and other OG consumers use this for language/locale signals
   - FAQ page title: changed from "FAQ | Buy Sites Direct" (22 chars, no keyword) to "Buying & Selling Websites FAQ | Buy Sites Direct" (48 chars) targeting the primary keyword pair
   - /sell page: added HowTo JSON-LD schema for the "How selling works" 3-step section — makes the page eligible for Google HowTo rich results in SERPs; complements the existing Service schema
+Run 16 complete (commit `f882381`). Deployed and live.
+
+**What was done:**
+
+- **Product JSON-LD price bug fixed** — Every listing detail page had `"price": (listing.askingPrice / 100).toFixed(2)` in its `Product` schema. Since prices are stored in dollars (not cents), this made a $1,000 listing appear as `$10.00` in Google rich results. Removed the `/100` division — Google now sees the correct price.
+
+- **`og:locale: "en_US"` in root layout** — Added to the `openGraph` object in the root layout, propagating to all pages. Facebook, LinkedIn, and other Open Graph consumers use this to correctly identify language and locale, which affects how shared links render and how content is surfaced in geo-targeted feeds.
+
+- **FAQ page title keyword** — Changed from `"FAQ | Buy Sites Direct"` (22 chars, zero keyword signal) to `"Buying & Selling Websites FAQ | Buy Sites Direct"` (48 chars). Adds the primary keyword pair to the `<title>`, `og:title`, and `twitter:title` for the FAQ page.
+
+- **HowTo JSON-LD on `/sell` page** — Added a 3-step `HowTo` schema matching the existing "How selling works" UI section. Makes the page eligible for Google HowTo rich results (step cards in SERPs). The `totalTime: "PT1M"` reflects the "list in 30 seconds" copy. Complements the existing `Service` and `BreadcrumbList` schemas on that page.
+[2026-03-20 06:28:28] Run #4 finished
+[2026-03-20 06:28:33] Run #5 starting (model: sonnet)
+
+[2026-03-20] Run 17 completed (commit e5df903):
+  - Created /about page: AboutPage JSON-LD schema (linked to #website and #organization), BreadcrumbList JSON-LD, explicit metadata (title 51 chars, description 143 chars, canonical, OG, Twitter card); content covers what the marketplace does, why no broker fees, who it serves, and a 3-step how-it-works section with internal links to all 8 category pages, /sell, and /faq
+  - Sitemap: added /about with priority 0.6 and monthly change frequency
+  - Footer: added "About" link in the Sellers column alongside FAQ, Sell Your Website, etc.
+  - FAQ page: added new "Valuation" section (id="valuation") with 3 Q&As targeting high-search-volume queries: "How much is my website worth?" (covers SDE multiples by category), "What multiple should I expect when selling a website?" (content 35-45x, SaaS 40-60x, eCommerce 24-36x), and "How long does it take to sell a website?" (small <$20k sites: weeks; mid-market: 1-3 months); all 3 added to FAQPage JSON-LD schema automatically via the flatMap
