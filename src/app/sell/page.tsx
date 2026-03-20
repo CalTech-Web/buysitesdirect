@@ -32,6 +32,37 @@ const breadcrumbSchema = {
   ],
 }
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Sell Your Website on Buy Sites Direct",
+  "description": "List your website or online business for sale in three steps. Free, no broker fees, no commissions.",
+  "totalTime": "PT1M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Enter your URL and price",
+      "text": "Create a free account, paste your site URL, and set your asking price.",
+      "url": `${BASE_URL}/register`,
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "AI writes your listing",
+      "text": "The AI reads your site and generates a title, description, tech stack, and revenue summary. Review it and adjust anything.",
+      "url": `${BASE_URL}/register`,
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Buyers contact you directly",
+      "text": "Interested buyers send you a message. No broker in the middle. You negotiate on your own terms.",
+      "url": `${BASE_URL}/sell`,
+    },
+  ],
+}
+
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -58,7 +89,7 @@ export default function SellPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, serviceSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, serviceSchema, howToSchema]) }}
       />
       <div className="max-w-6xl mx-auto px-4 py-10">
         {/* Breadcrumb */}

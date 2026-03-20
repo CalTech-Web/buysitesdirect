@@ -3,11 +3,11 @@ import React from "react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "FAQ | Buy Sites Direct",
+  title: "Buying & Selling Websites FAQ | Buy Sites Direct",
   description: "Answers to common questions about buying and selling websites on Buy Sites Direct. No broker fees, no commissions — just direct deals.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ | Buy Sites Direct",
+    title: "Buying & Selling Websites FAQ | Buy Sites Direct",
     description: "Answers to common questions about buying and selling websites on Buy Sites Direct. No broker fees, no commissions.",
     url: "https://buysitesdirect.com/faq",
     type: "website",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FAQ | Buy Sites Direct",
+    title: "Buying & Selling Websites FAQ | Buy Sites Direct",
     description: "Answers to common questions about buying and selling websites on Buy Sites Direct.",
     images: ["/og-image.png"],
   },

@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Buy Sites Direct",
     type: "website",
+    locale: "en_US",
     url: BASE_URL,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Buy Sites Direct | Buy and Sell Websites Directly" }],
   },

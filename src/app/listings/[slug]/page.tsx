@@ -317,7 +317,7 @@ export default async function ListingPage({
       "dateModified": new Date(listing.updatedAt).toISOString(),
       "offers": {
         "@type": "Offer",
-        "price": (listing.askingPrice / 100).toFixed(2),
+        "price": listing.askingPrice.toFixed(2),
         "priceCurrency": "USD",
         "availability": listing.status === "active"
           ? "https://schema.org/InStock"
