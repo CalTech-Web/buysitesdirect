@@ -49,6 +49,31 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Category links */}
+        <div className="animate-on-scroll mb-8 pb-8 border-b border-white/[0.06]">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-600 mb-3">Browse by Category</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {[
+              { label: "Content Sites", href: "/buy/content-site" },
+              { label: "SaaS", href: "/buy/saas" },
+              { label: "eCommerce", href: "/buy/ecommerce" },
+              { label: "Newsletters", href: "/buy/newsletter" },
+              { label: "Tools & Apps", href: "/buy/tool-or-app" },
+              { label: "Communities", href: "/buy/community" },
+              { label: "Service Businesses", href: "/buy/service-business" },
+              { label: "Other", href: "/buy/other" },
+            ].map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-xs text-slate-500 hover:text-white transition-colors duration-200"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="animate-on-scroll grid grid-cols-1 sm:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="space-y-3">

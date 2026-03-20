@@ -82,13 +82,15 @@ export async function generateMetadata({
       description,
       url: `https://buysitesdirect.com/listings/${listing.slug}`,
       type: "website",
-      ...(firstImage ? { images: [{ url: firstImage.url, width: 1280, height: 720, alt: listing.title }] } : {}),
+      images: firstImage
+        ? [{ url: firstImage.url, width: 1280, height: 720, alt: listing.title }]
+        : [{ url: "/og-image.png", width: 1200, height: 630, alt: listing.title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(firstImage ? { images: [firstImage.url] } : {}),
+      images: firstImage ? [firstImage.url] : ["/og-image.png"],
     },
   }
 }
