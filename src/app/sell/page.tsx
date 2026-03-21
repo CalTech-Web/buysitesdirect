@@ -32,6 +32,38 @@ const breadcrumbSchema = {
   ],
 }
 
+const sellFaqs = [
+  {
+    q: "How do I know what price to list my website for?",
+    a: "Most websites are valued at a multiple of monthly net profit. Content sites and SaaS typically sell for 30–50x monthly profit; eCommerce stores range from 24–40x. A site earning $500/month might list for $15,000–$25,000. Browse active listings in your category to see how comparable sites are priced, or read our valuation guide for a full breakdown by business type.",
+  },
+  {
+    q: "What information should I include in my listing?",
+    a: "Include the asking price, monthly revenue, monthly traffic or pageviews, site age, what is included in the sale (domain, content, social accounts, email list), and your reason for selling. Detailed listings with verified screenshots attract more serious buyers and typically receive enquiries faster.",
+  },
+  {
+    q: "How long does it take to sell a website on Buy Sites Direct?",
+    a: "Sites under $20,000 typically receive enquiries within days and can close within a few weeks. Mid-market listings ($20,000–$100,000) generally take 1–3 months. The key factor is listing quality: sellers who provide detailed metrics, revenue screenshots, and a clear description close significantly faster than those with sparse listings.",
+  },
+  {
+    q: "Do I need to verify my revenue before listing?",
+    a: "No verification is required to publish a listing. However, sellers who include revenue and traffic screenshots attract more serious buyers and close deals faster. You can share additional documentation directly with interested buyers after initial contact through the platform.",
+  },
+]
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": sellFaqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a,
+    },
+  })),
+}
+
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -89,7 +121,7 @@ export default function SellPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, serviceSchema, howToSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, serviceSchema, howToSchema, faqSchema]) }}
       />
       <div className="max-w-6xl mx-auto px-4 py-10">
         {/* Breadcrumb */}
@@ -328,6 +360,33 @@ export default function SellPage() {
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* Seller FAQ */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold tracking-tight mb-2">Common questions from sellers</h2>
+          <p className="text-muted-foreground mb-8">
+            Everything you need to know before listing.{" "}
+            <Link href="/faq#selling" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Full FAQ
+            </Link>{" "}
+            has more detail on the buying and selling process.
+          </p>
+          <dl className="space-y-6">
+            {sellFaqs.map(({ q, a }) => (
+              <div key={q} className="rounded-xl border border-border/60 bg-background/80 p-5">
+                <dt className="font-semibold text-sm mb-2">{q}</dt>
+                <dd className="text-sm text-muted-foreground leading-relaxed">{a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-5 text-sm text-muted-foreground">
+            Wondering what your site is worth?{" "}
+            <Link href="/faq#valuation" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Read our valuation guide
+            </Link>{" "}
+            for multiples by business type.
+          </p>
         </section>
 
         {/* Bottom CTA */}

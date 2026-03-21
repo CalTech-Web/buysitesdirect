@@ -819,8 +819,10 @@ export default async function HomePage({
               <Link href="/buy/saas" className="text-indigo-600 dark:text-indigo-400 hover:underline">acquire a SaaS business</Link>, or{" "}
               <Link href="/sell" className="text-indigo-600 dark:text-indigo-400 hover:underline">sell your own website</Link>,
               Buy Sites Direct connects you directly with the other side of the transaction.
-              Browse active listings or{" "}
-              <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">read the FAQ</Link>{" "}
+              Browse active listings,{" "}
+              <Link href="/faq#valuation" className="text-indigo-600 dark:text-indigo-400 hover:underline">read our valuation guide</Link>,{" "}
+              or{" "}
+              <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">browse the full FAQ</Link>{" "}
               to learn how it works.
             </p>
           </div>
