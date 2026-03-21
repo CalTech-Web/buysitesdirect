@@ -22,6 +22,25 @@ export const metadata: Metadata = {
 
 const BASE_URL = "https://buysitesdirect.com"
 
+const aboutFaqs = [
+  {
+    q: "How is Buy Sites Direct different from a traditional website broker?",
+    a: "Traditional website brokers charge 10–15% commission on the final sale price. On a $50,000 deal, that is $5,000–$7,500 paid to a broker who facilitated the introduction. Buy Sites Direct removes the broker entirely. Sellers list for free, buyers contact sellers directly, and when a deal closes, 100% of the sale price stays between the two parties.",
+  },
+  {
+    q: "Is it free to use Buy Sites Direct?",
+    a: "Yes. Creating an account is free, browsing listings is free, contacting sellers is free, and listing a website for sale is free. There are no listing fees, no subscription fees, and no commission taken when a deal closes.",
+  },
+  {
+    q: "What types of online businesses can I find on Buy Sites Direct?",
+    a: "The marketplace covers eight categories: content sites and blogs, SaaS businesses, eCommerce stores, newsletters, tools and apps, online communities, service businesses, and other web-based assets. Each listing includes asking price, monthly revenue, traffic, and a full description.",
+  },
+  {
+    q: "How do I get started as a buyer or seller?",
+    a: "Buyers can browse all active listings on the homepage or filter by category — no account required to view listings. To contact a seller, create a free account and use the contact form on any listing page. Sellers create a free account, go to the dashboard, and start a new listing. The AI tool drafts a description from your site URL and metrics, which you can edit before publishing.",
+  },
+]
+
 const aboutPageSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
@@ -31,6 +50,16 @@ const aboutPageSchema = {
   "description": "Buy Sites Direct is a fee-free marketplace connecting website buyers and sellers directly. No broker fees, no commissions.",
   "isPartOf": { "@id": `${BASE_URL}/#website` },
   "about": { "@id": `${BASE_URL}/#organization` },
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": aboutFaqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
 }
 
 const breadcrumbSchema = {
@@ -47,7 +76,7 @@ export default function AboutPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([aboutPageSchema, breadcrumbSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([aboutPageSchema, breadcrumbSchema, faqSchema]) }}
       />
       <div className="max-w-3xl mx-auto px-4 py-16">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-10">
@@ -127,6 +156,25 @@ export default function AboutPage() {
             </ol>
           </section>
         </div>
+
+        <section className="mt-12 pt-8 border-t border-border/50">
+          <h2 className="text-xl font-bold mb-6">Common questions</h2>
+          <dl className="space-y-6">
+            {aboutFaqs.map((item) => (
+              <div key={item.q}>
+                <dt className="font-semibold mb-2">{item.q}</dt>
+                <dd className="text-muted-foreground leading-relaxed">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm text-muted-foreground">
+            More questions?{" "}
+            <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Read the full FAQ
+            </Link>{" "}
+            covering buying, selling, and valuation.
+          </p>
+        </section>
 
         <div className="mt-16 rounded-2xl border border-border/60 bg-gradient-to-br from-indigo-50/60 to-emerald-50/40 dark:from-indigo-950/30 dark:to-emerald-950/20 p-8 text-center">
           <h2 className="font-bold text-lg mb-2">Ready to get started?</h2>

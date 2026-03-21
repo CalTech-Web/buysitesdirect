@@ -48,6 +48,21 @@ export function Navbar() {
           </span>
         </Link>
 
+        <div className="hidden sm:flex items-center gap-6 text-sm">
+          <Link href="/buy" className="relative text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+            Browse
+            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-500 to-emerald-500 transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/sell" className="relative text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+            Sell
+            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-500 to-emerald-500 transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/faq" className="relative text-muted-foreground hover:text-foreground transition-colors duration-200 group">
+            FAQ
+            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-500 to-emerald-500 transition-all duration-300 group-hover:w-full" />
+          </Link>
+        </div>
+
         <div className="flex items-center gap-3">
           {user ? (
             <>
