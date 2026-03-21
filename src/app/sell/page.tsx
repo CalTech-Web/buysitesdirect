@@ -360,6 +360,12 @@ export default function SellPage() {
               </Link>
             ))}
           </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Looking to buy instead?{" "}
+            <Link href="/buy" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Browse all websites for sale
+            </Link>.
+          </p>
         </section>
 
         {/* Seller FAQ */}

@@ -362,7 +362,8 @@ export default async function CategoryPage({
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
-      { "@type": "ListItem", "position": 2, "name": seo.h1, "item": `https://buysitesdirect.com/buy/${category}` },
+      { "@type": "ListItem", "position": 2, "name": "Buy a Website", "item": "https://buysitesdirect.com/buy" },
+      { "@type": "ListItem", "position": 3, "name": seo.h1, "item": `https://buysitesdirect.com/buy/${category}` },
     ],
   }
 
@@ -407,6 +408,8 @@ export default async function CategoryPage({
       <div className="mb-8">
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
           <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/buy" className="hover:text-foreground transition-colors">Buy a Website</Link>
           <span>/</span>
           <span className="text-foreground">{seo.h1}</span>
         </nav>

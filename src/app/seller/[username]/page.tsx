@@ -33,7 +33,7 @@ export async function generateMetadata({
   const count = sellerListings.length
   const totalValue = sellerListings.reduce((sum, l) => sum + l.askingPrice, 0)
 
-  const title = `${seller.username}'s Listings | Buy Sites Direct`
+  const title = `Websites for Sale by ${seller.username} | Buy Sites Direct`
   const description =
     count > 0
       ? `Browse ${count} website${count !== 1 ? "s" : ""} for sale by ${seller.username} on Buy Sites Direct. Total portfolio value: ${formatCurrency(totalValue)}. No broker fees.`
