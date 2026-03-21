@@ -277,3 +277,20 @@ Run 19 complete (commit `fd59be6`). Here's what was done:
   - Root layout Organization schema: added logo property (ImageObject pointing to /og-image.png) — previously missing; Google uses this for the brand's Knowledge Panel logo
   - Footer Buyers column: added "Buy a Website" link to /buy at the top of the Buyers nav — /buy had no sitewide inbound link from the footer, limiting its PageRank flow
   - Homepage Browse by Category section: added "View all categories →" link to /buy below the 8-category grid — first internal link from the homepage hero area directly to the /buy hub page
+Run 20 complete (commit `6b84d4a`). Deployed and live.
+
+**What was done:**
+
+- **`/buy` page — Buyer FAQ + `FAQPage` JSON-LD** — Added 4 targeted Q&As ("What types of websites can I buy?", "How do I contact a seller?", "Is it free?", "How do I verify a listing?") rendered with `<dl>/<dt>/<dd>` and a `FAQPage` schema. The `/buy` page was the second-highest priority page in the sitemap but had zero FAQ schema and no rich result eligibility. It now matches what `/sell`, `/faq`, and the 8 category pages already have.
+
+- **Organization schema `logo` property** — Added `ImageObject` with the `/og-image.png` URL (1200×630) to the root layout `Organization` schema. Google uses this to identify the brand logo for the Knowledge Panel. Previously the schema had no logo and an empty `sameAs: []` array (which was also removed).
+
+- **Footer Buyers column — `/buy` link** — Added "Buy a Website" as the first item in the Buyers nav column. The `/buy` hub page had no sitewide inbound link from the footer, capping its internal PageRank flow. Now every page passes link equity to `/buy`.
+
+- **Homepage Browse by Category — "View all categories →" link to `/buy`** — Added a small text link below the 8-category grid. Previously the homepage had no direct link to the `/buy` landing page; users and Googlebot could only reach it via the footer (now added) or by knowing the URL.
+[2026-03-21 06:18:06] Run #3 finished
+[2026-03-21 06:18:11] Run #4 starting (model: sonnet)
+
+[2026-03-21] Run 21 completed (commit e7b3659):
+  - Navbar: added Browse (/buy), Sell (/sell), and FAQ (/faq) navigation links between the brand logo and auth buttons — visible on sm+ screens, hidden on mobile to avoid clutter; every page now passes sitewide header link equity to the three highest-priority conversion pages
+  - /about page: added 4-item "Common questions" FAQ section (how BSD differs from brokers, is it free, what types of businesses, how to get started) rendered as <dl>/<dt>/<dd>; added FAQPage JSON-LD schema — /about was the only key public page without a FAQ section and ineligible for Google FAQ rich results; now eligible alongside the existing AboutPage + BreadcrumbList schemas
