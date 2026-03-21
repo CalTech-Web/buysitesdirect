@@ -294,3 +294,17 @@ Run 20 complete (commit `6b84d4a`). Deployed and live.
 [2026-03-21] Run 21 completed (commit e7b3659):
   - Navbar: added Browse (/buy), Sell (/sell), and FAQ (/faq) navigation links between the brand logo and auth buttons — visible on sm+ screens, hidden on mobile to avoid clutter; every page now passes sitewide header link equity to the three highest-priority conversion pages
   - /about page: added 4-item "Common questions" FAQ section (how BSD differs from brokers, is it free, what types of businesses, how to get started) rendered as <dl>/<dt>/<dd>; added FAQPage JSON-LD schema — /about was the only key public page without a FAQ section and ineligible for Google FAQ rich results; now eligible alongside the existing AboutPage + BreadcrumbList schemas
+Run 21 complete (commit `e7b3659`). Deployed and live.
+
+**What was done:**
+
+- **Navbar — Browse / Sell / FAQ links**: Added three navigation links between the brand logo and the auth buttons, visible on `sm+` screens. Previously the navbar had zero navigation links — every page was a dead end for Googlebot trying to discover `/buy`, `/sell`, and `/faq` via the header. Now all three pages receive sitewide `<nav>` link equity, the strongest internal link signal.
+
+- **`/about` page — FAQ section + `FAQPage` JSON-LD**: Added a 4-item "Common questions" section (`<dl>/<dt>/<dd>`) covering: how BSD differs from traditional brokers, whether it's free, what business types are listed, and how to get started. Added `FAQPage` JSON-LD schema. The `/about` page was the only key public page without a FAQ section and was ineligible for Google FAQ rich results. It now matches `/sell`, `/faq`, `/buy`, and all 8 category pages.
+[2026-03-21 06:23:36] Run #4 finished
+[2026-03-21 06:23:41] Run #5 starting (model: sonnet)
+
+[2026-03-21] Run 22 completed (commit 5bc6e59):
+  - /buy/[category] pages: breadcrumb updated to 3-level hierarchy (Home > Buy a Website > [Category H1]) in both visual nav and BreadcrumbList JSON-LD — was incorrectly skipping the /buy hub, which misrepresented the URL structure (/buy/saas is a sub-path of /buy) and weakened PageRank flow through the hub
+  - seller/[username]: meta title changed from "[username]'s Listings | Buy Sites Direct" to "Websites for Sale by [username] | Buy Sites Direct" — adds the primary keyword "websites for sale" to every seller profile page
+  - /sell page: added "Looking to buy? Browse all websites for sale" contextual link to /buy after the category tags section — the /sell page had no link to the /buy hub; this cross-link improves internal PageRank flow to /buy and provides a clear path for buyers who land on /sell
