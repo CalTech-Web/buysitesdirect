@@ -257,3 +257,23 @@ The background Vercel check returned empty output (no `npx` in that shell path).
   - Created /buy landing page: was previously a 404; new page targets "buy a website" / "buy websites" queries with H1, category index (8 entries with live listing counts), CollectionPage + BreadcrumbList JSON-LD, canonical URL, full OG/Twitter metadata
   - Added /buy to sitemap with priority 0.85 and weekly change frequency
   - Root layout robots: added googleBot directive with max-snippet:-1, max-image-preview:large, max-video-preview:-1 — allows Google to show full-length rich snippets and large preview images for all public pages, improving SERP CTR
+Run 19 complete (commit `fd59be6`). Here's what was done:
+
+**`/feed.xml` RSS feed** — New route serving an RSS 2.0 feed of the 25 most recent active listings, ordered by date. Each item includes the listing title, price, category, description snippet, and canonical URL. The root layout now has `alternates.types["application/rss+xml"]` pointing to `/feed.xml`, which injects `<link rel="alternate" type="application/rss+xml">` in every page's `<head>` — this lets Googlebot autodiscover the feed and index new listings faster.
+
+**`/buy` landing page** — `/buy` was previously a 404. Now it's a proper landing page targeting "buy a website" and "buy websites" queries with:
+- `<h1>Buy a Website</h1>` + keyword-rich intro paragraph
+- Category index listing all 8 categories with live listing counts and descriptions
+- `CollectionPage` + `BreadcrumbList` JSON-LD
+- Full canonical URL, OG, and Twitter card metadata
+- Added to sitemap at priority 0.85 (weekly)
+
+**`googleBot` max-snippet in root layout** — Added `robots.googleBot` with `max-snippet: -1`, `max-image-preview: large`, and `max-video-preview: -1`. These directives tell Google it can display full-length SERP snippets and large preview images for all public pages, which typically improves click-through rates without any ranking downside.
+[2026-03-21 06:12:04] Run #2 finished
+[2026-03-21 06:12:10] Run #3 starting (model: sonnet)
+
+[2026-03-21] Run 20 completed (commit 6b84d4a):
+  - /buy landing page: added 4-item Buyer FAQ section ("What types of websites can I buy?", "How do I contact a seller?", "Is it free?", "How do I verify a listing?") rendered as <dl>/<dt>/<dd> with FAQPage JSON-LD schema — /buy was previously ineligible for Google FAQ rich results despite being the second-highest priority page in the sitemap
+  - Root layout Organization schema: added logo property (ImageObject pointing to /og-image.png) — previously missing; Google uses this for the brand's Knowledge Panel logo
+  - Footer Buyers column: added "Buy a Website" link to /buy at the top of the Buyers nav — /buy had no sitewide inbound link from the footer, limiting its PageRank flow
+  - Homepage Browse by Category section: added "View all categories →" link to /buy below the 8-category grid — first internal link from the homepage hero area directly to the /buy hub page
