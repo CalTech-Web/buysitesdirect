@@ -234,3 +234,17 @@ Run 16 complete (commit `f882381`). Deployed and live.
   - Sitemap: added /about with priority 0.6 and monthly change frequency
   - Footer: added "About" link in the Sellers column alongside FAQ, Sell Your Website, etc.
   - FAQ page: added new "Valuation" section (id="valuation") with 3 Q&As targeting high-search-volume queries: "How much is my website worth?" (covers SDE multiples by category), "What multiple should I expect when selling a website?" (content 35-45x, SaaS 40-60x, eCommerce 24-36x), and "How long does it take to sell a website?" (small <$20k sites: weeks; mid-market: 1-3 months); all 3 added to FAQPage JSON-LD schema automatically via the flatMap
+[2026-03-20 07:13:09] Claude command interrupted or failed
+[2026-03-21 06:02:04] ==========================================
+[2026-03-21 06:02:04] Agent: Seo Agent
+[2026-03-21 06:02:04] Model: sonnet
+[2026-03-21 06:02:05] Workspace: /Users/brandonhopkins/Projects/seo/buysitesdirect/agents/seo-agent
+[2026-03-21 06:02:05] Stop on complete: false
+[2026-03-21 06:02:05] Max loops: 5 (0=infinite)
+[2026-03-21 06:02:05] ==========================================
+[2026-03-21 06:02:05] Run #1 starting (model: sonnet)
+
+[2026-03-21] Run 18 completed (commit 76d4483):
+  - /sell page: added 4-item seller FAQ section (how to price a listing, what to include, time-to-sell, revenue verification) rendered as <dl>/<dt>/<dd> with FAQPage JSON-LD schema — /sell was previously ineligible for Google FAQ rich results; now eligible alongside existing HowTo + Service + BreadcrumbList schemas
+  - /sell page: added contextual links to /faq#selling and /faq#valuation from within the new FAQ section
+  - Homepage about section: added link to /faq#valuation alongside the existing /faq link — improves internal PageRank flow to the valuation FAQ section
