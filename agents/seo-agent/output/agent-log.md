@@ -248,3 +248,12 @@ Run 16 complete (commit `f882381`). Deployed and live.
   - /sell page: added 4-item seller FAQ section (how to price a listing, what to include, time-to-sell, revenue verification) rendered as <dl>/<dt>/<dd> with FAQPage JSON-LD schema — /sell was previously ineligible for Google FAQ rich results; now eligible alongside existing HowTo + Service + BreadcrumbList schemas
   - /sell page: added contextual links to /faq#selling and /faq#valuation from within the new FAQ section
   - Homepage about section: added link to /faq#valuation alongside the existing /faq link — improves internal PageRank flow to the valuation FAQ section
+The background Vercel check returned empty output (no `npx` in that shell path). The deployment is triggered automatically by the GitHub push — no action needed.
+[2026-03-21 06:06:32] Run #1 finished
+[2026-03-21 06:06:38] Run #2 starting (model: sonnet)
+
+[2026-03-21] Run 19 completed (commit pending):
+  - Created /feed.xml RSS route: returns latest 25 active listings as RSS 2.0; adds autodiscovery <link rel="alternate" type="application/rss+xml"> via root layout alternates — helps Googlebot discover and index new listings faster; opens syndication channel
+  - Created /buy landing page: was previously a 404; new page targets "buy a website" / "buy websites" queries with H1, category index (8 entries with live listing counts), CollectionPage + BreadcrumbList JSON-LD, canonical URL, full OG/Twitter metadata
+  - Added /buy to sitemap with priority 0.85 and weekly change frequency
+  - Root layout robots: added googleBot directive with max-snippet:-1, max-image-preview:large, max-video-preview:-1 — allows Google to show full-length rich snippets and large preview images for all public pages, improving SERP CTR
