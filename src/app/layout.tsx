@@ -65,8 +65,13 @@ const organizationSchema = {
   "@id": `${BASE_URL}/#organization`,
   "name": "Buy Sites Direct",
   "url": BASE_URL,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${BASE_URL}/og-image.png`,
+    "width": 1200,
+    "height": 630,
+  },
   "description": "Buy and sell websites directly with no broker fees or commissions.",
-  "sameAs": [],
 }
 
 export default function RootLayout({

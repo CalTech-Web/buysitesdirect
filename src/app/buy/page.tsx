@@ -46,6 +46,25 @@ const CATEGORIES: CategoryEntry[] = [
   { key: "other",            label: "Other Businesses",   Icon: LayoutGrid,   description: "Marketplaces, directories, and other web-based assets." },
 ]
 
+const buyerFaqs = [
+  {
+    q: "What types of websites can I buy on Buy Sites Direct?",
+    a: "You can browse content sites and blogs, SaaS businesses, eCommerce stores, newsletters, online tools and apps, online communities, service businesses, and other web-based assets. Every listing includes asking price, monthly revenue, traffic, and a detailed description so you can evaluate before reaching out.",
+  },
+  {
+    q: "How do I contact a seller?",
+    a: "Create a free account, open any listing, and send a message through the contact form at the bottom of the page. Your message goes directly to the seller's inbox — no broker reads it, no approval queue, and no fee to contact anyone.",
+  },
+  {
+    q: "Is it free to browse listings and contact sellers?",
+    a: "Yes, entirely free. Browsing is free, creating an account is free, and contacting sellers is free. Buy Sites Direct charges no listing fee and takes no commission when a deal closes.",
+  },
+  {
+    q: "How do I verify a listing before buying?",
+    a: "Ask the seller directly for traffic analytics (Google Analytics or Search Console), revenue screenshots from ad networks or payment processors, and documentation of what is included in the sale. Most sellers are willing to share this with serious buyers. Treat it like any private business acquisition and conduct your own due diligence before committing to a price.",
+  },
+]
+
 export default async function BuyPage() {
   const countRows = await db
     .select({ category: listings.category, total: count() })
@@ -54,6 +73,19 @@ export default async function BuyPage() {
     .groupBy(listings.category)
 
   const countMap = Object.fromEntries(countRows.map(({ category, total }) => [category, total]))
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": buyerFaqs.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    })),
+  }
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -83,7 +115,7 @@ export default async function BuyPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, collectionPageSchema]) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, collectionPageSchema, faqSchema]) }}
       />
       <div className="max-w-3xl mx-auto px-4 py-16">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-10">
@@ -146,6 +178,25 @@ export default async function BuyPage() {
             </Link>
           </div>
         </div>
+
+        <section className="mt-12">
+          <h2 className="text-xl font-bold mb-6">Common questions from buyers</h2>
+          <dl className="space-y-5">
+            {buyerFaqs.map(({ q, a }) => (
+              <div key={q} className="rounded-xl border border-border/60 bg-background/80 p-5">
+                <dt className="font-semibold text-sm mb-2">{q}</dt>
+                <dd className="text-sm text-muted-foreground leading-relaxed">{a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-5 text-sm text-muted-foreground">
+            More questions?{" "}
+            <Link href="/faq" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Read the full FAQ
+            </Link>{" "}
+            covering buying, selling, and valuation.
+          </p>
+        </section>
       </div>
     </>
   )

@@ -599,6 +599,12 @@ export default async function HomePage({
             )
           })}
         </div>
+        <p className="text-center mt-4 text-xs text-muted-foreground">
+          <Link href="/buy" className="text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1">
+            View all categories
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </p>
       </section>
 
       <FilterBar categories={CATEGORIES} />

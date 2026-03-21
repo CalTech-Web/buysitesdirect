@@ -95,6 +95,12 @@ export function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Buyers</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/buy" className="group relative inline-block hover:text-white transition-colors duration-200">
+                  Buy a Website
+                  <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </li>
+              <li>
                 <Link href="/" className="group relative inline-block hover:text-white transition-colors duration-200">
                   Browse Listings
                   <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-indigo-400 to-emerald-400 transition-all duration-300 group-hover:w-full" />
