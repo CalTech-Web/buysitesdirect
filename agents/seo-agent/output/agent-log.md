@@ -440,3 +440,21 @@ The listing detail breadcrumb had two problems:
   - listing/[slug] page: visual breadcrumb updated to match JSON-LD — added /buy link as intermediate step and switched to proper plural category labels
   - listing/[slug] page: Product JSON-LD now includes additionalProperty array with PropertyValue entries for Site Age, Monthly Revenue, Monthly Profit, and Monthly Traffic — gives Google structured data about key metrics, makes listings eligible for richer SERP display
   - root layout: added alternates.languages with en-US and x-default hreflang entries — signals English-US language targeting to Google and other search engines for all pages globally
+Run 25 complete (commit `329335e`). Pushed to origin — Vercel deploys automatically.
+
+**What was done:**
+
+- **Listing detail breadcrumb fix (plural labels)** — Added `CATEGORY_PLURAL_LABELS` map with correct forms matching the category page H1s. The old code produced `"SaaSs for Sale"`, `"eCommerces for Sale"`, `"Communitys for Sale"`, `"Service Businesss for Sale"`. Now correctly renders `"SaaS Businesses for Sale"`, `"eCommerce Stores for Sale"`, etc. in both the visual breadcrumb and BreadcrumbList JSON-LD.
+
+- **Listing detail breadcrumb `/buy` intermediate step** — BreadcrumbList JSON-LD is now 4 levels (`Buy Sites Direct → Buy a Website → [Category for Sale] → [Listing Title]`), matching the category page's own schema. The visual `<nav>` breadcrumb now also shows the `/buy` link as an intermediate step, consistent with the URL hierarchy (`/listings/slug` is a sibling of `/buy/category`).
+
+- **Product schema `additionalProperty`** — Each listing's `Product` JSON-LD now includes structured `PropertyValue` entries for Site Age, Monthly Revenue, Monthly Profit, and Monthly Traffic. Google can surface these as rich attributes in product knowledge panels and structured results.
+
+- **`hreflang` in root layout** — Added `alternates.languages` with `en-US` and `x-default` entries, which Next.js injects as `<link rel="alternate" hreflang="...">` across all pages. Signals English-US language targeting to Google and Bing for every public URL.
+[2026-03-22 06:25:14] Run #3 finished
+[2026-03-22 06:25:19] Run #4 starting (model: sonnet)
+
+[2026-03-22] Run 26 completed (commit 880f50a):
+  - listing/[slug] Product JSON-LD: upgraded "image" field from plain URL string to ImageObject with @type, url, width (1280), height (720), and caption (listing title) — enables Google image rich results for listing pages
+  - buy/[category] pages: added AggregateOffer JSON-LD schema with lowPrice, highPrice, offerCount computed dynamically from live listing askingPrice values — Google can now display price ranges in SERPs for each category page
+  - homepage: added WebPage JSON-LD entity (@id: #webpage) linked to #website and #organization via isPartOf and about — provides semantic clarity about the homepage's role in the site graph; includes a BreadcrumbList sub-entity
