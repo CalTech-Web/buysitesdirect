@@ -217,11 +217,22 @@ export default async function HomePage({
     })),
   }
 
+  const prices = rows.map((r) => r.listing.askingPrice)
+  const aggregateOfferJsonLd = prices.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "AggregateOffer",
+    "url": "https://buysitesdirect.com",
+    "priceCurrency": "USD",
+    "lowPrice": Math.min(...prices).toFixed(2),
+    "highPrice": Math.max(...prices).toFixed(2),
+    "offerCount": prices.length,
+  } : null
+
   return (
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify([webPageJsonLd, howToJsonLd, itemListJsonLd]) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([webPageJsonLd, howToJsonLd, itemListJsonLd, ...(aggregateOfferJsonLd ? [aggregateOfferJsonLd] : [])]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <section className="mb-10 text-center">

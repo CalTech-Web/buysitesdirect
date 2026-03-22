@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import NextImage from 'next/image'
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 
 interface GalleryImage {
@@ -71,13 +72,14 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
             className="group cursor-zoom-in rounded-xl overflow-hidden aspect-video bg-slate-100 dark:bg-slate-900 relative"
             onClick={() => openLightbox(activeIndex)}
           >
-            <img
+            <NextImage
               key={images[activeIndex].id}
               src={images[activeIndex].url}
               alt={listingTitle ? `${listingTitle} screenshot ${activeIndex + 1}` : `Screenshot ${activeIndex + 1}`}
-              width={1280}
-              height={720}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] animate-fade-in"
+              fill
+              sizes="(max-width: 1024px) 100vw, 800px"
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.02] animate-fade-in"
+              priority
             />
             {/* Shimmer sweep */}
             <div className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent animate-shimmer pointer-events-none" style={{ animationDelay: '2s' }} />
@@ -107,12 +109,11 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
                     : 'border-transparent opacity-55 hover:opacity-85 hover:border-slate-300 dark:hover:border-slate-600'
                 }`}
               >
-                <img
+                <NextImage
                   src={img.url}
                   alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`}
                   width={80}
                   height={56}
-                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </button>
@@ -186,7 +187,7 @@ export function ImageGallery({ images, listingTitle }: ImageGalleryProps) {
                       : 'border-white/25 opacity-45 hover:opacity-70'
                   }`}
                 >
-                  <img src={img.url} alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`} width={56} height={40} className="w-full h-full object-cover" />
+                  <NextImage src={img.url} alt={listingTitle ? `${listingTitle} thumbnail ${i + 1}` : `Thumbnail ${i + 1}`} width={56} height={40} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
