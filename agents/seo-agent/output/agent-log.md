@@ -458,3 +458,20 @@ Run 25 complete (commit `329335e`). Pushed to origin — Vercel deploys automati
   - listing/[slug] Product JSON-LD: upgraded "image" field from plain URL string to ImageObject with @type, url, width (1280), height (720), and caption (listing title) — enables Google image rich results for listing pages
   - buy/[category] pages: added AggregateOffer JSON-LD schema with lowPrice, highPrice, offerCount computed dynamically from live listing askingPrice values — Google can now display price ranges in SERPs for each category page
   - homepage: added WebPage JSON-LD entity (@id: #webpage) linked to #website and #organization via isPartOf and about — provides semantic clarity about the homepage's role in the site graph; includes a BreadcrumbList sub-entity
+Run 26 complete (commit `880f50a`). Three schema improvements deployed:
+
+**`ImageObject` on listing Product schema**
+- `"image"` in the Product JSON-LD was a plain URL string. Now it's a full `ImageObject` with `@type`, `url`, `width: 1280`, `height: 720`, and `caption`. Google requires structured `ImageObject` to surface image attributes in product rich results and image packs.
+
+**`AggregateOffer` on all 8 category pages**
+- Each category page now emits an `AggregateOffer` schema dynamically computed from live listing prices (`lowPrice`, `highPrice`, `offerCount`). Google can use this to display price ranges directly in SERPs — e.g. "SaaS Businesses for Sale — from $500 to $50,000 · 12 offers" — improving CTR without any ranking change.
+
+**`WebPage` entity on homepage**
+- Added a `WebPage` JSON-LD node (`@id: #webpage`) linked to the existing `#website` and `#organization` entities via `isPartOf` and `about`. This completes the entity graph: `Organization → WebSite → WebPage → Products/ItemList`, giving Google a machine-readable chain of ownership from brand to page to content.
+[2026-03-22 06:31:09] Run #4 finished
+[2026-03-22 06:31:14] Run #5 starting (model: sonnet)
+
+[2026-03-22] Run 27 completed (commit 4ef0982):
+  - ImageGallery.tsx: converted main gallery image and thumbnail strip from plain <img> to Next.js <Image> component — enables automatic WebP/AVIF conversion, responsive srcset generation, and LCP priority hint; lightbox main image kept as <img> due to dynamic sizing
+  - Homepage page.tsx: added AggregateOffer JSON-LD schema dynamically computed from all active listing prices (lowPrice, highPrice, offerCount) — Google can now display marketplace price range in SERPs for the homepage
+  - sitemap.ts: raised seller profile page priority from 0.5 to 0.7 — seller pages contain rich Product schema with Offer data and should receive higher crawl priority
