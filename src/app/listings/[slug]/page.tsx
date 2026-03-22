@@ -107,6 +107,18 @@ const CATEGORY_LABELS: Record<string, string> = {
   "other": "Other",
 }
 
+// Proper plural labels matching the category landing page H1s
+const CATEGORY_PLURAL_LABELS: Record<string, string> = {
+  "content-site":     "Content Sites for Sale",
+  "saas":             "SaaS Businesses for Sale",
+  "ecommerce":        "eCommerce Stores for Sale",
+  "tool-or-app":      "Online Tools & Apps for Sale",
+  "newsletter":       "Newsletters for Sale",
+  "community":        "Online Communities for Sale",
+  "service-business": "Service Businesses for Sale",
+  "other":            "Other Websites for Sale",
+}
+
 const TECH_BADGE_COLORS: Record<string, string> = {
   "wordpress":    "bg-blue-100   text-blue-700   border-blue-200   dark:bg-blue-900/30   dark:text-blue-300   dark:border-blue-800",
   "react":        "bg-cyan-100   text-cyan-700   border-cyan-200   dark:bg-cyan-900/30   dark:text-cyan-300   dark:border-cyan-800",
@@ -294,14 +306,16 @@ export default async function ListingPage({
   const sparkleColors = CATEGORY_SPARKLE_COLORS[listing.category] ?? CATEGORY_SPARKLE_COLORS["other"]
 
   const categoryLabel = CATEGORY_LABELS[listing.category] ?? "Website"
+  const categoryPluralLabel = CATEGORY_PLURAL_LABELS[listing.category] ?? "Websites for Sale"
   const jsonLdSchemas: object[] = [
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
-        { "@type": "ListItem", "position": 2, "name": `${categoryLabel}s for Sale`, "item": `https://buysitesdirect.com/buy/${listing.category}` },
-        { "@type": "ListItem", "position": 3, "name": listing.title, "item": `https://buysitesdirect.com/listings/${listing.slug}` },
+        { "@type": "ListItem", "position": 2, "name": "Buy a Website", "item": "https://buysitesdirect.com/buy" },
+        { "@type": "ListItem", "position": 3, "name": categoryPluralLabel, "item": `https://buysitesdirect.com/buy/${listing.category}` },
+        { "@type": "ListItem", "position": 4, "name": listing.title, "item": `https://buysitesdirect.com/listings/${listing.slug}` },
       ],
     },
     {
@@ -360,8 +374,12 @@ export default async function ListingPage({
         </li>
         <li aria-hidden="true" className="select-none">/</li>
         <li>
-          <Link href={`/buy/${listing.category}`} className="hover:text-foreground transition-colors capitalize">
-            {categoryLabel}s
+          <Link href="/buy" className="hover:text-foreground transition-colors">Buy a Website</Link>
+        </li>
+        <li aria-hidden="true" className="select-none">/</li>
+        <li>
+          <Link href={`/buy/${listing.category}`} className="hover:text-foreground transition-colors">
+            {categoryPluralLabel}
           </Link>
         </li>
         <li aria-hidden="true" className="select-none">/</li>
