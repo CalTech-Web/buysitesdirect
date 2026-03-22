@@ -308,3 +308,29 @@ Run 21 complete (commit `e7b3659`). Deployed and live.
   - /buy/[category] pages: breadcrumb updated to 3-level hierarchy (Home > Buy a Website > [Category H1]) in both visual nav and BreadcrumbList JSON-LD — was incorrectly skipping the /buy hub, which misrepresented the URL structure (/buy/saas is a sub-path of /buy) and weakened PageRank flow through the hub
   - seller/[username]: meta title changed from "[username]'s Listings | Buy Sites Direct" to "Websites for Sale by [username] | Buy Sites Direct" — adds the primary keyword "websites for sale" to every seller profile page
   - /sell page: added "Looking to buy? Browse all websites for sale" contextual link to /buy after the category tags section — the /sell page had no link to the /buy hub; this cross-link improves internal PageRank flow to /buy and provides a clear path for buyers who land on /sell
+Run 22 complete (commit `5bc6e59`). Three improvements deployed:
+
+**Category breadcrumbs — `/buy` as intermediate step**
+All 8 category pages now show `Home / Buy a Website / Content Sites for Sale` in both the visual breadcrumb and `BreadcrumbList` JSON-LD. Previously the breadcrumb jumped from Home directly to the category, skipping the `/buy` hub entirely — which misrepresented the URL hierarchy (`/buy/saas` is a sub-path of `/buy`) and failed to pass PageRank through the hub.
+
+**Seller profile meta title — primary keyword added**
+Changed from `"[username]'s Listings | Buy Sites Direct"` to `"Websites for Sale by [username] | Buy Sites Direct"`. Every seller profile page now targets the primary keyword `"websites for sale"` in its `<title>` tag.
+
+**`/sell` page — buyer cross-link to `/buy`**
+Added `"Looking to buy? Browse all websites for sale"` after the category tag grid. The `/sell` page had no path to the `/buy` hub, leaving buyers who landed there without a clear route to the listings and giving `/buy` no inbound link equity from that page.
+[2026-03-21 06:29:13] Run #5 finished
+[2026-03-21 06:29:13] Reached max loops (5). Stopping.
+[2026-03-22 06:02:01] ==========================================
+[2026-03-22 06:02:01] Agent: Seo Agent
+[2026-03-22 06:02:01] Model: sonnet
+[2026-03-22 06:02:01] Workspace: /Users/brandonhopkins/Projects/seo/buysitesdirect/agents/seo-agent
+[2026-03-22 06:02:01] Stop on complete: false
+[2026-03-22 06:02:01] Max loops: 5 (0=infinite)
+[2026-03-22 06:02:01] ==========================================
+[2026-03-22 06:02:01] Run #1 starting (model: sonnet)
+
+[2026-03-22] Run 23 completed (commit pending):
+  - seller/[username] profileSchema: fixed price bug — was dividing askingPrice by 100 making a $1,000 listing appear as $10.00 in Google rich results; same bug that was fixed in Run 16 for listing detail pages
+  - /faq and /about pages: changed "Browse listings" CTA from href="/#listings" to href="/buy" — passes PageRank to the canonical /buy hub instead of the homepage anchor
+  - /buy page: changed "Browse all listings" CTA from href="/#listings" to href="/" — corrects the link to the actual listing grid (homepage) since /buy is the category hub, not the grid itself
+  - not-found page: changed "Browse Listings" button from href="/" to href="/buy" — better destination for users who land on a 404

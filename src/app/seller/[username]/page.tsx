@@ -117,7 +117,7 @@ export default async function SellerProfilePage({
         "url": `https://buysitesdirect.com/listings/${l.slug}`,
         "offers": {
           "@type": "Offer",
-          "price": (l.askingPrice / 100).toFixed(2),
+          "price": l.askingPrice.toFixed(2),
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
         },
