@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: "/",
+    languages: {
+      "en-US": BASE_URL,
+      "x-default": BASE_URL,
+    },
     types: {
       "application/rss+xml": `${BASE_URL}/feed.xml`,
     },

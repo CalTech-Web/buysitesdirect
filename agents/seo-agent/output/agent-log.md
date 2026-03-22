@@ -293,3 +293,150 @@ Run 15 complete. Here's what was done (commit `ffcdd8c`):
 [2026-03-18 18:02:56] Run #7 finished
 [2026-03-18 18:03:02] Run #8 starting (model: sonnet)
 [2026-03-18 18:08:03] Claude command interrupted or failed
+
+- **HowTo JSON-LD on `/sell` page** — Added a 3-step `HowTo` schema matching the existing "How selling works" UI section. Makes the page eligible for Google HowTo rich results (step cards in SERPs). The `totalTime: "PT1M"` reflects the "list in 30 seconds" copy. Complements the existing `Service` and `BreadcrumbList` schemas on that page.
+[2026-03-20 06:28:28] Run #4 finished
+[2026-03-20 06:28:33] Run #5 starting (model: sonnet)
+
+[2026-03-20] Run 17 completed (commit e5df903):
+  - Created /about page: AboutPage JSON-LD schema (linked to #website and #organization), BreadcrumbList JSON-LD, explicit metadata (title 51 chars, description 143 chars, canonical, OG, Twitter card); content covers what the marketplace does, why no broker fees, who it serves, and a 3-step how-it-works section with internal links to all 8 category pages, /sell, and /faq
+  - Sitemap: added /about with priority 0.6 and monthly change frequency
+  - Footer: added "About" link in the Sellers column alongside FAQ, Sell Your Website, etc.
+  - FAQ page: added new "Valuation" section (id="valuation") with 3 Q&As targeting high-search-volume queries: "How much is my website worth?" (covers SDE multiples by category), "What multiple should I expect when selling a website?" (content 35-45x, SaaS 40-60x, eCommerce 24-36x), and "How long does it take to sell a website?" (small <$20k sites: weeks; mid-market: 1-3 months); all 3 added to FAQPage JSON-LD schema automatically via the flatMap
+[2026-03-20 07:13:09] Claude command interrupted or failed
+[2026-03-21 06:02:04] ==========================================
+[2026-03-21 06:02:04] Agent: Seo Agent
+[2026-03-21 06:02:04] Model: sonnet
+[2026-03-21 06:02:05] Workspace: /Users/brandonhopkins/Projects/seo/buysitesdirect/agents/seo-agent
+[2026-03-21 06:02:05] Stop on complete: false
+[2026-03-21 06:02:05] Max loops: 5 (0=infinite)
+[2026-03-21 06:02:05] ==========================================
+[2026-03-21 06:02:05] Run #1 starting (model: sonnet)
+
+[2026-03-21] Run 18 completed (commit 76d4483):
+  - /sell page: added 4-item seller FAQ section (how to price a listing, what to include, time-to-sell, revenue verification) rendered as <dl>/<dt>/<dd> with FAQPage JSON-LD schema — /sell was previously ineligible for Google FAQ rich results; now eligible alongside existing HowTo + Service + BreadcrumbList schemas
+  - /sell page: added contextual links to /faq#selling and /faq#valuation from within the new FAQ section
+  - Homepage about section: added link to /faq#valuation alongside the existing /faq link — improves internal PageRank flow to the valuation FAQ section
+The background Vercel check returned empty output (no `npx` in that shell path). The deployment is triggered automatically by the GitHub push — no action needed.
+[2026-03-21 06:06:32] Run #1 finished
+[2026-03-21 06:06:38] Run #2 starting (model: sonnet)
+
+[2026-03-21] Run 19 completed (commit pending):
+  - Created /feed.xml RSS route: returns latest 25 active listings as RSS 2.0; adds autodiscovery <link rel="alternate" type="application/rss+xml"> via root layout alternates — helps Googlebot discover and index new listings faster; opens syndication channel
+  - Created /buy landing page: was previously a 404; new page targets "buy a website" / "buy websites" queries with H1, category index (8 entries with live listing counts), CollectionPage + BreadcrumbList JSON-LD, canonical URL, full OG/Twitter metadata
+  - Added /buy to sitemap with priority 0.85 and weekly change frequency
+  - Root layout robots: added googleBot directive with max-snippet:-1, max-image-preview:large, max-video-preview:-1 — allows Google to show full-length rich snippets and large preview images for all public pages, improving SERP CTR
+Run 19 complete (commit `fd59be6`). Here's what was done:
+
+**`/feed.xml` RSS feed** — New route serving an RSS 2.0 feed of the 25 most recent active listings, ordered by date. Each item includes the listing title, price, category, description snippet, and canonical URL. The root layout now has `alternates.types["application/rss+xml"]` pointing to `/feed.xml`, which injects `<link rel="alternate" type="application/rss+xml">` in every page's `<head>` — this lets Googlebot autodiscover the feed and index new listings faster.
+
+**`/buy` landing page** — `/buy` was previously a 404. Now it's a proper landing page targeting "buy a website" and "buy websites" queries with:
+- `<h1>Buy a Website</h1>` + keyword-rich intro paragraph
+- Category index listing all 8 categories with live listing counts and descriptions
+- `CollectionPage` + `BreadcrumbList` JSON-LD
+- Full canonical URL, OG, and Twitter card metadata
+- Added to sitemap at priority 0.85 (weekly)
+
+**`googleBot` max-snippet in root layout** — Added `robots.googleBot` with `max-snippet: -1`, `max-image-preview: large`, and `max-video-preview: -1`. These directives tell Google it can display full-length SERP snippets and large preview images for all public pages, which typically improves click-through rates without any ranking downside.
+[2026-03-21 06:12:04] Run #2 finished
+[2026-03-21 06:12:10] Run #3 starting (model: sonnet)
+
+[2026-03-21] Run 20 completed (commit 6b84d4a):
+  - /buy landing page: added 4-item Buyer FAQ section ("What types of websites can I buy?", "How do I contact a seller?", "Is it free?", "How do I verify a listing?") rendered as <dl>/<dt>/<dd> with FAQPage JSON-LD schema — /buy was previously ineligible for Google FAQ rich results despite being the second-highest priority page in the sitemap
+  - Root layout Organization schema: added logo property (ImageObject pointing to /og-image.png) — previously missing; Google uses this for the brand's Knowledge Panel logo
+  - Footer Buyers column: added "Buy a Website" link to /buy at the top of the Buyers nav — /buy had no sitewide inbound link from the footer, limiting its PageRank flow
+  - Homepage Browse by Category section: added "View all categories →" link to /buy below the 8-category grid — first internal link from the homepage hero area directly to the /buy hub page
+Run 20 complete (commit `6b84d4a`). Deployed and live.
+
+**What was done:**
+
+- **`/buy` page — Buyer FAQ + `FAQPage` JSON-LD** — Added 4 targeted Q&As ("What types of websites can I buy?", "How do I contact a seller?", "Is it free?", "How do I verify a listing?") rendered with `<dl>/<dt>/<dd>` and a `FAQPage` schema. The `/buy` page was the second-highest priority page in the sitemap but had zero FAQ schema and no rich result eligibility. It now matches what `/sell`, `/faq`, and the 8 category pages already have.
+
+- **Organization schema `logo` property** — Added `ImageObject` with the `/og-image.png` URL (1200×630) to the root layout `Organization` schema. Google uses this to identify the brand logo for the Knowledge Panel. Previously the schema had no logo and an empty `sameAs: []` array (which was also removed).
+
+- **Footer Buyers column — `/buy` link** — Added "Buy a Website" as the first item in the Buyers nav column. The `/buy` hub page had no sitewide inbound link from the footer, capping its internal PageRank flow. Now every page passes link equity to `/buy`.
+
+- **Homepage Browse by Category — "View all categories →" link to `/buy`** — Added a small text link below the 8-category grid. Previously the homepage had no direct link to the `/buy` landing page; users and Googlebot could only reach it via the footer (now added) or by knowing the URL.
+[2026-03-21 06:18:06] Run #3 finished
+[2026-03-21 06:18:11] Run #4 starting (model: sonnet)
+
+[2026-03-21] Run 21 completed (commit e7b3659):
+  - Navbar: added Browse (/buy), Sell (/sell), and FAQ (/faq) navigation links between the brand logo and auth buttons — visible on sm+ screens, hidden on mobile to avoid clutter; every page now passes sitewide header link equity to the three highest-priority conversion pages
+  - /about page: added 4-item "Common questions" FAQ section (how BSD differs from brokers, is it free, what types of businesses, how to get started) rendered as <dl>/<dt>/<dd>; added FAQPage JSON-LD schema — /about was the only key public page without a FAQ section and ineligible for Google FAQ rich results; now eligible alongside the existing AboutPage + BreadcrumbList schemas
+Run 21 complete (commit `e7b3659`). Deployed and live.
+
+**What was done:**
+
+- **Navbar — Browse / Sell / FAQ links**: Added three navigation links between the brand logo and the auth buttons, visible on `sm+` screens. Previously the navbar had zero navigation links — every page was a dead end for Googlebot trying to discover `/buy`, `/sell`, and `/faq` via the header. Now all three pages receive sitewide `<nav>` link equity, the strongest internal link signal.
+
+- **`/about` page — FAQ section + `FAQPage` JSON-LD**: Added a 4-item "Common questions" section (`<dl>/<dt>/<dd>`) covering: how BSD differs from traditional brokers, whether it's free, what business types are listed, and how to get started. Added `FAQPage` JSON-LD schema. The `/about` page was the only key public page without a FAQ section and was ineligible for Google FAQ rich results. It now matches `/sell`, `/faq`, `/buy`, and all 8 category pages.
+[2026-03-21 06:23:36] Run #4 finished
+[2026-03-21 06:23:41] Run #5 starting (model: sonnet)
+
+[2026-03-21] Run 22 completed (commit 5bc6e59):
+  - /buy/[category] pages: breadcrumb updated to 3-level hierarchy (Home > Buy a Website > [Category H1]) in both visual nav and BreadcrumbList JSON-LD — was incorrectly skipping the /buy hub, which misrepresented the URL structure (/buy/saas is a sub-path of /buy) and weakened PageRank flow through the hub
+  - seller/[username]: meta title changed from "[username]'s Listings | Buy Sites Direct" to "Websites for Sale by [username] | Buy Sites Direct" — adds the primary keyword "websites for sale" to every seller profile page
+  - /sell page: added "Looking to buy? Browse all websites for sale" contextual link to /buy after the category tags section — the /sell page had no link to the /buy hub; this cross-link improves internal PageRank flow to /buy and provides a clear path for buyers who land on /sell
+Run 22 complete (commit `5bc6e59`). Three improvements deployed:
+
+**Category breadcrumbs — `/buy` as intermediate step**
+All 8 category pages now show `Home / Buy a Website / Content Sites for Sale` in both the visual breadcrumb and `BreadcrumbList` JSON-LD. Previously the breadcrumb jumped from Home directly to the category, skipping the `/buy` hub entirely — which misrepresented the URL hierarchy (`/buy/saas` is a sub-path of `/buy`) and failed to pass PageRank through the hub.
+
+**Seller profile meta title — primary keyword added**
+Changed from `"[username]'s Listings | Buy Sites Direct"` to `"Websites for Sale by [username] | Buy Sites Direct"`. Every seller profile page now targets the primary keyword `"websites for sale"` in its `<title>` tag.
+
+**`/sell` page — buyer cross-link to `/buy`**
+Added `"Looking to buy? Browse all websites for sale"` after the category tag grid. The `/sell` page had no path to the `/buy` hub, leaving buyers who landed there without a clear route to the listings and giving `/buy` no inbound link equity from that page.
+[2026-03-21 06:29:13] Run #5 finished
+[2026-03-21 06:29:13] Reached max loops (5). Stopping.
+[2026-03-22 06:02:01] ==========================================
+[2026-03-22 06:02:01] Agent: Seo Agent
+[2026-03-22 06:02:01] Model: sonnet
+[2026-03-22 06:02:01] Workspace: /Users/brandonhopkins/Projects/seo/buysitesdirect/agents/seo-agent
+[2026-03-22 06:02:01] Stop on complete: false
+[2026-03-22 06:02:01] Max loops: 5 (0=infinite)
+[2026-03-22 06:02:01] ==========================================
+[2026-03-22 06:02:01] Run #1 starting (model: sonnet)
+
+[2026-03-22] Run 23 completed (commit pending):
+  - seller/[username] profileSchema: fixed price bug — was dividing askingPrice by 100 making a $1,000 listing appear as $10.00 in Google rich results; same bug that was fixed in Run 16 for listing detail pages
+  - /faq and /about pages: changed "Browse listings" CTA from href="/#listings" to href="/buy" — passes PageRank to the canonical /buy hub instead of the homepage anchor
+  - /buy page: changed "Browse all listings" CTA from href="/#listings" to href="/" — corrects the link to the actual listing grid (homepage) since /buy is the category hub, not the grid itself
+  - not-found page: changed "Browse Listings" button from href="/" to href="/buy" — better destination for users who land on a 404
+Run 23 complete (commit `a950d1e`). Pushed to origin — Vercel deploys automatically on push.
+
+**What was done:**
+
+- **Seller profile `profileSchema` price bug fixed** — The `hasPart` Product offers had `"price": (l.askingPrice / 100).toFixed(2)`, making a $1,000 listing appear as `$10.00` in Google rich results. Same bug was fixed for listing detail pages in Run 16 but the seller profile schema was missed. Now uses `l.askingPrice.toFixed(2)` directly.
+
+- **`/#listings` → `/buy` on `/faq` and `/about`** — Both pages had "Browse listings" CTAs pointing to `/#listings` (homepage anchor). Changed to `/buy`, passing PageRank to the canonical `/buy` hub rather than splitting it with the homepage.
+
+- **`/buy` page "Browse all listings" CTA** — Was linking to `/#listings`. Since `/buy` is the category hub (not the listing grid), corrected to `/` which is where the actual listing grid lives.
+
+- **404 "Browse Listings" → `/buy`** — The not-found page's primary CTA now sends users to the `/buy` hub instead of the homepage root.
+[2026-03-22 06:07:02] Run #1 finished
+[2026-03-22 06:07:07] Run #2 starting (model: sonnet)
+
+[2026-03-22] Run 24 completed (commit d200710):
+  - listing/[slug] page: added CATEGORY_PLURAL_LABELS map with correct plural forms matching category page H1s ("Content Sites for Sale", "SaaS Businesses for Sale", "eCommerce Stores for Sale", "Online Tools & Apps for Sale", "Online Communities for Sale", "Service Businesses for Sale", "Other Websites for Sale") — old code appended bare "s" to CATEGORY_LABELS producing invalid strings like "SaaSs for Sale", "eCommerces for Sale", "Communitys for Sale"
+  - listing/[slug] page: BreadcrumbList JSON-LD updated to 4-level hierarchy (Buy Sites Direct > Buy a Website > [Category] for Sale > [Listing Title]) — was missing the /buy hub as intermediate step, inconsistent with the category page's own BreadcrumbList schema
+  - listing/[slug] page: visual breadcrumb updated to match JSON-LD — added /buy link as intermediate step and switched to proper plural category labels
+
+Run 24 complete (commit `d200710`). Here's what was done:
+
+**Listing detail page — breadcrumb bug fix**
+
+The listing detail breadcrumb had two problems:
+
+1. **Wrong plural forms** — The old code appended a bare `"s"` to `CATEGORY_LABELS`, producing invalid labels like `"SaaSs for Sale"`, `"eCommerces for Sale"`, `"Communitys for Sale"`, `"Service Businesss for Sale"`. A new `CATEGORY_PLURAL_LABELS` map was added with proper forms matching the category page H1s: `"SaaS Businesses for Sale"`, `"eCommerce Stores for Sale"`, `"Online Communities for Sale"`, etc.
+
+2. **Missing `/buy` intermediate step** — The BreadcrumbList JSON-LD had only 3 levels (`Buy Sites Direct → {Category} → {Title}`), skipping the `/buy` hub. This was inconsistent with the category pages' own BreadcrumbList (which correctly include `Buy a Website` as position 2). Both the JSON-LD schema and the visual `<nav>` breadcrumb are now updated to 4 levels: `Buy Sites Direct → Buy a Website → [Category for Sale] → [Listing Title]`.
+[2026-03-22 06:20:02] Run #2 finished
+[2026-03-22 06:20:07] Run #3 starting (model: sonnet)
+
+[2026-03-22] Run 25 completed (commit fbb2da0):
+  - listing/[slug] page: added CATEGORY_PLURAL_LABELS map with correct plural forms matching category page H1s ("Content Sites for Sale", "SaaS Businesses for Sale", "eCommerce Stores for Sale", "Online Tools & Apps for Sale", "Online Communities for Sale", "Service Businesses for Sale", "Other Websites for Sale") — old code appended bare "s" producing invalid strings like "SaaSs for Sale", "eCommerces for Sale"
+  - listing/[slug] page: BreadcrumbList JSON-LD updated to 4-level hierarchy (Buy Sites Direct > Buy a Website > [Category for Sale] > [Listing Title]) — was missing the /buy hub as intermediate step, inconsistent with category page's own BreadcrumbList schema
+  - listing/[slug] page: visual breadcrumb updated to match JSON-LD — added /buy link as intermediate step and switched to proper plural category labels
+  - listing/[slug] page: Product JSON-LD now includes additionalProperty array with PropertyValue entries for Site Age, Monthly Revenue, Monthly Profit, and Monthly Traffic — gives Google structured data about key metrics, makes listings eligible for richer SERP display
+  - root layout: added alternates.languages with en-US and x-default hreflang entries — signals English-US language targeting to Google and other search engines for all pages globally

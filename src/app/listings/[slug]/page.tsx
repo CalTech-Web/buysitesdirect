@@ -329,6 +329,18 @@ export default async function ListingPage({
       ...(images.length > 0 ? { "image": images[0].url } : {}),
       "datePublished": new Date(listing.createdAt).toISOString(),
       "dateModified": new Date(listing.updatedAt).toISOString(),
+      "additionalProperty": [
+        { "@type": "PropertyValue", "name": "Site Age", "value": age },
+        ...(listing.monthlyRevenue != null && listing.monthlyRevenue > 0
+          ? [{ "@type": "PropertyValue", "name": "Monthly Revenue", "value": `$${listing.monthlyRevenue.toFixed(0)} USD` }]
+          : []),
+        ...(listing.monthlyProfit != null && listing.monthlyProfit > 0
+          ? [{ "@type": "PropertyValue", "name": "Monthly Profit", "value": `$${listing.monthlyProfit.toFixed(0)} USD` }]
+          : []),
+        ...(listing.monthlyTraffic != null && listing.monthlyTraffic > 0
+          ? [{ "@type": "PropertyValue", "name": "Monthly Traffic", "value": `${listing.monthlyTraffic} pageviews` }]
+          : []),
+      ],
       "offers": {
         "@type": "Offer",
         "price": listing.askingPrice.toFixed(2),
