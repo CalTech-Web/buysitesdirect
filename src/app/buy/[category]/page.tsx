@@ -392,6 +392,22 @@ export default async function CategoryPage({
     })),
   }
 
+  const prices = rows.map((r) => r.listing.askingPrice).filter((p) => p > 0)
+  const aggregateOfferSchema = prices.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "AggregateOffer",
+    "@id": `https://buysitesdirect.com/buy/${category}#offer`,
+    "priceCurrency": "USD",
+    "lowPrice": Math.min(...prices).toFixed(2),
+    "highPrice": Math.max(...prices).toFixed(2),
+    "offerCount": prices.length,
+    "itemOffered": {
+      "@type": "Product",
+      "name": seo.h1,
+      "description": seo.description,
+    },
+  } : null
+
   const headerRadial = CATEGORY_HEADER_RADIAL[category] ?? CATEGORY_HEADER_RADIAL["other"]
   const accentBar = CATEGORY_ACCENT_BAR[category] ?? CATEGORY_ACCENT_BAR["other"]
   const sparkleColors = CATEGORY_SPARKLE_COLORS[category] ?? CATEGORY_SPARKLE_COLORS["other"]
@@ -401,7 +417,7 @@ export default async function CategoryPage({
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema ? [breadcrumbSchema, itemListSchema, faqSchema] : [breadcrumbSchema, faqSchema]) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, ...(itemListSchema ? [itemListSchema] : []), ...(aggregateOfferSchema ? [aggregateOfferSchema] : []), faqSchema]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Category Hero Banner */}

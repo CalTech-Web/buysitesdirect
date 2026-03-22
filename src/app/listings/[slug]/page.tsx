@@ -326,7 +326,15 @@ export default async function ListingPage({
       "description": listing.description.slice(0, 500),
       "url": `https://buysitesdirect.com/listings/${listing.slug}`,
       "category": categoryLabel,
-      ...(images.length > 0 ? { "image": images[0].url } : {}),
+      ...(images.length > 0 ? {
+        "image": {
+          "@type": "ImageObject",
+          "url": images[0].url,
+          "width": 1280,
+          "height": 720,
+          "caption": listing.title,
+        },
+      } : {}),
       "datePublished": new Date(listing.createdAt).toISOString(),
       "dateModified": new Date(listing.updatedAt).toISOString(),
       "additionalProperty": [

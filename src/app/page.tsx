@@ -183,6 +183,23 @@ export default async function HomePage({
     ],
   }
 
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://buysitesdirect.com/#webpage",
+    "url": "https://buysitesdirect.com",
+    "name": "Websites for Sale | No Broker Fees | Buy Sites Direct",
+    "description": "Browse websites, SaaS businesses, eCommerce stores, newsletters, and content sites for sale. Contact sellers directly with no broker fees or commissions.",
+    "isPartOf": { "@id": "https://buysitesdirect.com/#website" },
+    "about": { "@id": "https://buysitesdirect.com/#organization" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Buy Sites Direct", "item": "https://buysitesdirect.com" },
+      ],
+    },
+  }
+
   // Build ItemList schema from all active listings (unfiltered base state)
   const allActiveRows = rows.filter(() => true) // rows = all active listings for current filter; when no filters applied, this is the full set
   const itemListJsonLd = {
@@ -204,7 +221,7 @@ export default async function HomePage({
     <>
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify([howToJsonLd, itemListJsonLd]) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([webPageJsonLd, howToJsonLd, itemListJsonLd]) }}
     />
     <div className="max-w-6xl mx-auto px-4 py-10">
       <section className="mb-10 text-center">
